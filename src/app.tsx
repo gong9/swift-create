@@ -3,6 +3,8 @@ import type { FC } from 'react'
 import React, { useRef, useState } from 'react'
 import { Text } from 'ink'
 import SelectInput from 'ink-select-input'
+import { Task } from 'ink-task-list'
+import spinners from 'cli-spinners'
 import { FrameMap, ProjectMap } from './map/index'
 import copy from './utils/fs'
 
@@ -14,6 +16,13 @@ enum ProjectEnum {
 enum FrameEnum {
   React,
   Vue,
+}
+
+enum StateTask {
+  Pending,
+  Loading,
+  Success,
+  Error,
 }
 
 interface ProjectItemType {
@@ -106,7 +115,7 @@ const App: FC = () => {
 
   const [step, setStep] = useState(0)
   const [confirmRecord, setConfirmRecord] = useState(0)
-  const [loadWord, setLoadWord] = useState('正在下载模版...')
+  const [loadWord, setLoadWord] = useState(StateTask.Pending)
 
   const handleSelect = (item: ProjectItemType | CodeManagementItemsType | FrameItemType) => {
     switch (step) {
@@ -126,14 +135,15 @@ const App: FC = () => {
     setStep(step + 1)
   }
 
-  const getCurrentTemplatePath=(recordInfo:RecordType)=>{
-    if(recordInfo.frame===FrameEnum.React){
+  const getCurrentTemplatePath = (recordInfo: RecordType) => {
+    if (recordInfo.frame === FrameEnum.React)
       return 'template-react-ts'
-    }else if(recordInfo.frame===FrameEnum.Vue){
+
+    else if (recordInfo.frame === FrameEnum.Vue)
       return 'template-vue-ts'
-    }else{
+
+    else
       return ''
-    }
   }
 
   const handleConfirm = (item: ConfirmItemsType) => {
@@ -148,16 +158,54 @@ const App: FC = () => {
     }
     else {
       const currentPath = getCurrentTemplatePath(record.current)
-      
+      setLoadWord(StateTask.Loading)
       setConfirmRecord(1)
+
       copy(path.resolve(__dirname, `../template/${currentPath}`)).then(
         () => {
-          setLoadWord('下载完成')
+          setLoadWord(StateTask.Success)
         },
         (err) => {
+          setLoadWord(StateTask.Error)
           console.log(err)
-          setLoadWord('下载失败')
         })
+    }
+  }
+
+  const renderStateTask = (loadWord: number) => {
+    switch (loadWord) {
+      case StateTask.Pending:
+        return (
+          <Task
+          label="Pending"
+          state="pending"
+        />
+        )
+      case StateTask.Loading:
+        return (
+          <Task
+            label="Loading"
+            state="loading"
+            spinner={spinners.dots}
+        />
+        )
+      case StateTask.Success:
+        return (
+          <Task
+          label="Success"
+          state="success"
+      />
+        )
+      case StateTask.Error:
+        return (
+          <Task
+            label="Error"
+            state="error"
+        />
+        )
+
+      default:
+        return null
     }
   }
 
@@ -171,9 +219,7 @@ const App: FC = () => {
       )
     }
     else {
-      return (
-          <Text color="green">{loadWord}</Text>
-      )
+      return renderStateTask(loadWord)
     }
   }
   else {

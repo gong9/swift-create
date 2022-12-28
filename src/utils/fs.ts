@@ -4,7 +4,6 @@ import fs from 'fs-extra'
 const create = async () => {
   try {
     await fs.emptyDir(path.resolve(process.cwd(), './template-react-ts'))
-    console.log('success!')
   }
   catch (err) {
     console.error(err)
@@ -13,7 +12,6 @@ const create = async () => {
 
 const copy = async (tempPath: string) => {
   await create()
-
   return fs.copy(tempPath, path.resolve(process.cwd(), './template-react-ts'))
 }
 

@@ -4,10 +4,12 @@ specifiers:
   '@antfu/eslint-config': ^0.34.0
   '@ava/typescript': ^3.0.1
   '@sindresorhus/tsconfig': ^3.0.1
+  '@types/fs-extra': ^9.0.13
   '@types/react': ^18.0.26
   ava: ^5.1.0
   cac: ^6.7.14
   chalk: ^4.1.2
+  cli-spinners: ^2.7.0
   eslint: ^8.30.0
   eslint-config-xo-react: ^0.27.0
   eslint-plugin-react: ^7.31.11
@@ -15,7 +17,9 @@ specifiers:
   fs-extra: ^11.1.0
   ink: ^3.2.0
   ink-select-input: ^4.2.1
+  ink-task-list: ^2.0.0
   ink-testing-library: ^2.1.0
+  ink-text-input: ^4.0.3
   meow: ^9.0.0
   react: ^17.0.2
   typescript: ^4.9.4
@@ -23,9 +27,12 @@ specifiers:
 
 dependencies:
   cac: 6.7.14
+  cli-spinners: 2.7.0
   fs-extra: 11.1.0
   ink: 3.2.0_odph5zpxnhqxi2epe2unwomxxu
   ink-select-input: 4.2.1_ink@3.2.0+react@17.0.2
+  ink-task-list: 2.0.0_ink@3.2.0+react@17.0.2
+  ink-text-input: 4.0.3_ink@3.2.0+react@17.0.2
   meow: 9.0.0
   react: 17.0.2
 
@@ -33,6 +40,7 @@ devDependencies:
   '@antfu/eslint-config': 0.34.0_lzzuuodtsqwxnvqeq4g4likcqa
   '@ava/typescript': 3.0.1
   '@sindresorhus/tsconfig': 3.0.1
+  '@types/fs-extra': 9.0.13
   '@types/react': 18.0.26
   ava: 5.1.0_@ava+typescript@3.0.1
   chalk: 4.1.2
@@ -541,6 +549,12 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
+    dev: true
+
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 18.11.17
     dev: true
 
   /@types/glob/7.2.0:
@@ -1456,6 +1470,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       restore-cursor: 3.1.0
+    dev: false
+
+  /cli-spinners/2.7.0:
+    resolution: {integrity: sha512-qu3pN8Y3qHNgE2AFweciB1IfMnmZ/fsNTEE+NOFjmGB2F/7rLhnhzppvpCnN4FovtP26k8lHyy9ptEbNwWFLzw==}
+    engines: {node: '>=6'}
     dev: false
 
   /cli-truncate/2.1.0:
@@ -3345,6 +3364,16 @@ packages:
       react: 17.0.2
     dev: false
 
+  /ink-task-list/2.0.0_ink@3.2.0+react@17.0.2:
+    resolution: {integrity: sha512-+WadfalLGUrYT/5D4cHeShN73t5urEsI5VOwFYw3qNWdOL+GQVTLbTS0tCZkzIcBcL+dfZcQAtuoW56ZBZV+Bg==}
+    peerDependencies:
+      ink: '>=3.0.0'
+      react: '>=16.8.0'
+    dependencies:
+      ink: 3.2.0_odph5zpxnhqxi2epe2unwomxxu
+      react: 17.0.2
+    dev: false
+
   /ink-testing-library/2.1.0_@types+react@18.0.26:
     resolution: {integrity: sha512-7TNlOjJlJXB33vG7yVa+MMO7hCjaC1bCn+zdpSjknWoLbOWMaFdKc7LJvqVkZ0rZv2+akhjXPrcR/dbxissjUw==}
     engines: {node: '>=10'}
@@ -3356,6 +3385,19 @@ packages:
     dependencies:
       '@types/react': 18.0.26
     dev: true
+
+  /ink-text-input/4.0.3_ink@3.2.0+react@17.0.2:
+    resolution: {integrity: sha512-eQD01ik9ltmNoHmkeQ2t8LszYkv2XwuPSUz3ie/85qer6Ll/j0QSlSaLNl6ENHZakBHdCBVZY04iOXcLLXA0PQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      ink: ^3.0.0-3
+      react: ^16.5.2 || ^17.0.0
+    dependencies:
+      chalk: 4.1.2
+      ink: 3.2.0_odph5zpxnhqxi2epe2unwomxxu
+      react: 17.0.2
+      type-fest: 0.15.1
+    dev: false
 
   /ink/3.2.0_odph5zpxnhqxi2epe2unwomxxu:
     resolution: {integrity: sha512-firNp1q3xxTzoItj/eOOSZQnYSlyrWks5llCTVX37nJ59K3eXbQ8PtzCguqo8YI19EELo5QxaKnJd4VxzhU8tg==}
@@ -5469,6 +5511,11 @@ packages:
     resolution: {integrity: sha512-34R7HTnG0XIJcBSn5XhDd7nNFPRcXYRZrBB2O2jdKqYODldSzBAqzsWoZYYvduky73toYS/ESqxPvkDf/F0XMg==}
     engines: {node: '>=10'}
     dev: true
+
+  /type-fest/0.15.1:
+    resolution: {integrity: sha512-n+UXrN8i5ioo7kqT/nF8xsEzLaqFra7k32SEsSPwvXVGyAcRgV/FUQN/sgfptJTR1oRmmq7z4IXMFSM7im7C9A==}
+    engines: {node: '>=10'}
+    dev: false
 
   /type-fest/0.18.1:
     resolution: {integrity: sha512-OIAYXk8+ISY+qTOwkHtKqzAuxchoMiD9Udx+FSGQDuiRR+PJKJHc2NJAXlbhkGwTt/4/nKZxELY1w3ReWOL8mw==}
