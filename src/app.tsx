@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import React, { useRef, useState } from 'react'
 import { Text } from 'ink'
 import SelectInput from 'ink-select-input'
-import { FrameMap, ProjectMap } from './map'
+import { FrameMap, ProjectMap } from './map/index'
 import copy from './utils/fs'
 
 enum ProjectEnum {

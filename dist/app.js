@@ -30,7 +30,7 @@ const path_1 = __importDefault(require("path"));
 const react_1 = __importStar(require("react"));
 const ink_1 = require("ink");
 const ink_select_input_1 = __importDefault(require("ink-select-input"));
-const map_1 = require("./map");
+const index_1 = require("./map/index");
 const fs_1 = __importDefault(require("./utils/fs"));
 var ProjectEnum;
 (function (ProjectEnum) {
@@ -153,9 +153,9 @@ const App = () => {
             return (react_1.default.createElement(react_1.default.Fragment, null,
                 react_1.default.createElement(ink_1.Text, { color: "green" },
                     "\u60A8\u7684\u9009\u62E9\u662F \u6846\u67B6\uFF1A",
-                    map_1.FrameMap[record.current.frame],
+                    index_1.FrameMap[record.current.frame],
                     "\uFF0C\u9879\u76EE\u7C7B\u578B\u662F\uFF1A",
-                    map_1.ProjectMap[record.current.projectType],
+                    index_1.ProjectMap[record.current.projectType],
                     "\uFF0C \u4ED3\u5E93\u7BA1\u7406\u6A21\u5F0F\u662F",
                     record.current.isMonorepo ? 'monorepo' : 'basics'),
                 react_1.default.createElement(ink_select_input_1.default, { items: confirmItems, onSelect: handleConfirm })));
