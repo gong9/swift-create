@@ -1,8 +1,10 @@
+import path from 'path'
 import type { FC } from 'react'
 import React, { useRef, useState } from 'react'
 import { Text } from 'ink'
 import SelectInput from 'ink-select-input'
 import { FrameMap, ProjectMap } from './map'
+import copy from './utils/fs'
 
 enum ProjectEnum {
   Business,
@@ -25,6 +27,7 @@ interface CodeManagementItemsType {
 }
 
 type FrameItemType = ProjectItemType
+type ConfirmItemsType = ProjectItemType
 
 interface RecordType {
   projectType: number
@@ -81,6 +84,17 @@ const titleMap: {
   2: '请选择框架',
 }
 
+const confirmItems: ConfirmItemsType[] = [
+  {
+    label: '确认',
+    value: 1,
+  },
+  {
+    label: '取消',
+    value: 0,
+  },
+]
+
 const App: FC = () => {
   const record = useRef<RecordType>(
     {
@@ -91,6 +105,8 @@ const App: FC = () => {
   )
 
   const [step, setStep] = useState(0)
+  const [confirmRecord, setConfirmRecord] = useState(0)
+  const [loadWord, setLoadWord] = useState('正在下载模版...')
 
   const handleSelect = (item: ProjectItemType | CodeManagementItemsType | FrameItemType) => {
     switch (step) {
@@ -110,10 +126,55 @@ const App: FC = () => {
     setStep(step + 1)
   }
 
+  const getCurrentTemplatePath=(recordInfo:RecordType)=>{
+    if(recordInfo.frame===FrameEnum.React){
+      return 'template-react-ts'
+    }else if(recordInfo.frame===FrameEnum.Vue){
+      return 'template-vue-ts'
+    }else{
+      return ''
+    }
+  }
+
+  const handleConfirm = (item: ConfirmItemsType) => {
+    if (item.value === 0) {
+      setStep(0)
+
+      record.current = {
+        projectType: ProjectEnum.Business,
+        isMonorepo: true,
+        frame: FrameEnum.React,
+      }
+    }
+    else {
+      const currentPath = getCurrentTemplatePath(record.current)
+      
+      setConfirmRecord(1)
+      copy(path.resolve(__dirname, `../template/${currentPath}`)).then(
+        () => {
+          setLoadWord('下载完成')
+        },
+        (err) => {
+          console.log(err)
+          setLoadWord('下载失败')
+        })
+    }
+  }
+
   if (step === 3) {
-    return (
-      <Text color="green">您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>
-    )
+    if (confirmRecord === 0) {
+      return (
+        <>
+          <Text color="green">您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>
+          <SelectInput items={confirmItems} onSelect={handleConfirm} />
+        </>
+      )
+    }
+    else {
+      return (
+          <Text color="green">{loadWord}</Text>
+      )
+    }
   }
   else {
     return (
