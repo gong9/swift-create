@@ -7,5 +7,5 @@
 ## Install
 
 ```bash
-npx gong-create@0.0.3
+npx gong-create@0.0.4
 ```
