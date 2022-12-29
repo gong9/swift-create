@@ -6,7 +6,9 @@ import SelectInput from 'ink-select-input'
 import { Task } from 'ink-task-list'
 import spinners from 'cli-spinners'
 import { getAppointRepoName } from './server'
+import downloadGitRepo from './server/downLoadGitRepo'
 import { FrameMap, ProjectMap } from './map/index'
+import { downloadDirectory } from './constants'
 // import copy from './utils/fs'
 
 enum ProjectEnum {
@@ -34,6 +36,11 @@ interface ProjectItemType {
 interface CodeManagementItemsType {
   label: string
   value: boolean
+}
+
+interface RepoNameItemsType {
+  label: string
+  value: string
 }
 
 type FrameItemType = ProjectItemType
@@ -197,17 +204,19 @@ const App: FC = () => {
     }
   }
 
-  const downloadTempalte = () => {}
+  const downloadTempalte = async (item: RepoNameItemsType) => {
+    setLoadWord(StateTask.Loading)
+    try {
+      await downloadGitRepo(`gong-cli/${item.value}`, `${downloadDirectory}/${item.value}`)
+    }
+    catch (error) {
+      setLoadWord(StateTask.Error)
+    }
+    setLoadWord(StateTask.Success)
+  }
 
   const renderStateTask = (loadWord: number) => {
     switch (loadWord) {
-      case StateTask.Pending:
-        return (
-          <Task
-          label="Pending"
-          state="pending"
-        />
-        )
       case StateTask.Loading:
         return (
           <Task
@@ -215,13 +224,6 @@ const App: FC = () => {
             state="loading"
             spinner={spinners.dots}
         />
-        )
-      case StateTask.Success:
-        return (
-          <Task
-          label="Success"
-          state="success"
-      />
         )
       case StateTask.Error:
         return (
@@ -247,35 +249,43 @@ const App: FC = () => {
     return (
       <>
        <Text color="green">当前匹配到的项目模版</Text>
-       <SelectInput items={currentRepoItems as any} onSelect={downloadTempalte} />
+       {
+        currentRepoItems.length > 0 ? <SelectInput items={currentRepoItems as any} onSelect={downloadTempalte} /> : <Text color="red">暂无匹配模版</Text>
+       }
       </>
     )
   }
 
-  if (step === 3) {
-    if (confirmRecord === 0) {
+  const render = () => {
+    if (step === 3) {
+      if (confirmRecord === 0) {
+        return (
+          <>
+            <Text color="green">您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>
+            <SelectInput items={confirmItems} onSelect={handleConfirm} />
+          </>
+        )
+      }
+      else {
+        return renderSelectTemplate()
+      }
+    }
+    else {
       return (
         <>
-          <Text color="green">您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>
-          <SelectInput items={confirmItems} onSelect={handleConfirm} />
+          <Text color="green">{titleMap[step]}</Text>
+          <SelectInput items={itemMap[step]} onSelect={handleSelect} />
         </>
       )
     }
-    else {
-      if (loadWord !== StateTask.Success)
-        return renderStateTask(loadWord)
-      else
-        return renderSelectTemplate()
-    }
   }
-  else {
-    return (
-      <>
-        <Text color="green">{titleMap[step]}</Text>
-        <SelectInput items={itemMap[step]} onSelect={handleSelect} />
-      </>
-    )
-  }
+
+  return (
+    <>
+      {render()}
+      {renderStateTask(loadWord)}
+    </>
+  )
 }
 
 export default App
