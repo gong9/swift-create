@@ -1,12 +1,13 @@
-import path from 'path'
+// import path from 'path'
 import type { FC } from 'react'
 import React, { useRef, useState } from 'react'
 import { Text } from 'ink'
 import SelectInput from 'ink-select-input'
 import { Task } from 'ink-task-list'
 import spinners from 'cli-spinners'
+import { getAppointRepoName } from './server'
 import { FrameMap, ProjectMap } from './map/index'
-import copy from './utils/fs'
+// import copy from './utils/fs'
 
 enum ProjectEnum {
   Business,
@@ -116,6 +117,7 @@ const App: FC = () => {
   const [step, setStep] = useState(0)
   const [confirmRecord, setConfirmRecord] = useState(0)
   const [loadWord, setLoadWord] = useState(StateTask.Pending)
+  const currentRepoList = useRef<string[]>([])
 
   const handleSelect = (item: ProjectItemType | CodeManagementItemsType | FrameItemType) => {
     switch (step) {
@@ -135,15 +137,28 @@ const App: FC = () => {
     setStep(step + 1)
   }
 
-  const getCurrentTemplatePath = (recordInfo: RecordType) => {
+  const getCurrentTemplateList = (recordInfo: RecordType) => {
+    const temp: [string, string, string] = ['react', 'lib', 'monorepo']
+
+    // react or vue
     if (recordInfo.frame === FrameEnum.React)
-      return 'template-react-ts'
-
-    else if (recordInfo.frame === FrameEnum.Vue)
-      return 'template-vue-ts'
-
+      temp[0] = 'react'
     else
-      return ''
+      temp[0] = 'vue'
+
+    // monorepo or basics
+    if (recordInfo.isMonorepo)
+      temp[2] = 'monorepo'
+    else
+      temp[2] = ''
+
+    // business or lib
+    if (recordInfo.projectType === ProjectEnum.Business)
+      temp[1] = ''
+    else
+      temp[1] = 'lib'
+
+    return temp
   }
 
   const handleConfirm = (item: ConfirmItemsType) => {
@@ -157,20 +172,32 @@ const App: FC = () => {
       }
     }
     else {
-      const currentPath = getCurrentTemplatePath(record.current)
+      const currentRecord = getCurrentTemplateList(record.current)
       setLoadWord(StateTask.Loading)
       setConfirmRecord(1)
 
-      copy(path.resolve(__dirname, `../template/${currentPath}`)).then(
-        () => {
+      getAppointRepoName(currentRecord).then(
+        (res) => {
+          currentRepoList.current = res
           setLoadWord(StateTask.Success)
         },
         (err) => {
           setLoadWord(StateTask.Error)
           console.log(err)
-        })
+        },
+      )
+      // copy(path.resolve(__dirname, `../template/${currentPath}`)).then(
+      //   () => {
+      //     setLoadWord(StateTask.Success)
+      //   },
+      //   (err) => {
+      //     setLoadWord(StateTask.Error)
+      //     console.log(err)
+      //   })
     }
   }
+
+  const downloadTempalte = () => {}
 
   const renderStateTask = (loadWord: number) => {
     switch (loadWord) {
@@ -209,6 +236,22 @@ const App: FC = () => {
     }
   }
 
+  const renderSelectTemplate = () => {
+    const currentRepoItems = currentRepoList.current.map(
+      item => ({
+        label: item,
+        value: item,
+      }),
+    )
+
+    return (
+      <>
+       <Text color="green">当前匹配到的项目模版</Text>
+       <SelectInput items={currentRepoItems as any} onSelect={downloadTempalte} />
+      </>
+    )
+  }
+
   if (step === 3) {
     if (confirmRecord === 0) {
       return (
@@ -219,7 +262,10 @@ const App: FC = () => {
       )
     }
     else {
-      return renderStateTask(loadWord)
+      if (loadWord !== StateTask.Success)
+        return renderStateTask(loadWord)
+      else
+        return renderSelectTemplate()
     }
   }
   else {
