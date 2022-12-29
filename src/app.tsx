@@ -9,7 +9,7 @@ import { getAppointRepoName } from './server'
 import downloadGitRepo from './server/downLoadGitRepo'
 import { FrameMap, ProjectMap } from './map/index'
 import { downloadDirectory } from './constants'
-import { isExists, remove } from './utils/fs'
+import { isExists, move, remove } from './utils/fs'
 
 enum ProjectEnum {
   Business,
@@ -226,7 +226,8 @@ const App: FC = () => {
     }
     setIsDownload(StateTask.Success)
     setLoadWord(StateTask.Success)
-    console.log('下载完成')
+
+    await move(`${downloadDirectory}/${item.value}`, `${process.cwd()}/${item.value}`)
   }
 
   const renderStateTask = (loadWord: number) => {

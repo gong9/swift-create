@@ -28,9 +28,25 @@ const remove = async (path: string) => {
   }
 }
 
+const move = async (srcPath: string, path: string) => {
+  if (await isExists(path)) {
+    console.log('project already exists')
+    return
+  }
+
+  try {
+    await fs.move(srcPath, path)
+    console.log('success!')
+  }
+  catch (err) {
+    console.error(err)
+  }
+}
+
 export {
   create,
   copy,
   isExists,
   remove,
+  move,
 }
