@@ -262,9 +262,15 @@ const App: FC = () => {
     if (!(isDownload === StateTask.Error || isDownload === StateTask.Success) && loadWord !== StateTask.Loading) {
       return (
          <>
-           <Text>当前匹配到的项目模版</Text>
            {
-              currentRepoItems.length > 0 ? <SelectInput items={currentRepoItems as any} onSelect={downloadTempalte} /> : <Text color="red">暂无匹配模版</Text>
+              currentRepoItems.length > 0
+                ? (
+                    <>
+                       <Text>当前匹配到的项目模版</Text>
+                       <SelectInput items={currentRepoItems as any} onSelect={downloadTempalte} />
+                    </>
+                  )
+                : <Text color="red">暂无匹配模版</Text>
            }
          </>
       )
