@@ -9,11 +9,12 @@ import { getAppointRepoName } from './server'
 import downloadGitRepo from './server/downLoadGitRepo'
 import { FrameMap, ProjectMap } from './map/index'
 import { downloadDirectory } from './constants'
-// import copy from './utils/fs'
+import { isExists, remove } from './utils/fs'
 
 enum ProjectEnum {
   Business,
   Lib,
+  Cli,
 }
 
 enum FrameEnum {
@@ -60,6 +61,10 @@ const projectItems: ProjectItemType[] = [
   {
     label: 'lib',
     value: ProjectEnum.Lib,
+  },
+  {
+    label: 'cli',
+    value: ProjectEnum.Cli,
   },
 ]
 
@@ -125,6 +130,7 @@ const App: FC = () => {
   const [confirmRecord, setConfirmRecord] = useState(0)
   const [loadWord, setLoadWord] = useState(StateTask.Pending)
   const currentRepoList = useRef<string[]>([])
+  const [isDownload, setIsDownload] = useState(StateTask.Pending)
 
   const handleSelect = (item: ProjectItemType | CodeManagementItemsType | FrameItemType) => {
     switch (step) {
@@ -205,14 +211,22 @@ const App: FC = () => {
   }
 
   const downloadTempalte = async (item: RepoNameItemsType) => {
+    const isExist = await isExists(`${downloadDirectory}/${item.value}`)
     setLoadWord(StateTask.Loading)
+
+    if (isExist)
+      await remove(`${downloadDirectory}/${item.value}`)
+
     try {
-      await downloadGitRepo(`gong-cli/${item.value}`, `${downloadDirectory}/${item.value}`)
+      await downloadGitRepo(`gong-cli/${item.value}#main`, `${downloadDirectory}/${item.value}`)
     }
     catch (error) {
       setLoadWord(StateTask.Error)
+      setIsDownload(StateTask.Error)
     }
+    setIsDownload(StateTask.Success)
     setLoadWord(StateTask.Success)
+    console.log('下载完成')
   }
 
   const renderStateTask = (loadWord: number) => {
@@ -232,7 +246,6 @@ const App: FC = () => {
             state="error"
         />
         )
-
       default:
         return null
     }
@@ -246,14 +259,19 @@ const App: FC = () => {
       }),
     )
 
-    return (
-      <>
-       <Text color="green">当前匹配到的项目模版</Text>
-       {
-        currentRepoItems.length > 0 ? <SelectInput items={currentRepoItems as any} onSelect={downloadTempalte} /> : <Text color="red">暂无匹配模版</Text>
-       }
-      </>
-    )
+    if (!(isDownload === StateTask.Error || isDownload === StateTask.Success) && loadWord !== StateTask.Loading) {
+      return (
+         <>
+           <Text>当前匹配到的项目模版</Text>
+           {
+              currentRepoItems.length > 0 ? <SelectInput items={currentRepoItems as any} onSelect={downloadTempalte} /> : <Text color="red">暂无匹配模版</Text>
+           }
+         </>
+      )
+    }
+    else {
+      return null
+    }
   }
 
   const render = () => {
@@ -261,7 +279,7 @@ const App: FC = () => {
       if (confirmRecord === 0) {
         return (
           <>
-            <Text color="green">您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>
+            <Text>您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>
             <SelectInput items={confirmItems} onSelect={handleConfirm} />
           </>
         )
@@ -273,7 +291,7 @@ const App: FC = () => {
     else {
       return (
         <>
-          <Text color="green">{titleMap[step]}</Text>
+          <Text>{titleMap[step]}</Text>
           <SelectInput items={itemMap[step]} onSelect={handleSelect} />
         </>
       )

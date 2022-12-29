@@ -15,4 +15,22 @@ const copy = async (tempPath: string) => {
   return fs.copy(tempPath, path.resolve(process.cwd(), './template-react-ts'))
 }
 
-export default copy
+const isExists = async (path: string) => {
+  return await fs.pathExists(path)
+}
+
+const remove = async (path: string) => {
+  try {
+    await fs.remove(path)
+  }
+  catch (err) {
+    console.error(err)
+  }
+}
+
+export {
+  create,
+  copy,
+  isExists,
+  remove,
+}

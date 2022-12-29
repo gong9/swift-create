@@ -5,6 +5,7 @@ interface MapType {
 export const ProjectMap: MapType = {
   0: 'Business',
   1: 'Lib',
+  2: 'Cli',
 }
 
 export const FrameMap: MapType = {
