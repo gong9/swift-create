@@ -1,4 +1,3 @@
-// import path from 'path'
 import type { FC } from 'react'
 import React, { useRef, useState } from 'react'
 import { Text } from 'ink'

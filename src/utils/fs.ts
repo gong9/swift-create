@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs-extra'
 
-const create = async () => {
+export const create = async () => {
   try {
     await fs.emptyDir(path.resolve(process.cwd(), './template-react-ts'))
   }
@@ -10,16 +10,16 @@ const create = async () => {
   }
 }
 
-const copy = async (tempPath: string) => {
+export const copy = async (tempPath: string) => {
   await create()
   return fs.copy(tempPath, path.resolve(process.cwd(), './template-react-ts'))
 }
 
-const isExists = async (path: string) => {
+export const isExists = async (path: string) => {
   return await fs.pathExists(path)
 }
 
-const remove = async (path: string) => {
+export const remove = async (path: string) => {
   try {
     await fs.remove(path)
   }
@@ -28,7 +28,7 @@ const remove = async (path: string) => {
   }
 }
 
-const move = async (srcPath: string, path: string) => {
+export const move = async (srcPath: string, path: string) => {
   if (await isExists(path)) {
     console.log('project already exists')
     return
@@ -41,12 +41,4 @@ const move = async (srcPath: string, path: string) => {
   catch (err) {
     console.error(err)
   }
-}
-
-export {
-  create,
-  copy,
-  isExists,
-  remove,
-  move,
 }

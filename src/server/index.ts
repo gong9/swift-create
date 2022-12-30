@@ -7,7 +7,7 @@ interface RepoType {
   [k: string]: unknown
 }
 
-const getAllRepoList = async () => {
+export const getAllRepoList = async () => {
   const {
     data,
   } = await axios.get('https://api.github.com/orgs/gong-cli/repos')
@@ -15,13 +15,13 @@ const getAllRepoList = async () => {
   return data as RepoType[]
 }
 
-const getAllRepoNameList = async () => {
+export const getAllRepoNameList = async () => {
   const allRepolist = await getAllRepoList()
 
   return allRepolist.map(item => item.name)
 }
 
-const getAppointRepoName = async (match: [string, string, string]) => {
+export const getAppointRepoName = async (match: [string, string, string]) => {
   const allRepoListName = await getAllRepoNameList()
 
   return allRepoListName.filter(
@@ -30,10 +30,4 @@ const getAppointRepoName = async (match: [string, string, string]) => {
       return curNameLowerCase.includes(match[0]) && curNameLowerCase.includes(match[1]) && curNameLowerCase.includes(match[2])
     },
   )
-}
-
-export {
-  getAllRepoList,
-  getAllRepoNameList,
-  getAppointRepoName,
 }
