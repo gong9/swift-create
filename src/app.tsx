@@ -198,14 +198,6 @@ const App: FC = () => {
           console.log(err)
         },
       )
-      // copy(path.resolve(__dirname, `../template/${currentPath}`)).then(
-      //   () => {
-      //     setLoadWord(StateTask.Success)
-      //   },
-      //   (err) => {
-      //     setLoadWord(StateTask.Error)
-      //     console.log(err)
-      //   })
     }
   }
 
