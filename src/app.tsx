@@ -54,26 +54,26 @@ interface RecordType {
 
 const projectItems: ProjectItemType[] = [
   {
-    label: 'business',
+    label: 'business 「业务」',
     value: ProjectEnum.Business,
   },
   {
-    label: 'lib',
+    label: 'lib 「工具库」',
     value: ProjectEnum.Lib,
   },
   {
-    label: 'cli',
+    label: 'cli 「脚手架」',
     value: ProjectEnum.Cli,
   },
 ]
 
 const codeManagementItems: CodeManagementItemsType[] = [
   {
-    label: 'basics',
+    label: 'basics 「单库项目」',
     value: false,
   },
   {
-    label: 'monorepo',
+    label: 'monorepo 「多库管理」',
     value: true,
   },
 ]

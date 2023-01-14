@@ -2,7 +2,7 @@
 
 ## What
 
-自用的cli
+自用的一个cli工具
 
 ## Install
 
