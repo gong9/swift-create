@@ -18,3 +18,7 @@ npx gong-create@latest
 - 库 （组件库、cli）
 - react vue
 - monorepo
+
+## todo 
+
+需要一个好用的js模版，进行项目的配置华写入
