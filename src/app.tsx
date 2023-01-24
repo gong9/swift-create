@@ -10,7 +10,7 @@ import { FrameMap, ProjectMap } from './map/index'
 import { downloadDirectory } from './constants'
 import { isExists, move, remove } from './utils/fs'
 import type { CodeManagementItemsType, ConfirmItemsType, FrameItemType, ProjectItemType, RecordType, RepoNameItemsType } from './types'
-import { FrameEnum, ProjectEnum, StateTask } from './enum'
+import { ConfirmEnum, FrameEnum, ProjectEnum, StateTask } from './enum'
 import { confirmItems, itemMap, titleMap } from './data'
 
 const App: FC = () => {
@@ -71,7 +71,7 @@ const App: FC = () => {
   }
 
   const handleConfirm = (item: ConfirmItemsType) => {
-    if (item.value === 0) {
+    if (item.value === ConfirmEnum.cancel) {
       setStep(0)
 
       record.current = {
@@ -83,7 +83,7 @@ const App: FC = () => {
     else {
       const currentRecord = getCurrentTemplateList(record.current)
       setLoadWord(StateTask.Loading)
-      setConfirmRecord(1)
+      setConfirmRecord(ConfirmEnum.confirm)
 
       getAppointRepoName(currentRecord).then(
         (res) => {

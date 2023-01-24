@@ -15,3 +15,8 @@ export enum StateTask {
   Success,
   Error,
 }
+
+export enum ConfirmEnum {
+  cancel,
+  confirm,
+}
