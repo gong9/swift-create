@@ -107,15 +107,15 @@ const App: FC = () => {
 
     try {
       await downloadGitRepo(`gong-cli/${item.value}#main`, `${downloadDirectory}/${item.value}`)
+      setIsDownload(StateTask.Success)
+      setLoadWord(StateTask.Success)
+
+      await move(`${downloadDirectory}/${item.value}`, `${process.cwd()}/${item.value}`)
     }
     catch (error) {
       setLoadWord(StateTask.Error)
       setIsDownload(StateTask.Error)
     }
-    setIsDownload(StateTask.Success)
-    setLoadWord(StateTask.Success)
-
-    await move(`${downloadDirectory}/${item.value}`, `${process.cwd()}/${item.value}`)
   }
 
   const renderStateTask = (loadWord: number) => {
