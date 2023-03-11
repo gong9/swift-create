@@ -11,7 +11,7 @@ import { downloadDirectory } from './constants'
 import { isExists, move, remove } from './utils/fs'
 import type { CodeManagementItemsType, ConfirmItemsType, FrameItemType, ProjectItemType, RecordType, RepoNameItemsType } from './types'
 import { ConfirmEnum, FrameEnum, ProjectEnum, StateTask } from './enum'
-import { confirmItems, itemMap, titleMap } from './data'
+import { confirmItems, itemMap, titleMap } from './configData'
 
 const App: FC = () => {
   const record = useRef<RecordType>(
@@ -23,7 +23,7 @@ const App: FC = () => {
   )
 
   const [step, setStep] = useState(0)
-  const [confirmRecord, setConfirmRecord] = useState(0)
+  const [confirmRecord, setConfirmRecord] = useState(ConfirmEnum.cancel)
   const [loadWord, setLoadWord] = useState(StateTask.Pending)
   const currentRepoList = useRef<string[]>([])
   const [isDownload, setIsDownload] = useState(StateTask.Pending)
@@ -92,12 +92,16 @@ const App: FC = () => {
         },
         (err) => {
           setLoadWord(StateTask.Error)
-          console.log(err)
+          console.error(err)
         },
       )
     }
   }
 
+  /**
+   * 模版下载
+   * @param item
+   */
   const downloadTempalte = async (item: RepoNameItemsType) => {
     const isExist = await isExists(`${downloadDirectory}/${item.value}`)
     setLoadWord(StateTask.Loading)
@@ -118,6 +122,11 @@ const App: FC = () => {
     }
   }
 
+  /**
+   * 加载状态渲染
+   * @param loadWord
+   * @returns
+   */
   const renderStateTask = (loadWord: number) => {
     switch (loadWord) {
       case StateTask.Loading:
@@ -171,7 +180,7 @@ const App: FC = () => {
 
   const render = () => {
     if (step === 3) {
-      if (confirmRecord === 0) {
+      if (confirmRecord === ConfirmEnum.confirm) {
         return (
           <>
             <Text>您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>
