@@ -1,6 +1,6 @@
 {
   "name": "gong-create",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "bin": {
     "gong-create": "dist/cli.js"
