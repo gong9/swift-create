@@ -7,6 +7,7 @@ export enum ProjectEnum {
 export enum FrameEnum {
   React,
   Vue,
+  None,
 }
 
 export enum StateTask {

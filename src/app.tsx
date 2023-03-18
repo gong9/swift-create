@@ -52,8 +52,10 @@ const App: FC = () => {
     // react or vue
     if (recordInfo.frame === FrameEnum.React)
       temp[0] = 'react'
-    else
+    else if (recordInfo.frame === FrameEnum.Vue)
       temp[0] = 'vue'
+    else
+      temp[0] = ''
 
     // monorepo or basics
     if (recordInfo.isMonorepo)
@@ -70,6 +72,10 @@ const App: FC = () => {
     return temp
   }
 
+  /**
+   * handle final confirmation
+   * @param item
+   */
   const handleConfirm = (item: ConfirmItemsType) => {
     if (item.value === ConfirmEnum.cancel) {
       setStep(0)
@@ -149,6 +155,10 @@ const App: FC = () => {
     }
   }
 
+  /**
+   * render matching Template
+   * @returns
+   */
   const renderSelectTemplate = () => {
     const currentRepoItems = currentRepoList.current.map(
       item => ({
@@ -180,7 +190,7 @@ const App: FC = () => {
 
   const render = () => {
     if (step === 3) {
-      if (confirmRecord === ConfirmEnum.confirm) {
+      if (confirmRecord === ConfirmEnum.cancel) {
         return (
           <>
             <Text>您的选择是 框架：{FrameMap[record.current.frame]}，项目类型是：{ProjectMap[record.current.projectType]}， 仓库管理模式是{record.current.isMonorepo ? 'monorepo' : 'basics'}</Text>

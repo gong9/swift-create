@@ -1,3 +1,4 @@
+import type { FrameEnum, ProjectEnum } from './enum'
 export interface ProjectItemType {
   label: string
   value: number
@@ -17,7 +18,7 @@ export type FrameItemType = ProjectItemType
 export type ConfirmItemsType = ProjectItemType
 
 export interface RecordType {
-  projectType: number
+  projectType: ProjectEnum
   isMonorepo?: boolean
-  frame: number
+  frame: FrameEnum
 }

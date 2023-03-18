@@ -36,6 +36,10 @@ export const frameItem: FrameItemType[] = [
     label: 'Vue',
     value: FrameEnum.Vue,
   },
+  {
+    label: 'None',
+    value: FrameEnum.None,
+  },
 ]
 
 export const itemMap: {
