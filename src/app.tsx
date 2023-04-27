@@ -4,6 +4,7 @@ import { Text } from 'ink'
 import SelectInput from 'ink-select-input'
 import { Task } from 'ink-task-list'
 import spinners from 'cli-spinners'
+import Welcome from './components/Welcome'
 import { getAppointRepoName } from './server'
 import downloadGitRepo from './server/downLoadGitRepo'
 import { FrameMap, ProjectMap } from './map/index'
@@ -214,6 +215,7 @@ const App: FC = () => {
 
   return (
     <>
+      <Welcome/>
       {render()}
       {renderStateTask(loadWord)}
     </>
