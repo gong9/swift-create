@@ -1,4 +1,4 @@
-import type { FrameEnum, ProjectEnum } from './enum'
+import type { FrameEnum, ProjectEnum } from './configData'
 export interface ProjectItemType {
   label: string
   value: number
@@ -6,7 +6,7 @@ export interface ProjectItemType {
 
 export interface CodeManagementItemsType {
   label: string
-  value: boolean
+  value: number
 }
 
 export interface RepoNameItemsType {

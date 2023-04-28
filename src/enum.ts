@@ -1,13 +1,6 @@
-export enum ProjectEnum {
-  Business,
-  Lib,
-  Cli,
-}
-
-export enum FrameEnum {
-  React,
-  Vue,
-  None,
+export enum ConfirmEnum {
+  cancel,
+  confirm,
 }
 
 export enum StateTask {
@@ -15,9 +8,4 @@ export enum StateTask {
   Loading,
   Success,
   Error,
-}
-
-export enum ConfirmEnum {
-  cancel,
-  confirm,
 }
