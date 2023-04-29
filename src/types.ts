@@ -18,7 +18,7 @@ export type FrameItemType = ProjectItemType
 export type ConfirmItemsType = ProjectItemType
 
 export interface RecordType {
-  projectType: ProjectEnum
-  isMonorepo?: boolean
+  project: ProjectEnum
+  codeManagement?: boolean
   frame: FrameEnum
 }

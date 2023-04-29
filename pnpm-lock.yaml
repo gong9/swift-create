@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  await-to-js:
+    specifier: ^3.0.0
+    version: 3.0.0
   axios:
     specifier: ^1.2.2
     version: 1.2.2
@@ -34,6 +37,9 @@ dependencies:
   ink-select-input:
     specifier: ^4.2.1
     version: 4.2.1(ink@3.2.0)(react@17.0.2)
+  ink-spinner:
+    specifier: ^5.0.0
+    version: 5.0.0(ink@3.2.0)(react@17.0.2)
   ink-task-list:
     specifier: ^2.0.0
     version: 2.0.0(ink@3.2.0)(react@17.0.2)
@@ -1396,6 +1402,11 @@ packages:
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /await-to-js@3.0.0:
+    resolution: {integrity: sha512-zJAaP9zxTcvTHRlejau3ZOY4V7SRpiByf3/dxx2uyKxxor19tpmpV2QRsTKikckwhaPmr2dVpxxMr7jOCYVp5g==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /axios@1.2.2:
@@ -3912,6 +3923,18 @@ packages:
       figures: 3.2.0
       ink: 3.2.0(@types/react@18.0.26)(react@17.0.2)
       lodash.isequal: 4.5.0
+      react: 17.0.2
+    dev: false
+
+  /ink-spinner@5.0.0(ink@3.2.0)(react@17.0.2):
+    resolution: {integrity: sha512-EYEasbEjkqLGyPOUc8hBJZNuC5GvXGMLu0w5gdTNskPc7Izc5vO3tdQEYnzvshucyGCBXc86ig0ujXPMWaQCdA==}
+    engines: {node: '>=14.16'}
+    peerDependencies:
+      ink: '>=4.0.0'
+      react: '>=18.0.0'
+    dependencies:
+      cli-spinners: 2.7.0
+      ink: 3.2.0(@types/react@18.0.26)(react@17.0.2)
       react: 17.0.2
     dev: false
 

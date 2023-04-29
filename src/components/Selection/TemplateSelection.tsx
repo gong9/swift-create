@@ -6,7 +6,7 @@ import useStore from '../../store/index'
 import type { CodeManagementItemsType, ProjectItemType } from '../../types'
 
 interface TemplateSelectionProps {
-  config: {
+  config?: {
     name: string
     title: string
     items?: ProjectItemType[] | CodeManagementItemsType[]
@@ -17,6 +17,9 @@ interface TemplateSelectionProps {
 
 const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) => {
   const { updataTemplatePath, tempalteRecord } = useStore(state => state)
+
+  if (!config)
+    return null
 
   const handleSelectChange = (item: ProjectItemType | CodeManagementItemsType) => {
     updataTemplatePath(

@@ -1,12 +1,15 @@
 import path from 'path'
 import fs from 'fs-extra'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { consola } = require('consola')
+
 export const create = async () => {
   try {
     await fs.emptyDir(path.resolve(process.cwd(), './template-react-ts'))
   }
   catch (err) {
-    console.error(err)
+    consola.error(err)
   }
 }
 
@@ -24,21 +27,21 @@ export const remove = async (path: string) => {
     await fs.remove(path)
   }
   catch (err) {
-    console.error(err)
+    consola.error(err)
   }
 }
 
 export const move = async (srcPath: string, path: string) => {
   if (await isExists(path)) {
-    console.log('project already exists')
+    consola.warn('The file already exists, please delete it first')
     return
   }
 
   try {
     await fs.move(srcPath, path)
-    console.log('success!')
+    consola.warn('success!')
   }
   catch (err) {
-    console.error(err)
+    consola.error(err)
   }
 }

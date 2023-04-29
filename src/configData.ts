@@ -14,26 +14,26 @@ export enum FrameEnum {
 
 const projectItems: ProjectItemType[] = [
   {
-    label: 'business 「业务」',
+    label: '业务',
     value: ProjectEnum.Business,
   },
   {
-    label: 'lib 「工具库」',
+    label: '库',
     value: ProjectEnum.Lib,
   },
   {
-    label: 'cli 「脚手架」',
+    label: '脚手架',
     value: ProjectEnum.Cli,
   },
 ]
 
 const codeManagementItems: CodeManagementItemsType[] = [
   {
-    label: 'basics 「单库项目」',
+    label: '单库项目',
     value: 0,
   },
   {
-    label: 'monorepo 「多库管理」',
+    label: '多库管理',
     value: 1,
   },
 ]

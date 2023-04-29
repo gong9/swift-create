@@ -3,18 +3,20 @@ import { FrameEnum, ProjectEnum } from '../configData'
 
 interface StateType {
   tempalteRecord: {
-    projectType: ProjectEnum.Business
-    isMonorepo: boolean
+    project: ProjectEnum.Business
+    codeManagement: number
     frame: FrameEnum.React
   }
   updataTemplatePath: (newData: StateType['tempalteRecord']) => void
 }
 
+export type tempalteRecord = StateType['tempalteRecord']
+
 const useStore = create<StateType>((set) => {
   return {
     tempalteRecord: {
-      projectType: ProjectEnum.Business,
-      isMonorepo: true,
+      project: ProjectEnum.Business,
+      codeManagement: 1,
       frame: FrameEnum.React,
     },
     updataTemplatePath: (newData: StateType['tempalteRecord']) => set(

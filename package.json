@@ -20,6 +20,7 @@
     "readme.md"
   ],
   "dependencies": {
+    "await-to-js": "^3.0.0",
     "axios": "^1.2.2",
     "cac": "^6.7.14",
     "cli-spinners": "^2.7.0",
