@@ -5,7 +5,7 @@ import { Text, useApp } from 'ink'
 import SelectInput from 'ink-select-input'
 import { isExists, move, remove } from '../../utils/fs'
 import { downloadDirectory } from '../../constants'
-import { stepConfig } from '../../configData'
+import { FrameLabel, ProjectLabel, stepConfig } from '../../configData'
 import useStore from '../../store/index'
 import { getAppointRepoName } from '../../server'
 import downloadGitRepo from '../../server/downLoadGitRepo'
@@ -28,7 +28,7 @@ const Selection: FC = () => {
     (async function () {
       if (index > stepConfig.length - 1) {
         setFinalConfirmStatus(true)
-        const isConfirm = await consola.prompt(`您的选择是 框架：${tempalteRecord.frame}，项目类型：${tempalteRecord.project}， 仓库管理模式${tempalteRecord.codeManagement ? 'monorepo' : 'basics'}`, {
+        const isConfirm = await consola.prompt(`您的选择是 框架: ${FrameLabel[tempalteRecord.frame]}，项目类型: ${ProjectLabel[tempalteRecord.project]}， 仓库管理模式: ${tempalteRecord.codeManagement ? 'monorepo' : 'basics'}`, {
           type: 'confirm',
         })
 
@@ -55,6 +55,10 @@ const Selection: FC = () => {
     updateIndex(index => index + 1)
   }
 
+  /**
+   * 模版下载
+   * @param param0
+   */
   const selectMatchTemplate = async ({ value }: { label: string; value: string }) => {
     const isExist = await isExists(`${downloadDirectory}/${value}`)
 
@@ -68,18 +72,28 @@ const Selection: FC = () => {
 
     try {
       await downloadGitRepo(`gong-cli/${value}#main`, `${downloadDirectory}/${value}`)
-      await move(`${downloadDirectory}/${value}`, `${process.cwd()}/${value}`)
-
       consola.info(`下载${value}模版完成`)
+      consola.info(`正在准备移动${value}模版到当前目录`)
+
+      await move(`${downloadDirectory}/${value}`, `${process.cwd()}/${value}`)
+      consola.info(`移动${value}模版到当前目录完成`)
     }
     catch (error) {
       consola.error(error)
     }
 
     setDownloadStatus(false)
-    exit()
+    setCurMatchTemplateList([])
+
+    setTimeout(() => {
+      exit()
+    }, 20)
   }
 
+  /**
+   * 当前step渲染
+   * @returns
+   */
   const renderCurrentStep = () => {
     const currentStepConfig = stepConfig[index]
 
@@ -89,6 +103,10 @@ const Selection: FC = () => {
       return null
   }
 
+  /**
+   * 渲染匹配模版
+   * @returns
+   */
   const renderCurMatchTemplateList = () => {
     const matchTemplateList = curMatchTemplateList.map(item => ({ label: item, value: item }))
     return (
@@ -99,13 +117,18 @@ const Selection: FC = () => {
     )
   }
 
-  return (
+  if (downloadStatus) {
+    return <Text>加载中...</Text>
+  }
+
+  else {
+    return (
         <>
             {renderCurrentStep()}
-            {curMatchTemplateList.length > 0 && !downloadStatus && renderCurMatchTemplateList()}
-
+            {curMatchTemplateList.length > 0 && renderCurMatchTemplateList()}
         </>
-  )
+    )
+  }
 }
 
 export default Selection

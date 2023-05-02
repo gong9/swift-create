@@ -6,10 +6,22 @@ export enum ProjectEnum {
   Cli,
 }
 
+export const ProjectLabel = {
+  0: '业务',
+  1: '库',
+  2: '脚手架',
+}
+
 export enum FrameEnum {
   React,
   Vue,
   None,
+}
+
+export const FrameLabel = {
+  0: 'react',
+  1: 'vue',
+  2: 'none',
 }
 
 const projectItems: ProjectItemType[] = [
