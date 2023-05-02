@@ -1,7 +1,9 @@
 import type { FC } from 'react'
 import React from 'react'
-import { Text } from 'ink'
+import { Box, Text } from 'ink'
 import SelectInput from 'ink-select-input'
+import TextInput from 'ink-text-input'
+import { useUpdate } from 'ahooks'
 import useStore from '../../store/index'
 import type { CodeManagementItemsType, ProjectItemType } from '../../types'
 
@@ -16,7 +18,8 @@ interface TemplateSelectionProps {
 }
 
 const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) => {
-  const { updataTemplatePath, tempalteRecord } = useStore(state => state)
+  const { updataTemplatePath, tempalteRecord, templateConfig, setTemplateConfig } = useStore(state => state)
+  const update = useUpdate()
 
   if (!config)
     return null
@@ -32,11 +35,30 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
     nextAction()
   }
 
+  const handleInputChange = (value: string) => {
+    setTemplateConfig(
+      {
+        ...templateConfig,
+        [config.name]: value,
+      },
+    )
+
+    update()
+  }
+
   const renderItem = (type: string) => {
     switch (type) {
       case 'select':
         return <SelectInput items={config.items!} onSelect={handleSelectChange} />
-
+      case 'input':
+        return (
+                    <Box>
+                        <Box marginRight={1}>
+                            <Text>name: </Text>
+                        </Box>
+                        <TextInput placeholder='项目名称' value={templateConfig.projectName} onChange={handleInputChange} onSubmit={nextAction}/>
+                    </Box>
+        )
       default:
         return null
     }

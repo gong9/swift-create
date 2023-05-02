@@ -67,6 +67,11 @@ const frameItem: FrameItemType[] = [
 
 export const stepConfig = [
   {
+    name: 'projectName',
+    type: 'input',
+    title: '请输入要创建的项目名称',
+  },
+  {
     name: 'project',
     type: 'select',
     title: '请选择所要创建的项目类型',
