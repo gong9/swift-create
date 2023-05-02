@@ -13,9 +13,6 @@ dependencies:
   cac:
     specifier: ^6.7.14
     version: 6.7.14
-  cli-spinners:
-    specifier: ^2.7.0
-    version: 2.7.0
   consola:
     specifier: ^3.1.0
     version: 3.1.0
@@ -37,18 +34,9 @@ dependencies:
   ink:
     specifier: ^3.2.0
     version: 3.2.0(@types/react@18.0.26)(react@17.0.2)
-  ink-confirm-input:
-    specifier: ^2.0.0
-    version: 2.0.0(ink@3.2.0)(react@17.0.2)
-  ink-progress-bar:
-    specifier: ^3.0.0
-    version: 3.0.0
   ink-select-input:
     specifier: ^4.2.1
     version: 4.2.1(ink@3.2.0)(react@17.0.2)
-  ink-task-list:
-    specifier: ^2.0.0
-    version: 2.0.0(ink@3.2.0)(react@17.0.2)
   ink-text-input:
     specifier: ^4.0.3
     version: 4.0.3(ink@3.2.0)(react@17.0.2)
@@ -1519,10 +1507,6 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /blacklist@1.1.4:
-    resolution: {integrity: sha512-DWdfwimA1WQxVC69Vs1Fy525NbYwisMSCdYQmW9zyzOByz9OB/tQwrKZ3T3pbTkuFjnkJFlJuyiDjPiXL5kzew==}
-    dev: false
-
   /blueimp-md5@2.19.0:
     resolution: {integrity: sha512-DRQrD6gJyy8FbiE4s+bDoXS9hiW3Vbx5uCdwvcCf3zLHL+Iv7LtGHLpr+GZV8rHG8tK766FGYBwRbu8pELTt+w==}
     dev: true
@@ -1750,14 +1734,6 @@ packages:
       escape-string-regexp: 1.0.5
       supports-color: 5.5.0
 
-  /chalk@3.0.0:
-    resolution: {integrity: sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==}
-    engines: {node: '>=8'}
-    dependencies:
-      ansi-styles: 4.3.0
-      supports-color: 7.2.0
-    dev: false
-
   /chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
@@ -1856,11 +1832,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       restore-cursor: 3.1.0
-    dev: false
-
-  /cli-spinners@2.7.0:
-    resolution: {integrity: sha512-qu3pN8Y3qHNgE2AFweciB1IfMnmZ/fsNTEE+NOFjmGB2F/7rLhnhzppvpCnN4FovtP26k8lHyy9ptEbNwWFLzw==}
-    engines: {node: '>=6'}
     dev: false
 
   /cli-truncate@2.1.0:
@@ -4000,27 +3971,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /ink-confirm-input@2.0.0(ink@3.2.0)(react@17.0.2):
-    resolution: {integrity: sha512-YCd7a9XW0DIIbOhF3XiLo3WF86mOart9qI1qN56wT5IDJxU+j8BanEZh5/QXoazyIPSv1iXlHPIlRB5cbZIMIA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      ink: '>=2'
-      react: '>=16'
-    dependencies:
-      ink: 3.2.0(@types/react@18.0.26)(react@17.0.2)
-      ink-text-input: 3.3.0(ink@3.2.0)(react@17.0.2)
-      prop-types: 15.8.1
-      react: 17.0.2
-      yn: 3.1.1
-    dev: false
-
-  /ink-progress-bar@3.0.0:
-    resolution: {integrity: sha512-GzByB3uEofqjyWC3VmdhYpBq+kzszu5Nwt/NruTDWa7fbw1E6sx6U1n6Kcsfj9D3qwR17dtC5w9uFVMyRA5HZw==}
-    dependencies:
-      blacklist: 1.1.4
-      prop-types: 15.8.1
-    dev: false
-
   /ink-select-input@4.2.1(ink@3.2.0)(react@17.0.2):
     resolution: {integrity: sha512-WvlrYdwmdnD6/nE/9mNhaaanTQOKmwy/hT/vuAqbDec3PUQBQ8Pkwszii/8eGvDTx5bGiUHu18P9D5IoB/ERaw==}
     engines: {node: '>=10'}
@@ -4035,16 +3985,6 @@ packages:
       react: 17.0.2
     dev: false
 
-  /ink-task-list@2.0.0(ink@3.2.0)(react@17.0.2):
-    resolution: {integrity: sha512-+WadfalLGUrYT/5D4cHeShN73t5urEsI5VOwFYw3qNWdOL+GQVTLbTS0tCZkzIcBcL+dfZcQAtuoW56ZBZV+Bg==}
-    peerDependencies:
-      ink: '>=3.0.0'
-      react: '>=16.8.0'
-    dependencies:
-      ink: 3.2.0(@types/react@18.0.26)(react@17.0.2)
-      react: 17.0.2
-    dev: false
-
   /ink-testing-library@2.1.0(@types/react@18.0.26):
     resolution: {integrity: sha512-7TNlOjJlJXB33vG7yVa+MMO7hCjaC1bCn+zdpSjknWoLbOWMaFdKc7LJvqVkZ0rZv2+akhjXPrcR/dbxissjUw==}
     engines: {node: '>=10'}
@@ -4056,19 +3996,6 @@ packages:
     dependencies:
       '@types/react': 18.0.26
     dev: true
-
-  /ink-text-input@3.3.0(ink@3.2.0)(react@17.0.2):
-    resolution: {integrity: sha512-gO4wrOf2ie3YuEARTIwGlw37lMjFn3Gk6CKIDrMlHb46WFMagZU7DplohjM24zynlqfnXA5UDEIfC2NBcvD8kg==}
-    engines: {node: '>=8'}
-    peerDependencies:
-      ink: ^2.0.0
-      react: ^16.5.2
-    dependencies:
-      chalk: 3.0.0
-      ink: 3.2.0(@types/react@18.0.26)(react@17.0.2)
-      prop-types: 15.8.1
-      react: 17.0.2
-    dev: false
 
   /ink-text-input@4.0.3(ink@3.2.0)(react@17.0.2):
     resolution: {integrity: sha512-eQD01ik9ltmNoHmkeQ2t8LszYkv2XwuPSUz3ie/85qer6Ll/j0QSlSaLNl6ENHZakBHdCBVZY04iOXcLLXA0PQ==}
@@ -5690,6 +5617,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+    dev: true
 
   /proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
@@ -5768,6 +5696,7 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: true
 
   /react-reconciler@0.26.2(react@17.0.2):
     resolution: {integrity: sha512-nK6kgY28HwrMNwDnMui3dvm3rCFjZrcGiuwLc5COUipBK5hWHLOxMJhSnSomirqWwjPBJKV1QcbkI0VJr7Gl1Q==}
@@ -7137,11 +7066,6 @@ packages:
     dependencies:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0
-    dev: false
-
-  /yn@3.1.1:
-    resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
-    engines: {node: '>=6'}
     dev: false
 
   /yocto-queue@0.1.0:
