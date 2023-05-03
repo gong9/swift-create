@@ -1,6 +1,6 @@
 {
   "name": "gong-create",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "description": "a cli tool for creating project",
   "bin": {
@@ -9,7 +9,8 @@
   "files": [
     "dist",
     "readme.md",
-    "package.json"
+    "package.json",
+    "yarn.lock"
   ],
   "scripts": {
     "start": "father build && node dist/index.js",
