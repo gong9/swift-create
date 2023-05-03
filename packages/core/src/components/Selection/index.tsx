@@ -76,10 +76,10 @@ const Selection: FC = () => {
     try {
       await downloadGitRepo(`gong-cli/${value}#main`, `${downloadDirectory}/${templateConfig.projectName}`)
       consola.info(`下载${value}模版完成`)
-      consola.info(`正在准备移动${value}模版到当前目录`)
-
+  
       handleTemplate(`${downloadDirectory}/${templateConfig.projectName}`, { data: templateConfig })
-
+      
+      consola.info(`正在准备移动${value}模版到当前目录`)
       await move(`${downloadDirectory}/${templateConfig.projectName}`, `${process.cwd()}/${templateConfig.projectName}`)
       consola.info(`移动${value}模版到当前目录完成`)
     }
