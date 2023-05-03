@@ -5,6 +5,7 @@
 自用的一个cli工具
 
 ## Install
+> node version >= 18.0.0
 
 ```bash
 npx gong-create@latest
