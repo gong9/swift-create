@@ -2,9 +2,8 @@ import fs from 'fs'
 import { globSync } from 'glob'
 import ejs from 'ejs'
 import to from 'await-to-js'
+import { consola } from 'consola'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { consola } = require('consola')
 
 interface EjsRenderData {
   data: {

@@ -4,16 +4,15 @@
   "license": "MIT",
   "description": "a cli tool for creating project",
   "bin": {
-    "gong-create": "dist/cli.js"
+    "gong-create": "dist/index.js"
   },
   "files": [
     "dist",
     "readme.md",
-    "package.json",
-    "npm-shrinkwrap.json"
+    "package.json"
   ],
   "scripts": {
-    "start": "father build && node dist/cli.js",
+    "start": "father build && node dist/index.js",
     "build": "father build",
     "build:deps": "father prebundle",
     "prepublishOnly": "father doctor && npm run build",
@@ -36,9 +35,9 @@
     "ink-select-input": "^4.2.1",
     "ink-text-input": "^4.0.3",
     "meow": "^12.0.0",
-    "react": "^17.0.2",
     "util": "^0.12.5",
-    "zustand": "^4.3.7"
+    "zustand": "^4.3.7",
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@types/ejs": "^3.1.2",

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import to from 'await-to-js'
 import { Text, useApp } from 'ink'
 import SelectInput from 'ink-select-input'
+import { consola } from 'consola'
 import { isExists, move, remove } from '../../utils/fs'
 import { downloadDirectory } from '../../constants'
 import { FrameLabel, ProjectLabel, stepConfig } from '../../configData'
@@ -12,9 +13,6 @@ import downloadGitRepo from '../../server/downLoadGitRepo'
 import { getCurrentTemplateList } from '../../utils'
 import { handleTemplate } from '../../utils/ejs'
 import TemplateSelection from './TemplateSelection'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { consola } = require('consola')
 
 const Selection: FC = () => {
   const tempalteRecord = useStore(state => state.tempalteRecord)
