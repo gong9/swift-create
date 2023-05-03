@@ -1,6 +1,6 @@
 {
   "name": "gong-create",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "description": "",
   "main": "dist/cli.js",
@@ -13,11 +13,15 @@
     "start": "father build && node dist/cli.js",
     "build": "father build",
     "build:deps": "father prebundle",
+    "prepublishOnly": "father doctor && npm run build",
     "test": "jest --maxWorkers 2"
   },
   "keywords": [],
   "author": "",
   "dependencies": {
+    "ahooks": "^3.7.7",
+    "await-to-js": "^3.0.0",
+    "consola": "^3.1.0",
     "axios": "^1.4.0",
     "cac": "^6.7.14",
     "download-git-repo": "^3.0.2",

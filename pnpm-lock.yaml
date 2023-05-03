@@ -3,16 +3,6 @@ lockfileVersion: '6.0'
 importers:
 
   .:
-    dependencies:
-      ahooks:
-        specifier: ^3.7.7
-        version: 3.7.7(react@17.0.2)
-      await-to-js:
-        specifier: ^3.0.0
-        version: 3.0.0
-      consola:
-        specifier: ^3.1.0
-        version: 3.1.0
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.38.5
@@ -59,12 +49,21 @@ importers:
 
   packages/core:
     dependencies:
+      ahooks:
+        specifier: ^3.7.7
+        version: 3.7.7(react@17.0.2)
+      await-to-js:
+        specifier: ^3.0.0
+        version: 3.0.0
       axios:
         specifier: ^1.4.0
         version: 1.4.0
       cac:
         specifier: ^6.7.14
         version: 6.7.14
+      consola:
+        specifier: ^3.1.0
+        version: 3.1.0
       download-git-repo:
         specifier: ^3.0.2
         version: 3.0.2
