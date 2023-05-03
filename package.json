@@ -1,66 +1,43 @@
 {
-  "name": "gong-create",
-  "version": "0.0.9",
-  "license": "MIT",
-  "bin": {
-    "gong-create": "dist/cli.js"
-  },
-  "engines": {
-    "node": ">=10"
-  },
+  "name": "gong-cli",
+  "version": "0.0.0",
+  "description": "cli",
+  "private": true,
   "scripts": {
-    "build": "tsc && chmod +x dist/cli.js",
-    "start": "npm run build && dist/cli.js",
-    "pretest": "npm run build",
+    "start": "cd packages/core && pnpm start",
+    "build": "pnpm -r build",
+    "prepare": "husky install",
+    "test": "pnpm -r test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "files": [
-    "dist",
-    "readme.md"
-  ],
+  "keywords": [],
+  "authors": [],
+  "license": "MIT",
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.38.5",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@sindresorhus/tsconfig": "^3.0.1",
+    "@types/jest": "^27",
+    "@types/node": "^18.14.1",
+    "@umijs/lint": "^4",
+    "@umijs/test": "^4",
+    "eslint": "^8.23.0",
+    "father": "^4.1.5",
+    "husky": "^8.0.1",
+    "jest": "^27",
+    "ts-node": "^10",
+    "typescript": "^4"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "dependencies": {
     "ahooks": "^3.7.7",
     "await-to-js": "^3.0.0",
-    "axios": "^1.2.2",
-    "cac": "^6.7.14",
-    "consola": "^3.1.0",
-    "download-git-repo": "^3.0.2",
-    "ejs": "^3.1.9",
-    "figlet": "^1.6.0",
-    "fs-extra": "^11.1.0",
-    "glob": "^10.2.2",
-    "ink": "^3.2.0",
-    "ink-select-input": "^4.2.1",
-    "ink-text-input": "^4.0.3",
-    "meow": "^9.0.0",
-    "react": "^17.0.2",
-    "util": "^0.12.5",
-    "zustand": "^4.3.7"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^0.34.0",
-    "@ava/typescript": "^3.0.1",
-    "@sindresorhus/tsconfig": "^3.0.1",
-    "@types/ejs": "^3.1.2",
-    "@types/figlet": "^1.5.5",
-    "@types/fs-extra": "^9.0.13",
-    "@types/react": "^18.0.26",
-    "ava": "^5.1.0",
-    "chalk": "^4.1.2",
-    "eslint": "^8.30.0",
-    "eslint-config-xo-react": "^0.27.0",
-    "eslint-plugin-react": "^7.31.11",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "ink-testing-library": "^2.1.0",
-    "typescript": "^4.9.4",
-    "xo": "^0.39.1"
-  },
-  "description": "cli",
-  "main": "dist/cli.js",
-  "keywords": [
-    "cli",
-    "react"
-  ],
-  "author": "gong"
+    "consola": "^3.1.0"
+  }
 }
