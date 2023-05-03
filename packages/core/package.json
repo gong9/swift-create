@@ -1,9 +1,11 @@
 {
   "name": "gong-create",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
-  "description": "",
-  "main": "dist/cli.js",
+  "description": "a cli tool for creating project",
+  "bin": {
+    "gong-create": "dist/cli.js"
+  },
   "files": [
     "dist",
     "readme.md",
