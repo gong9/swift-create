@@ -13,7 +13,6 @@
     "start": "father build && node dist/cli.js",
     "build": "father build",
     "build:deps": "father prebundle",
-    "prepublishOnly": "father doctor && npm run build",
     "test": "jest --maxWorkers 2"
   },
   "keywords": [],
