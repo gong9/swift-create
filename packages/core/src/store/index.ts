@@ -11,8 +11,10 @@ interface StateType {
     frame: FrameEnum.React
   }
   templateConfig: TempalteConfigType
+  showWelcome: boolean
   updataTemplatePath: (newData: StateType['tempalteRecord']) => void
   setTemplateConfig: (newData: StateType['templateConfig']) => void
+  setShowWelcome: (newData: StateType['showWelcome']) => void
 }
 
 export type tempalteRecord = StateType['tempalteRecord']
@@ -27,6 +29,7 @@ const useStore = create<StateType>((set) => {
     templateConfig: {
       projectName: '',
     },
+    showWelcome: true,
     updataTemplatePath: (newData: StateType['tempalteRecord']) => set(
       (state) => {
         return {
@@ -47,6 +50,13 @@ const useStore = create<StateType>((set) => {
         }
       },
     ),
+    setShowWelcome: (newData: StateType['showWelcome']) => set(
+      ()=>{
+        return {
+          showWelcome: newData,
+        }
+      }
+    )
   }
 })
 export default useStore
