@@ -1,0 +1,18 @@
+{
+  "name": "download-gitrepo-plugin",
+  "version": "0.0.1",
+  "description": "cli plugin",
+  "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "father build"
+  },
+  "author": "gong",
+  "publishConfig": {
+    "access": "public"
+  }
+}
