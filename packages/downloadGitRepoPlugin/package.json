@@ -1,5 +1,5 @@
 {
-  "name": "download-gitrepo-plugin",
+  "name": "@gong-cli-plugins/download-gitrepo-plugin",
   "version": "0.0.1",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,8 +14,6 @@
   "author": "",
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/",
-    "scope": "@gong-cli-plugins"
+    "access": "public"
  }
 }
