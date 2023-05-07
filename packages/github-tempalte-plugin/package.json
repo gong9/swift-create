@@ -1,5 +1,5 @@
 {
-  "name": "download-gitrepo-plugin",
+  "name": "@gongcli/github-tempalte-plugin",
   "version": "0.0.1",
   "description": "cli plugin",
   "license": "MIT",
