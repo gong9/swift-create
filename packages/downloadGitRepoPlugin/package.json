@@ -1,11 +1,21 @@
 {
-  "name": "cli-downloadgitrepo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "download-gitrepo-plugin",
+  "version": "0.0.1",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "readme.md",
+    "package.json"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "father build"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "scope": "@gong-cli-plugins"
+ }
 }
