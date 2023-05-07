@@ -1,5 +1,5 @@
 {
-  "name": "@gong-cli-plugins/download-gitrepo-plugin",
+  "name": "@gongcli/download-gitrepo-plugin",
   "version": "0.0.1",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
