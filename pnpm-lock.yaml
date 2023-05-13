@@ -47,8 +47,6 @@ importers:
         specifier: ^4
         version: 4.0.2
 
-  packages/@gongcli-download-gitrepo-plugin: {}
-
   packages/core:
     dependencies:
       ahooks:
@@ -121,6 +119,8 @@ importers:
       ink-testing-library:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@17.0.2)
+
+  packages/github-template-plugin: {}
 
 packages:
 
