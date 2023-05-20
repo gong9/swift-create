@@ -1,4 +1,5 @@
 const axios = require('axios');
+import { duplicateRemovalByAttributes } from 'poor-utils-pro'
 
 export type Plugin = {
     name: string,
@@ -12,7 +13,7 @@ async function getAllPackages(scope) {
 
 
     if (response.status === 200) {
-        const packages = response.data.objects.map(pkg => {
+        const packages = duplicateRemovalByAttributes(response.data.objects, 'name').map(pkg => {
             return {
                 name: pkg.package.name,
                 version: pkg.package.version,

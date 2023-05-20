@@ -13,7 +13,7 @@ interface AllPluginListProps {
 const AllPluginList: FC<AllPluginListProps> = () => {
 
     const { data, error, loading } = useRequest(getOfficialPlugins);
-    const [currentPlugin, setCurrentPlugin] = useState<Plugin|null>(null)
+    const [currentPlugin, setCurrentPlugin] = useState<Plugin | null>(null)
 
     const selectPlugin = (itemData) => {
         setCurrentPlugin(data.find(item => item.name === itemData.value))
@@ -24,7 +24,7 @@ const AllPluginList: FC<AllPluginListProps> = () => {
     }
 
     if (loading) {
-        return <Text>loading...</Text>
+        return <Text>插件加载中...</Text>
     } else {
 
         const items = data.map(plugin => ({
@@ -34,10 +34,10 @@ const AllPluginList: FC<AllPluginListProps> = () => {
 
         return (
             <>
-                <Text>所有插件</Text>
+                <Text>插件商店</Text>
                 <SelectInput items={items} onSelect={selectPlugin} />
 
-                {currentPlugin && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} />}
+                {currentPlugin && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version} />}
             </>
         );
     }
