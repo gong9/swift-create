@@ -14,8 +14,10 @@ const AllPluginList: FC<AllPluginListProps> = () => {
 
     const { data, error, loading } = useRequest(getOfficialPlugins);
     const [currentPlugin, setCurrentPlugin] = useState<Plugin | null>(null)
+    const [needShowPluginInfo, setNeedShowPluginInfo] = useState(false)
 
     const selectPlugin = (itemData) => {
+        setNeedShowPluginInfo(true)
         setCurrentPlugin(data.find(item => item.name === itemData.value))
     }
 
@@ -37,7 +39,7 @@ const AllPluginList: FC<AllPluginListProps> = () => {
                 <Text>插件商店</Text>
                 <SelectInput items={items} onSelect={selectPlugin} />
 
-                {currentPlugin && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version} />}
+                {currentPlugin && needShowPluginInfo && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version} goBack={() => setNeedShowPluginInfo(false)} />}
             </>
         );
     }
