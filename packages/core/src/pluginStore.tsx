@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import React from 'react'
 import { render } from "ink";
-import App from './app'
+import PluginStore from './pluginStore/index'
 
-render(<App />)
+render(<PluginStore />)
