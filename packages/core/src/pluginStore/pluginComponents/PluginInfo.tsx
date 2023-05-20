@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 import { Text, Box } from 'ink';
+
+import { install } from '../utils'
 import ConfirmInput from '../../components/ConfirmInput';
 
 interface PluginInfoProps {
@@ -28,7 +30,7 @@ const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, plugin
 
     const handleInstall = (isInstall) => {
         if (isInstall) {
-            console.log('install...')
+            install(pluginName, goBack)
         } else {
             goBack()
         }
