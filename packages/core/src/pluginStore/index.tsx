@@ -1,10 +1,16 @@
 import React, { FC } from 'react'
-import { Text } from 'ink'
+import AllPluginList from './pluginComponents/AllPluginList'
+
 type PlginPageProps = {
 
 }
 const PlginPage: FC<PlginPageProps> = () => {
-    return <Text>插件页面</Text>
+
+    return (
+        <>
+            <AllPluginList />
+        </>
+    )
 }
 
 export default PlginPage

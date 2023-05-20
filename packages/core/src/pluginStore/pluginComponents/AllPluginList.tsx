@@ -1,0 +1,46 @@
+import React, { FC, useState } from "react";
+import { Text } from "ink";
+import SelectInput from 'ink-select-input'
+import { useRequest } from "ahooks";
+
+import PluginInfo from "./PluginInfo";
+import { getOfficialPlugins, Plugin } from '../api'
+
+interface AllPluginListProps {
+
+}
+
+const AllPluginList: FC<AllPluginListProps> = () => {
+
+    const { data, error, loading } = useRequest(getOfficialPlugins);
+    const [currentPlugin, setCurrentPlugin] = useState<Plugin|null>(null)
+
+    const selectPlugin = (itemData) => {
+        setCurrentPlugin(data.find(item => item.name === itemData.value))
+    }
+
+    if (error) {
+        return <Text>出错了...</Text>
+    }
+
+    if (loading) {
+        return <Text>loading...</Text>
+    } else {
+
+        const items = data.map(plugin => ({
+            label: plugin.name,
+            value: plugin.name
+        }))
+
+        return (
+            <>
+                <Text>所有插件</Text>
+                <SelectInput items={items} onSelect={selectPlugin} />
+
+                {currentPlugin && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} />}
+            </>
+        );
+    }
+}
+
+export default AllPluginList;
