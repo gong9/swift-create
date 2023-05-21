@@ -43,3 +43,22 @@ export const move = async (srcPath: string, path: string) => {
     consola.error(err)
   }
 }
+
+export const readJsonFile = () => {
+  const data = fs.readFileSync(path.resolve(__dirname, '../../plugin.config.json'), 'utf8');
+
+  try {
+    return JSON.parse(data);
+  } catch (error) {
+    consola.error(error)
+    return {}
+  }
+}
+
+export const writeJsonFile = (data: any) => {
+  try {
+    fs.writeFileSync(path.resolve(__dirname, '../../plugin.config.json'), JSON.stringify(data, null, 2), 'utf8');
+  } catch (error) {
+    consola.error(error)
+  }
+}

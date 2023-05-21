@@ -30,7 +30,10 @@ const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, plugin
 
     const handleInstall = (isInstall) => {
         if (isInstall) {
-            install(pluginName, goBack)
+            install(pluginName, goBack, {
+                name: pluginName,
+                version: pluginVersion
+            })
         } else {
             goBack()
         }

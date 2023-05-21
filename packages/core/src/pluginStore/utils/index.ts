@@ -3,6 +3,8 @@ import os from 'os';
 import path from 'path';
 import { consola } from 'consola'
 
+import recordPluginConfig, { PluginConfig } from '../../utils/recordOperations';
+
 const getPackagePath = (): string | null => {
     try {
         const output = execSync('npm root -g');
@@ -21,7 +23,7 @@ function changeDirectoryWithPermission(directory, mode = 'dev') {
         // macOS
 
         if (mode === 'dev') {
-            process.chdir(path.resolve(__dirname,'../../../'));
+            process.chdir(path.resolve(__dirname, '../../../'));
         } else {
             process.chdir(directory.trim());
         }
@@ -38,7 +40,7 @@ function changeDirectoryWithPermission(directory, mode = 'dev') {
     }
 }
 
-export const install = (pluginName: string, goBack:()=>void) => {
+export const install = (pluginName: string, goBack: () => void, pluginData: PluginConfig) => {
 
     const currentPath = getPackagePath()
 
@@ -56,12 +58,14 @@ export const install = (pluginName: string, goBack:()=>void) => {
             consola.info(stdout)
             stderr && consola.info(stderr)
 
+            recordPluginConfig.addRecordPluginConfig(pluginName, pluginData)
             consola.success(`插件${pluginName}下载成功`)
+            consola.success(`插件${pluginName}已添加到引擎工作空间`)
             consola.info(`正在退出引擎工作空间,请稍等...`)
 
             setTimeout(() => {
                 goBack()
-            },3000)
+            }, 3000)
         });
 
     }
