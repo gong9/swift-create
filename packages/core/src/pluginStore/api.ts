@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios'
 import { duplicateRemovalByAttributes } from 'poor-utils-pro'
 
 export type Plugin = {
@@ -10,7 +10,6 @@ export type Plugin = {
 async function getAllPackages(scope) {
     const url = `https://registry.npmjs.org/-/v1/search?text=scope:${scope}&size=250`;
     const response = await axios.get(url);
-
 
     if (response.status === 200) {
         const packages = duplicateRemovalByAttributes(response.data.objects, 'name').map(pkg => {

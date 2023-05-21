@@ -1,5 +1,8 @@
-const add = () => {
-    console.log(11);
+const plugin = {
+
+    service: () => {
+        console.log('github service');
+    }
 }
 
-export default add;
+export default plugin;

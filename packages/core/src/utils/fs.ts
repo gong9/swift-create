@@ -1,8 +1,6 @@
 import path from 'path'
 import fs from 'fs-extra'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { consola } = require('consola')
+import { consola } from 'consola'
 
 export const create = async () => {
   try {
