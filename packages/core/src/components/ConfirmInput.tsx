@@ -7,7 +7,7 @@ interface ConfirmInputProps {
     onSubmit: (value: boolean) => void
 }
 
-const ConfirmInput: FC<ConfirmInputProps> = ({ onSubmit }) => {
+const ConfirmInput: FC<ConfirmInputProps> = ({ onSubmit, description }) => {
     const [value, setValue] = useState('Y');
     const [isChecked, setIsChecked] = useState(true);
 
@@ -32,7 +32,7 @@ const ConfirmInput: FC<ConfirmInputProps> = ({ onSubmit }) => {
     return (
         <Box flexDirection='column'>
             <Box>
-                <Text>Do you like unicorns? (Y/n)</Text>
+                <Text>{description} (Y/n)</Text>
                 <TextInput
                     value={value}
                     onChange={(data) => validator(data, 'change')}

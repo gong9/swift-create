@@ -57,7 +57,10 @@ export const readJsonFile = () => {
 
 export const writeJsonFile = (data: any) => {
   try {
-    fs.writeFileSync(path.resolve(__dirname, '../../plugin.config.json'), JSON.stringify(data, null, 2), 'utf8');
+    fs.writeFileSync(path.resolve(__dirname, '../../plugin.config.json'), JSON.stringify({
+      ...readJsonFile(),
+      plugins: data
+    }, null, 2), 'utf8');
   } catch (error) {
     consola.error(error)
   }

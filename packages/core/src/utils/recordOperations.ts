@@ -21,7 +21,7 @@ class RecordOperations {
 
     public isExistRecordPluginConfigByname(pluginName: string) {
         this.updatePluginConfigState()
-
+    
         return this.pluginConfig.some(item => item.name === pluginName)
     }
 
@@ -37,8 +37,6 @@ class RecordOperations {
         } else {
             this.updateRecordPluginConfig(pluginName, data)
         }
-
-
     }
 
     public removeRecordPluginConfig(pluginName: string) {

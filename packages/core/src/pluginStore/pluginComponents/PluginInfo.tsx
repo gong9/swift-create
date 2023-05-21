@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Text, Box } from 'ink';
 
 import { install } from '../utils'
+import recordOperations from '../../utils/recordOperations';
 import ConfirmInput from '../../components/ConfirmInput';
 
 interface PluginInfoProps {
@@ -40,7 +41,7 @@ const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, plugin
     }
 
     return (
-        <Box flexDirection="column" width="60%">
+        <Box flexDirection="column" width="80">
             <Text color='magentaBright'>插件详细信息</Text>
 
             <Box flexDirection="column">
@@ -56,7 +57,11 @@ const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, plugin
                 }
             </Box>
 
-            <ConfirmInput description="需要安装么" onSubmit={handleInstall} />
+            {
+                recordOperations.isExistRecordPluginConfigByname(pluginName)
+                    ? <Text color="red">已安装</Text>
+                    : <ConfirmInput description="需要安装么?" onSubmit={handleInstall} />
+            }
         </Box>
     );
 }
