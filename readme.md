@@ -19,7 +19,9 @@ npx gong-create@latest
 - 模版地址支持gihtub、npm两种方式 「目前仅完善了github」
 - 提供常用的生成器功能 「待完善」
 
+## Process
 
+- 插件商场开发中，体验可拉去代码 `pnpm start -p` 预先体验
 
 
 
