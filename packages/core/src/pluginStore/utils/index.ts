@@ -8,7 +8,6 @@ import recordPluginConfig, { PluginConfig } from '../../utils/recordOperations';
 const getPackagePath = (): string | null => {
     try {
         const output = execSync('npm root -g');
-        consola.info(output.toString());
 
         return output.toString();
     } catch (error) {
@@ -46,7 +45,7 @@ export const install = (pluginName: string, goBack: () => void, pluginData: Plug
 
     if (currentPath) {
 
-        changeDirectoryWithPermission(currentPath)
+        changeDirectoryWithPermission(currentPath, process.env.NODE_ENV)
         consola.info(`正在下载插件...`)
 
         exec(`pnpm add ${pluginName}`, (error, stdout, stderr) => {

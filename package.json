@@ -9,7 +9,8 @@
     "prepare": "husky install",
     "test": "pnpm -r test",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "preinstall": "npx only-allow pnpm"
   },
   "keywords": [],
   "authors": [],
