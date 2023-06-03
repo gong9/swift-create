@@ -45,7 +45,7 @@ export const move = async (srcPath: string, path: string) => {
 }
 
 export const readJsonFile = () => {
-  const data = fs.readFileSync(path.join(__dirname, '../plugin.config.json'), 'utf8');
+  const data = fs.readFileSync(path.resolve(__dirname, '../../plugin.config.json'), 'utf8');
 
   try {
     return JSON.parse(data);
@@ -57,7 +57,7 @@ export const readJsonFile = () => {
 
 export const writeJsonFile = (data: any) => {
   try {
-    fs.writeFileSync(path.join(__dirname, '../plugin.config.json'), JSON.stringify({
+    fs.writeFileSync(path.resolve(__dirname, '../../plugin.config.json'), JSON.stringify({
       ...readJsonFile(),
       plugins: data
     }, null, 2), 'utf8');
