@@ -9,6 +9,12 @@
 ## Install
 > node version >= 18.0.0
 
+notes: 由于使用了pnpm作为包管理器，所以需要安装pnpm
+
+```bash
+npm -g install pnpm
+```
+
 ```bash
 npx gong-create@latest
 ```
