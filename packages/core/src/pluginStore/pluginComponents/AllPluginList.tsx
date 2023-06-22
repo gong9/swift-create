@@ -27,22 +27,23 @@ const AllPluginList: FC<AllPluginListProps> = () => {
 
     if (loading) {
         return <Text>插件加载中...</Text>
-    } else {
 
-        const items = data.map(plugin => ({
-            label: plugin.name,
-            value: plugin.name
-        }))
-
-        return (
-            <>
-                <Text>插件商店</Text>
-                <SelectInput items={items} onSelect={selectPlugin} />
-
-                {currentPlugin && needShowPluginInfo && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version} goBack={() => setNeedShowPluginInfo(false)} />}
-            </>
-        );
     }
+
+    const items = data.map(plugin => ({
+        label: plugin.name,
+        value: plugin.name
+    }))
+
+    return (
+        <>
+            <Text>插件商店</Text>
+            <SelectInput items={items} onSelect={selectPlugin} />
+
+            {currentPlugin && needShowPluginInfo && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version} goBack={() => setNeedShowPluginInfo(false)} />}
+        </>
+    );
 }
+
 
 export default AllPluginList;

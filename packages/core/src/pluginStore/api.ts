@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { duplicateRemovalByAttributes } from 'poor-utils-pro'
+import { compareVersions } from '../utils'
 
 export type Plugin = {
     name: string,
@@ -12,15 +13,18 @@ async function getAllPackages(scope) {
     const response = await axios.get(url);
 
     if (response.status === 200) {
-        const packages = duplicateRemovalByAttributes(response.data.objects, 'name').map(pkg => {
+        const packages = response.data.objects.map(pkg => {
             return {
                 name: pkg.package.name,
                 version: pkg.package.version,
                 description: pkg.package.description
             }
-        });
-
-        return packages;
+        })
+        
+        return duplicateRemovalByAttributes<Plugin>(packages, 'name',
+            (preNode, currentNode) => {
+                return compareVersions(currentNode.version, currentNode.version) === 1 ? currentNode : preNode
+            });
     } else {
         throw new Error(`Failed to get packages for ${scope}`);
     }

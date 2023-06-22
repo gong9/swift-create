@@ -95,8 +95,8 @@ importers:
         specifier: ^12.0.0
         version: 12.0.0
       poor-utils-pro:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.2.1
+        version: 2.2.1
       react:
         specifier: ^17.0.2
         version: 17.0.2
@@ -6306,6 +6306,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immer@10.0.2:
+    resolution: {integrity: sha512-Rx3CqeqQ19sxUtYV9CU911Vhy8/721wRFnJv3REVGWUmoAcIwzifTsdmJte/MV+0/XpM35LZdQMBGkRIoLPwQA==}
+    dev: false
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -8833,10 +8837,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /poor-utils-pro@2.0.0:
-    resolution: {integrity: sha512-epzynIW8wI2qPNUJGwp1Lz00+mcwkflgWdxx8zn63OW26WXF0NoRI25beeLAzVA3Mv9ZHn7dIaVLK376wyEZsw==}
+  /poor-utils-pro@2.2.1:
+    resolution: {integrity: sha512-N6S66QvAN+5BI5e97J/4SSgwBQunQkBLPLpxTYjzw+4EdI/bvwpGDgjlZuGxRZupkDsNM2s+irID8qMzn97rGw==}
     dependencies:
       emoji-regex: 10.2.1
+      immer: 10.0.2
     dev: false
 
   /posix-character-classes@0.1.1:
