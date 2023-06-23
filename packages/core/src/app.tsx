@@ -5,9 +5,13 @@ import { useUpdate } from 'ahooks'
 import Welcome from './components/Welcome'
 import TemplateSelection from './components/Selection'
 import useStore from './store'
+import type { HooksType } from './plugin/register'
 
-const App: FC = () => {
-  const { setShowWelcome, showWelcome } = useStore()
+interface AppProps {
+  hooks: HooksType
+}
+const App: FC<AppProps> = ({ hooks }) => {
+  const { setShowWelcome, showWelcome, setHooks } = useStore()
   const update = useUpdate()
 
   useEffect(() => {
@@ -16,6 +20,10 @@ const App: FC = () => {
       update()
     }, 1500)
   }, [])
+
+  useEffect(() => {
+    setHooks(hooks)
+  }, [hooks])
 
   return (
     <>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import type { ServiceHookType } from '../plugin/register'
 
 interface RepoType {
   id: number
@@ -30,4 +31,17 @@ export async function getAppointRepoName(match: [string, string, string]) {
       return curNameLowerCase.includes(match[0]) && curNameLowerCase.includes(match[1]) && curNameLowerCase.includes(match[2])
     },
   )
+}
+
+/**
+ * choose plugin
+ * @param serverHook
+ * @returns
+ */
+export function getRepo(serverHook: ServiceHookType) {
+  const isExistServerHook = serverHook && serverHook.request
+  if (isExistServerHook)
+    return serverHook.request('gong-cli')
+
+  else return getAppointRepoName
 }

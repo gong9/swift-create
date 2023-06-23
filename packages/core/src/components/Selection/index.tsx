@@ -8,7 +8,7 @@ import { isExists, move, remove } from '../../utils/fs'
 import { downloadDirectory } from '../../constants'
 import { FrameLabel, ProjectLabel, stepConfig } from '../../configData'
 import useStore from '../../store/index'
-import { getAppointRepoName } from '../../server'
+import { getRepo } from '../../server'
 import downloadGitRepo from '../../server/downLoadGitRepo'
 import { getCurrentTemplateList } from '../../utils'
 import { handleTemplate } from '../../utils/ejs'
@@ -17,6 +17,7 @@ import TemplateSelection from './TemplateSelection'
 const Selection: FC = () => {
   const tempalteRecord = useStore(state => state.tempalteRecord)
   const templateConfig = useStore(state => state.templateConfig)
+  const hooks = useStore(state => state.hooks)
   const [index, updateIndex] = useState(0)
   const [finalConfirmStatus, setFinalConfirmStatus] = useState(false)
   const [curMatchTemplateList, setCurMatchTemplateList] = useState<string[]>([])
@@ -34,7 +35,7 @@ const Selection: FC = () => {
 
         if (isConfirm) {
           const currentRecord = getCurrentTemplateList(tempalteRecord)
-          const [err, res] = await to(getAppointRepoName(currentRecord))
+          const [err, res] = await to(getRepo(hooks.service)(currentRecord))
 
           if (err)
             consola.error(err)
@@ -72,7 +73,7 @@ const Selection: FC = () => {
     consola.info(`正在下载${value}模版`)
 
     try {
-      await downloadGitRepo(value, `${downloadDirectory}/${templateConfig.projectName}`)
+      await downloadGitRepo(hooks.service)(value, `${downloadDirectory}/${templateConfig.projectName}`)
       consola.info(`下载${value}模版完成`)
 
       handleTemplate(`${downloadDirectory}/${templateConfig.projectName}`, { data: templateConfig })

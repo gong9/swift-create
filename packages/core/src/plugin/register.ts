@@ -1,27 +1,27 @@
 import recordOperations from '../utils/recordOperations'
 
-type RequestType = (user: string) => Promise<string[]>
-type DownloadType = (user: string) => Promise<void>
+type RequestType = (user: string) => (match: [string, string, string]) => Promise<string[]>
+type DownloadType = (user: string) => (targetProject: string, outPath: string) => Promise<void>
 
-interface ServiceHookType {
+export interface ServiceHookType {
   request: RequestType
   download: DownloadType
 }
 
-interface HooksType {
+export interface HooksType {
   service?: ServiceHookType
 }
 
-const register = () => {
+const register = async () => {
   const hooks: HooksType = {}
   const enablePlugins = recordOperations.queryAllRecordPluginConfigByEnable
 
   if (enablePlugins.length > 0) {
-    enablePlugins.forEach(async (plugin) => {
-      const hook = await import(plugin.name) as HooksType
+    for (let index = 0; index < enablePlugins.length; index++) {
+      const hook = ((await import(enablePlugins[index].name)).default.default) as HooksType
       if (hook.service)
         hooks.service = hook.service
-    })
+    }
   }
 
   return hooks

@@ -5,7 +5,6 @@ import { cli } from 'cleye'
 
 import packJson from '../package.json'
 import { PluginMainParamsEnum } from './enum'
-import register from './plugin/register'
 
 const argv = cli({
   name: 'gong-create',
@@ -46,6 +45,5 @@ if (plugins || location) {
   )
 }
 else {
-  const hooks = register()
   initAPP()
 }

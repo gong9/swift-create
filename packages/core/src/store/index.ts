@@ -1,5 +1,7 @@
 import { create } from 'zustand'
+
 import { FrameEnum, ProjectEnum } from '../configData'
+import type { HooksType } from '../plugin/register'
 
 interface TempalteConfigType {
   projectName: string
@@ -12,9 +14,11 @@ interface StateType {
   }
   templateConfig: TempalteConfigType
   showWelcome: boolean
+  hooks: HooksType
   updataTemplatePath: (newData: StateType['tempalteRecord']) => void
   setTemplateConfig: (newData: StateType['templateConfig']) => void
   setShowWelcome: (newData: StateType['showWelcome']) => void
+  setHooks: (hooks: StateType['hooks']) => void
 }
 
 export type tempalteRecord = StateType['tempalteRecord']
@@ -30,6 +34,7 @@ const useStore = create<StateType>((set) => {
       projectName: '',
     },
     showWelcome: true,
+    hooks: {},
     updataTemplatePath: (newData: StateType['tempalteRecord']) => set(
       (state) => {
         return {
@@ -54,6 +59,13 @@ const useStore = create<StateType>((set) => {
       () => {
         return {
           showWelcome: newData,
+        }
+      },
+    ),
+    setHooks: (hooks: StateType['hooks']) => set(
+      () => {
+        return {
+          hooks,
         }
       },
     ),
