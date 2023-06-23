@@ -2,7 +2,7 @@
   "name": "gong-create",
   "version": "1.0.15",
   "description": "a cli tool for creating project",
-  "author": "",
+  "author": "gong",
   "license": "MIT",
   "keywords": [],
   "bin": {

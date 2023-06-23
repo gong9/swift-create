@@ -3,5 +3,5 @@ import path from 'path'
 
 export default defineConfig({
   extends: path.resolve(__dirname, '../../.fatherrc'),
-  esm: { output: 'dist' }
+  cjs: { output: 'dist' }
 });
