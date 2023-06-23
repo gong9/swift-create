@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-import { cli } from 'cleye';
-import { spawn } from 'child_process';
-import path from "path";
-import { consola } from 'consola'
-import packJson from '../package.json';
+import { spawn } from 'node:child_process'
+import path from 'node:path'
+import { cli } from 'cleye'
+import packJson from '../package.json'
 
 const argv = cli({
   name: 'gong-create',
@@ -24,26 +23,22 @@ const argv = cli({
     location: {
       type: Boolean,
       alias: 'l',
-    }
-  }
-});
+    },
+  },
+})
 
-const initAPP = () => {
-  spawn('node', [`${path.resolve(__dirname, 'cli.js')}`], { stdio: 'inherit' });
+function initAPP() {
+  spawn('node', [`${path.resolve(__dirname, 'cli.js')}`], { stdio: 'inherit' })
 }
 
-const openPlginStroe = () => {
-  spawn('node', [`${path.resolve(__dirname, 'pluginStore.js')}`], { stdio: 'inherit' });
+function openPlginStroe() {
+  spawn('node', [`${path.resolve(__dirname, 'pluginStore.js')}`], { stdio: 'inherit' })
 }
 
-const { plugins, location, use } = argv.flags;
+const { plugins, location, use } = argv.flags
 
-if (plugins) {
+if (plugins)
   openPlginStroe()
-} else {
-  initAPP();
-}
 
-
-
-
+else
+  initAPP()

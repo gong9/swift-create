@@ -7,7 +7,7 @@ interface RepoType {
   [k: string]: unknown
 }
 // https://gitee.com/api/v5/${user}/gong9/repos
-export const getAllRepoList = async (user: string) => {
+export async function getAllRepoList(user: string) {
   const {
     data,
   } = await axios.get(`https://api.github.com/orgs/${user}/repos`)
@@ -15,13 +15,13 @@ export const getAllRepoList = async (user: string) => {
   return data as RepoType[]
 }
 
-export const getAllRepoNameList = async (user: string) => {
+export async function getAllRepoNameList(user: string) {
   const allRepolist = await getAllRepoList(user)
 
   return allRepolist.map(item => item.name)
 }
 
-export const getAppointRepoName = (user: string) => {
+export function getAppointRepoName(user: string) {
   return async (match: [string, string, string]) => {
     const allRepoListName = await getAllRepoNameList(user)
 

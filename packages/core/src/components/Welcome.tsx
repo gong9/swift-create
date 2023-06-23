@@ -1,7 +1,7 @@
+import type { FC } from 'react'
 import React from 'react'
 import figlet from 'figlet'
 import { Text } from 'ink'
-import { FC } from 'react'
 
 interface WelcomeProps {
   show: boolean

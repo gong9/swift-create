@@ -1,83 +1,83 @@
 import { readJsonFile, writeJsonFile } from '../utils/fs'
 
-export type PluginConfig = {
-    name: string
-    version: string
-    enable?: boolean
+export interface PluginConfig {
+  name: string
+  version: string
+  enable?: boolean
 }
 
 // TODO: updatePluginConfigState 修改为装饰器
 class RecordOperations {
+  public pluginConfig: PluginConfig[]
 
-    public pluginConfig: PluginConfig[];
+  constructor() {
+    this.pluginConfig = readJsonFile().plugins as PluginConfig[]
+  }
 
-    constructor() {
-        this.pluginConfig = readJsonFile().plugins as PluginConfig[]
+  private updatePluginConfigState() {
+    this.pluginConfig = readJsonFile().plugins as PluginConfig[]
+  }
+
+  public isExistRecordPluginConfigByname(pluginName: string) {
+    this.updatePluginConfigState()
+
+    return this.pluginConfig.some(item => item.name === pluginName)
+  }
+
+  public addRecordPluginConfig(pluginName: string, data: PluginConfig) {
+    this.updatePluginConfigState()
+
+    if (data.enable === undefined)
+      data.enable = false
+
+    if (!this.isExistRecordPluginConfigByname(pluginName)) {
+      this.pluginConfig.push(data)
+      writeJsonFile(this.pluginConfig)
     }
-
-    private updatePluginConfigState(){
-        this.pluginConfig = readJsonFile().plugins as PluginConfig[]
+    else {
+      this.updateRecordPluginConfig(pluginName, data)
     }
+  }
 
-    public isExistRecordPluginConfigByname(pluginName: string) {
-        this.updatePluginConfigState()
-    
-        return this.pluginConfig.some(item => item.name === pluginName)
-    }
+  public removeRecordPluginConfig(pluginName: string) {
+    this.updatePluginConfigState()
 
-    public addRecordPluginConfig(pluginName: string, data: PluginConfig) {
-        this.updatePluginConfigState()
+    this.pluginConfig = this.pluginConfig.filter(item => item.name !== pluginName)
+    writeJsonFile(this.pluginConfig)
+  }
 
-        if (data.enable === undefined)
-            data.enable = false
+  public updateRecordPluginConfig(pluginName: string, data: PluginConfig) {
+    this.updatePluginConfigState()
 
-        if (!this.isExistRecordPluginConfigByname(pluginName)) {
-            this.pluginConfig.push(data)
-            writeJsonFile(this.pluginConfig)
-        } else {
-            this.updateRecordPluginConfig(pluginName, data)
-        }
-    }
+    if (data.enable === undefined)
+      data.enable = false
 
-    public removeRecordPluginConfig(pluginName: string) {
-        this.updatePluginConfigState()
+    this.pluginConfig = this.pluginConfig.map((item) => {
+      if (item.name === pluginName)
+        return data
 
-        this.pluginConfig = this.pluginConfig.filter(item => item.name !== pluginName)
-        writeJsonFile(this.pluginConfig)
-    }
+      return item
+    })
+    writeJsonFile(this.pluginConfig)
+  }
 
-    public updateRecordPluginConfig(pluginName: string, data: PluginConfig) {
-        this.updatePluginConfigState()
+  public getRecordPluginConfig(pluginName: string) {
+    this.updatePluginConfigState()
 
-        if (data.enable === undefined)
-            data.enable = false
+    return this.pluginConfig.find(item => item.name === pluginName)
+  }
 
-        this.pluginConfig = this.pluginConfig.map(item => {
-            if (item.name === pluginName) {
-                return data
-            }
-            return item
-        })
-        writeJsonFile(this.pluginConfig)
-    }
+  public queryAllRecordPluginConfig() {
+    this.updatePluginConfigState()
 
-    public getRecordPluginConfig(pluginName: string) {
-        this.updatePluginConfigState()
+    return this.pluginConfig
+  }
 
-        return this.pluginConfig.find(item => item.name === pluginName)
-    }
+  public queryAllRecordPluginConfigByEnable() {
+    this.updatePluginConfigState()
 
-    public queryAllRecordPluginConfig() {
-        this.updatePluginConfigState()
-
-        return this.pluginConfig
-    }
-
-    public queryAllRecordPluginConfigByEnable() {
-        this.updatePluginConfigState()
-
-        return this.pluginConfig.filter(item => item.enable)
-    }
+    return this.pluginConfig.filter(item => item.enable)
+  }
 }
 
 export default new RecordOperations()

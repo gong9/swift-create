@@ -52,12 +52,12 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
         return <SelectInput items={config.items!} onSelect={handleSelectChange} />
       case 'input':
         return (
-                    <Box>
-                        <Box marginRight={1}>
-                            <Text>name: </Text>
-                        </Box>
-                        <TextInput placeholder='项目名称' value={templateConfig.projectName} onChange={handleInputChange} onSubmit={nextAction}/>
-                    </Box>
+          <Box>
+            <Box marginRight={1}>
+              <Text>name: </Text>
+            </Box>
+            <TextInput placeholder='项目名称' value={templateConfig.projectName} onChange={handleInputChange} onSubmit={nextAction}/>
+          </Box>
         )
       default:
         return null
@@ -65,10 +65,10 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
   }
 
   return (
-        <>
-            <Text>{config.title}</Text>
-            {renderItem(config.type)}
-        </>
+    <>
+      <Text>{config.title}</Text>
+      {renderItem(config.type)}
+    </>
   )
 }
 

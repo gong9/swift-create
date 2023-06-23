@@ -1,8 +1,10 @@
 {
   "name": "gong-cli",
   "version": "0.0.0",
-  "description": "cli",
   "private": true,
+  "description": "cli",
+  "license": "MIT",
+  "keywords": [],
   "scripts": {
     "start": "cd packages/core && pnpm start",
     "build": "pnpm -r build",
@@ -12,9 +14,10 @@
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
   },
-  "keywords": [],
   "authors": [],
-  "license": "MIT",
+  "dependencies": {
+
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.5",
     "@commitlint/cli": "^17.1.2",
@@ -35,8 +38,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "dependencies": {
-    
   }
 }

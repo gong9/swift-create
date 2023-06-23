@@ -3,15 +3,15 @@ import downloadGitRepo from './server/downLoadGitRepo'
 
 const plugin = {
 
-    service: {
-        request: (user) => {
-            return getAppointRepoName(user)
-        },
+  service: {
+    request: (user) => {
+      return getAppointRepoName(user)
+    },
 
-        download: (user) => {
-            return downloadGitRepo(user)
-        }
-    }
+    download: (user) => {
+      return downloadGitRepo(user)
+    },
+  },
 }
 
-export default plugin;
+export default plugin

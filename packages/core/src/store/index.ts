@@ -51,12 +51,12 @@ const useStore = create<StateType>((set) => {
       },
     ),
     setShowWelcome: (newData: StateType['showWelcome']) => set(
-      ()=>{
+      () => {
         return {
           showWelcome: newData,
         }
-      }
-    )
+      },
+    ),
   }
 })
 export default useStore

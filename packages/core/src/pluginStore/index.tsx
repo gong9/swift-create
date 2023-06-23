@@ -1,17 +1,16 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
 import AllPluginList from './pluginComponents/AllPluginList'
 
-type PlginPageProps = {
+interface PlginPageProps {
 
 }
 const PlginPage: FC<PlginPageProps> = () => {
-
-    return (
-        <>
-            <AllPluginList />
-        </>
-    )
+  return (
+    <>
+      <AllPluginList />
+    </>
+  )
 }
 
 export default PlginPage
-

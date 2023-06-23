@@ -1,9 +1,8 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { globSync } from 'glob'
 import ejs from 'ejs'
 import to from 'await-to-js'
 import { consola } from 'consola'
-
 
 interface EjsRenderData {
   data: {
@@ -12,11 +11,11 @@ interface EjsRenderData {
 }
 
 // TODO: 考虑worker的形式进行写入
-const writeBack = (path: string, fileContent: string) => {
+function writeBack(path: string, fileContent: string) {
   fs.writeFileSync(path, fileContent)
 }
 
-export const handleTemplate = (tempaltePath: string, data: EjsRenderData) => {
+export function handleTemplate(tempaltePath: string, data: EjsRenderData) {
   consola.info('解析ejs模版')
 
   const files = globSync(`${tempaltePath}/**`, {

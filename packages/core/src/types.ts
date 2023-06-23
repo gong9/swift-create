@@ -1,4 +1,5 @@
 import type { FrameEnum, ProjectEnum } from './configData'
+
 export interface ProjectItemType {
   label: string
   value: number

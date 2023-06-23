@@ -1,7 +1,7 @@
-export const checkPluginLockFile = () => {
-    return true
+export function checkPluginLockFile() {
+  return true
 }
 
-const install = async (name: string, cwd: string) => {
-   
+async function install(name: string, cwd: string) {
+
 }

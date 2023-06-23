@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-		"jsx": "react",
+    "jsx": "react",
     "declaration": true,
     "skipLibCheck": true,
     "baseUrl": "./",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "include": ["packages/**/*"],
   "exclude": [
-    "dist","node_modules"
+    "dist", "node_modules"
   ]
 }

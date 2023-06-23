@@ -1,6 +1,6 @@
 {
-	"name": "gong-cli",
-	"plugin": [
-		"download-gitrepo-plugin"
-	]
+  "name": "gong-cli",
+  "plugin": [
+    "download-gitrepo-plugin"
+  ]
 }

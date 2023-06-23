@@ -74,9 +74,9 @@ const Selection: FC = () => {
     try {
       await downloadGitRepo(value, `${downloadDirectory}/${templateConfig.projectName}`)
       consola.info(`下载${value}模版完成`)
-  
+
       handleTemplate(`${downloadDirectory}/${templateConfig.projectName}`, { data: templateConfig })
-      
+
       consola.info(`正在准备移动${value}模版到当前目录`)
       await move(`${downloadDirectory}/${templateConfig.projectName}`, `${process.cwd()}/${templateConfig.projectName}`)
       consola.info(`移动${value}模版到当前目录完成`)
@@ -113,10 +113,10 @@ const Selection: FC = () => {
   const renderCurMatchTemplateList = () => {
     const matchTemplateList = curMatchTemplateList.map(item => ({ label: item, value: item }))
     return (
-            <>
-                <Text>当前匹配到的模版：</Text>
-                <SelectInput items={matchTemplateList} onSelect={selectMatchTemplate} />
-            </>
+      <>
+        <Text>当前匹配到的模版：</Text>
+        <SelectInput items={matchTemplateList} onSelect={selectMatchTemplate} />
+      </>
     )
   }
 
@@ -126,10 +126,10 @@ const Selection: FC = () => {
 
   else {
     return (
-        <>
-            {renderCurrentStep()}
-            {curMatchTemplateList.length > 0 && renderCurMatchTemplateList()}
-        </>
+      <>
+        {renderCurrentStep()}
+        {curMatchTemplateList.length > 0 && renderCurMatchTemplateList()}
+      </>
     )
   }
 }

@@ -1,8 +1,10 @@
 {
   "name": "gong-create",
   "version": "1.0.15",
-  "license": "MIT",
   "description": "a cli tool for creating project",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
   "bin": {
     "gong-create": "dist/index.js"
   },
@@ -22,8 +24,6 @@
     "prepublishOnly": "father doctor && npm run build",
     "test": "jest --maxWorkers 2"
   },
-  "keywords": [],
-  "author": "",
   "dependencies": {
     "ahooks": "^3.7.7",
     "await-to-js": "^3.0.0",
