@@ -39,7 +39,7 @@ function openPlgin(params: PluginMainParamsEnum) {
 
 const { plugins, location } = argv.flags
 
-if (plugins || location) {
+if ((plugins || location) && process.env.NODE_ENV === 'development') {
   openPlgin(
     (plugins && PluginMainParamsEnum.Store) || (location && PluginMainParamsEnum.List),
   )
