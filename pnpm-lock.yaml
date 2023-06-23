@@ -123,7 +123,23 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@17.0.2)
 
-  packages/github-template-plugin: {}
+  packages/github-template-plugin:
+    dependencies:
+      await-to-js:
+        specifier: ^3.0.0
+        version: 3.0.0
+      axios:
+        specifier: ^1.4.0
+        version: 1.4.0
+      consola:
+        specifier: ^3.1.0
+        version: 3.1.0
+      download-git-repo:
+        specifier: ^3.0.2
+        version: 3.0.2
+      util:
+        specifier: ^0.12.5
+        version: 0.12.5
 
 packages:
 
