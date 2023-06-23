@@ -2,7 +2,9 @@
 import { spawn } from 'node:child_process'
 import path from 'node:path'
 import { cli } from 'cleye'
+
 import packJson from '../package.json'
+import register from './plugin/register'
 
 const argv = cli({
   name: 'gong-create',
@@ -37,8 +39,10 @@ function openPlginStroe() {
 
 const { plugins, location, use } = argv.flags
 
-if (plugins)
+if (plugins) {
   openPlginStroe()
-
-else
+}
+else {
+  const hooks = register()
   initAPP()
+}
