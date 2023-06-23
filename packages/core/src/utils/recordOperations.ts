@@ -68,6 +68,25 @@ class RecordOperations {
     return this.pluginConfig.find(item => item.name === pluginName)
   }
 
+  /**
+   * open plugin
+   * @param pluginName
+   */
+  public enablePlugin(pluginName: string) {
+    const currentPluginData = this.getRecordPluginConfig(pluginName)
+    currentPluginData.enable = true
+    this.updateRecordPluginConfig(pluginName, currentPluginData)
+  }
+
+  /**
+   * check plugin is enable
+   * @param pluginName
+   * @returns
+   */
+  public isEnableByname(pluginName: string) {
+    return this.getRecordPluginConfig(pluginName)?.enable
+  }
+
   public get queryAllRecordPluginConfig() {
     this.updatePluginConfigState()
 

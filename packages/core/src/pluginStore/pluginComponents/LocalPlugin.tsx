@@ -5,6 +5,7 @@ import SelectInput from 'ink-select-input'
 
 import type { PluginConfig } from '../../utils/recordOperations'
 import type { Plugin } from '../api'
+import { PluginMainParamsEnum } from '../../enum'
 import PluginInfo from './PluginInfo'
 
 interface LocalPluginListProps {
@@ -32,7 +33,8 @@ const LocalPluginList: FC<LocalPluginListProps> = ({ data }) => {
 
       <SelectInput items={items} onSelect={selectPlugin} />
 
-      {currentPlugin && needShowPluginInfo && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version} goBack={() => setNeedShowPluginInfo(false)} />}
+      {currentPlugin && needShowPluginInfo && <PluginInfo type={PluginMainParamsEnum.List} pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version}
+        goBack={() => setNeedShowPluginInfo(false)} />}
     </>
   )
 }

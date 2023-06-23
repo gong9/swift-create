@@ -1,3 +1,4 @@
+import console from 'node:console'
 import type { FC } from 'react'
 import React from 'react'
 import { Box, Text } from 'ink'
@@ -5,15 +6,17 @@ import { Box, Text } from 'ink'
 import { install } from '../utils'
 import recordOperations from '../../utils/recordOperations'
 import ConfirmInput from '../../components/ConfirmInput'
+import { PluginMainParamsEnum } from '../../enum'
 
 interface PluginInfoProps {
+  type: PluginMainParamsEnum
   pluginName: string
   pluginDescription: string
   pluginVersion: string
   goBack: () => void
 }
 
-const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, pluginVersion, goBack }) => {
+const PluginInfo: FC<PluginInfoProps> = ({ type, pluginName, pluginDescription, pluginVersion, goBack }) => {
   const pluginInfo = [
     {
       label: '插件名称:',
@@ -29,13 +32,23 @@ const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, plugin
     },
   ]
 
-  const handleInstall = (isInstall) => {
-    if (isInstall) {
+  const handleInstall = (isNeedInstall) => {
+    if (isNeedInstall) {
       install(pluginName, goBack, {
         name: pluginName,
         version: pluginVersion,
         description: pluginDescription,
       })
+    }
+    else {
+      goBack()
+    }
+  }
+
+  const handleEnable = (isNeedEnable) => {
+    if (isNeedEnable) {
+      recordOperations.enablePlugin(pluginName)
+      goBack()
     }
     else {
       goBack()
@@ -59,11 +72,18 @@ const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, plugin
                 }
       </Box>
 
-      {
-                recordOperations.isExistRecordPluginConfigByname(pluginName)
-                  ? <Text color="red">已安装</Text>
-                  : <ConfirmInput description="需要安装么?" onSubmit={handleInstall} />
-            }
+      {type === PluginMainParamsEnum.Store && (
+        recordOperations.isExistRecordPluginConfigByname(pluginName)
+          ? <Text color="red">已安装</Text>
+          : <ConfirmInput description="需要安装么?" onSubmit={handleInstall} />
+      )}
+
+      {type === PluginMainParamsEnum.List && (
+        recordOperations.isEnableByname(pluginName)
+          ? <Text color="red">已启用</Text>
+          : <ConfirmInput description="需要启用么?" onSubmit={handleEnable} />
+      )}
+
     </Box>
   )
 }
