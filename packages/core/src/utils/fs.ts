@@ -29,6 +29,12 @@ export async function remove(path: string) {
   }
 }
 
+/**
+ * move file
+ * @param srcPath
+ * @param path
+ * @returns
+ */
 export async function move(srcPath: string, path: string) {
   if (await isExists(path)) {
     consola.warn('The file already exists, please delete it first')
@@ -44,6 +50,10 @@ export async function move(srcPath: string, path: string) {
   }
 }
 
+/**
+ * read config json file
+ * @returns
+ */
 export function readJsonFile() {
   const data = fs.readFileSync(path.resolve(__dirname, '../../plugin.config.json'), 'utf8')
 
@@ -56,6 +66,10 @@ export function readJsonFile() {
   }
 }
 
+/**
+ * write config json file
+ * @param data
+ */
 export function writeJsonFile(data: any) {
   try {
     fs.writeFileSync(path.resolve(__dirname, '../../plugin.config.json'), JSON.stringify({

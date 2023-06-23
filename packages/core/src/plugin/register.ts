@@ -1,10 +1,5 @@
-import { readJsonFile } from '../utils/fs'
+import recordOperations from '../utils/recordOperations'
 
-interface PluginNode {
-  name: string
-  version: string
-  enable: boolean
-}
 type RequestType = (user: string) => Promise<string[]>
 type DownloadType = (user: string) => Promise<void>
 
@@ -19,11 +14,7 @@ interface HooksType {
 
 const register = () => {
   const hooks: HooksType = {}
-  const data = readJsonFile()
-  let enablePlugins: PluginNode[] = []
-
-  if (data.plugins)
-    enablePlugins = data.plugins.map(plugin => plugin.enable)
+  const enablePlugins = recordOperations.queryAllRecordPluginConfigByEnable()
 
   if (enablePlugins.length > 0) {
     enablePlugins.forEach(async (plugin) => {

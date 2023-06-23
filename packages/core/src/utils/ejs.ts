@@ -10,7 +10,6 @@ interface EjsRenderData {
   }
 }
 
-// TODO: 考虑worker的形式进行写入
 function writeBack(path: string, fileContent: string) {
   fs.writeFileSync(path, fileContent)
 }

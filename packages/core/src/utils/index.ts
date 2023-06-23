@@ -27,6 +27,12 @@ export function getCurrentTemplateList(recordInfo: tempalteRecord) {
   return temp
 }
 
+/**
+ * compare versions
+ * @param v1
+ * @param v2
+ * @returns
+ */
 export function compareVersions(v1: string, v2: string): number {
   const regex = /^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-([a-z]+)(\d+)?)?$/
 
