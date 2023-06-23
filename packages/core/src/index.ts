@@ -4,6 +4,7 @@ import path from 'node:path'
 import { cli } from 'cleye'
 
 import packJson from '../package.json'
+import { PluginMainParamsEnum } from './enum'
 import register from './plugin/register'
 
 const argv = cli({
@@ -33,14 +34,16 @@ function initAPP() {
   spawn('node', [`${path.resolve(__dirname, 'cli.js')}`], { stdio: 'inherit' })
 }
 
-function openPlginStroe() {
-  spawn('node', [`${path.resolve(__dirname, 'pluginStore.js')}`], { stdio: 'inherit' })
+function openPlgin(params: PluginMainParamsEnum) {
+  spawn('node', [`${path.resolve(__dirname, 'pluginStore.js')}`, params as string], { stdio: 'inherit' })
 }
 
-const { plugins, location, use } = argv.flags
+const { plugins, location } = argv.flags
 
-if (plugins) {
-  openPlginStroe()
+if (plugins || location) {
+  openPlgin(
+    (plugins && PluginMainParamsEnum.Store) || (location && PluginMainParamsEnum.List),
+  )
 }
 else {
   const hooks = register()

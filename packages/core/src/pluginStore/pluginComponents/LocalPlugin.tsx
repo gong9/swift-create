@@ -2,18 +2,16 @@ import type { FC } from 'react'
 import React, { useState } from 'react'
 import { Text } from 'ink'
 import SelectInput from 'ink-select-input'
-import { useRequest } from 'ahooks'
 
+import type { PluginConfig } from '../../utils/recordOperations'
 import type { Plugin } from '../api'
-import { getOfficialPlugins } from '../api'
 import PluginInfo from './PluginInfo'
 
-interface AllPluginListProps {
-
+interface LocalPluginListProps {
+  data: PluginConfig[]
 }
 
-const AllPluginList: FC<AllPluginListProps> = () => {
-  const { data, error, loading } = useRequest(getOfficialPlugins)
+const LocalPluginList: FC<LocalPluginListProps> = ({ data }) => {
   const [currentPlugin, setCurrentPlugin] = useState<Plugin | null>(null)
   const [needShowPluginInfo, setNeedShowPluginInfo] = useState(false)
 
@@ -22,12 +20,6 @@ const AllPluginList: FC<AllPluginListProps> = () => {
     setCurrentPlugin(data.find(item => item.name === itemData.value))
   }
 
-  if (error)
-    return <Text>出错了...</Text>
-
-  if (loading)
-    return <Text>插件加载中...</Text>
-
   const items = data.map(plugin => ({
     label: plugin.name,
     value: plugin.name,
@@ -35,12 +27,14 @@ const AllPluginList: FC<AllPluginListProps> = () => {
 
   return (
     <>
-      <Text>插件商店</Text>
+      <Text>已下载的插件</Text>
+      {data.length === 0 && <Text>暂无插件</Text>}
+
       <SelectInput items={items} onSelect={selectPlugin} />
 
-      {currentPlugin && needShowPluginInfo && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description || ''} pluginVersion={currentPlugin.version} goBack={() => setNeedShowPluginInfo(false)} />}
+      {currentPlugin && needShowPluginInfo && <PluginInfo pluginName={currentPlugin.name} pluginDescription={currentPlugin.description} pluginVersion={currentPlugin.version} goBack={() => setNeedShowPluginInfo(false)} />}
     </>
   )
 }
 
-export default AllPluginList
+export default LocalPluginList

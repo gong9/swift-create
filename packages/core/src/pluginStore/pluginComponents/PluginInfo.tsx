@@ -34,6 +34,7 @@ const PluginInfo: FC<PluginInfoProps> = ({ pluginName, pluginDescription, plugin
       install(pluginName, goBack, {
         name: pluginName,
         version: pluginVersion,
+        description: pluginDescription,
       })
     }
     else {

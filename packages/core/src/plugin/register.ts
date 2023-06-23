@@ -14,7 +14,7 @@ interface HooksType {
 
 const register = () => {
   const hooks: HooksType = {}
-  const enablePlugins = recordOperations.queryAllRecordPluginConfigByEnable()
+  const enablePlugins = recordOperations.queryAllRecordPluginConfigByEnable
 
   if (enablePlugins.length > 0) {
     enablePlugins.forEach(async (plugin) => {

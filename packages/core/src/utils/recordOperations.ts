@@ -4,6 +4,7 @@ export interface PluginConfig {
   name: string
   version: string
   enable?: boolean
+  description: string
 }
 
 // TODO: updatePluginConfigState 修改为装饰器
@@ -67,13 +68,13 @@ class RecordOperations {
     return this.pluginConfig.find(item => item.name === pluginName)
   }
 
-  public queryAllRecordPluginConfig() {
+  public get queryAllRecordPluginConfig() {
     this.updatePluginConfigState()
 
     return this.pluginConfig
   }
 
-  public queryAllRecordPluginConfigByEnable() {
+  public get queryAllRecordPluginConfigByEnable() {
     this.updatePluginConfigState()
 
     return this.pluginConfig.filter(item => item.enable)
