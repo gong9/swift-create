@@ -24,11 +24,12 @@ export async function getAllRepoNameList() {
 
 export async function getAppointRepoName(match: [string, string, string]) {
   const allRepoListName = await getAllRepoNameList()
+  const filterMatch = match.filter(item => item)
 
   return allRepoListName.filter(
     (item) => {
       const curNameLowerCase = item.toLocaleLowerCase()
-      return curNameLowerCase.includes(match[0]) && curNameLowerCase.includes(match[1]) && curNameLowerCase.includes(match[2])
+      return filterMatch.some(currentMatch => curNameLowerCase.includes(currentMatch))
     },
   )
 }
