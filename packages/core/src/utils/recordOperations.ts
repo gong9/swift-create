@@ -7,7 +7,7 @@ export interface PluginConfig {
   description: string
 }
 
-// TODO: updatePluginConfigState 修改为装饰器
+// TODO: 优化
 class RecordOperations {
   public pluginConfig: PluginConfig[]
 

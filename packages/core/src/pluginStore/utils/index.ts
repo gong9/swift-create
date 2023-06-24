@@ -19,7 +19,12 @@ function getPackagePath(): string | null {
   }
 }
 
-function changeDirectoryWithPermission(directory, mode = 'dev') {
+/**
+ * now only run in development
+ * @param directory
+ * @param mode
+ */
+function changeDirectoryWithPermission(directory, mode) {
   if (os.type() === 'Darwin') {
     // macOS
 

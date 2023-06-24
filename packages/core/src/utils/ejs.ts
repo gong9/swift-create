@@ -14,6 +14,11 @@ function writeBack(path: string, fileContent: string) {
   fs.writeFileSync(path, fileContent)
 }
 
+/**
+ * handle ejs
+ * @param tempaltePath
+ * @param data
+ */
 export function handleTemplate(tempaltePath: string, data: EjsRenderData) {
   consola.info('解析ejs模版')
 

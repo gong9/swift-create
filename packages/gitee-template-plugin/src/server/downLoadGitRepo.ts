@@ -7,7 +7,7 @@ const download = promisify(downloadGitRepo)
 
 export default (user: string) => {
   return async (targetProject, outPath) => {
-    const [err] = await to(download('https://gitee.com/gong9/template-monorepo-lib#main', outPath))
+    const [err] = await to(download(`https://gitee.com/${user}/${targetProject}#main`, outPath))
 
     if (err)
       consola.error('download error', err)

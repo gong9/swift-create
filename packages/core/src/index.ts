@@ -39,6 +39,7 @@ function openPlgin(params: PluginMainParamsEnum) {
 
 const { plugins, location } = argv.flags
 
+// now plugin feature only run in development
 if ((plugins || location) && process.env.NODE_ENV === 'development') {
   openPlgin(
     (plugins && PluginMainParamsEnum.Store) || (location && PluginMainParamsEnum.List),
