@@ -23,7 +23,7 @@ function changeDirectoryWithPermission(directory, mode = 'dev') {
   if (os.type() === 'Darwin') {
     // macOS
 
-    if (mode === 'dev')
+    if (mode === 'development')
       process.chdir(path.resolve(__dirname, '../../../'))
     else
       process.chdir(directory.trim())
