@@ -1,6 +1,6 @@
 {
   "name": "gong-create",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "a cli tool for creating project",
   "author": "gong",
   "license": "MIT",
