@@ -47,7 +47,7 @@ const PluginInfo: FC<PluginInfoProps> = ({ type, pluginName, pluginDescription, 
 
   const handleEnable = (isNeedEnable) => {
     if (isNeedEnable) {
-      recordOperations.enablePlugin(pluginName)
+      recordOperations.isEnableByname(pluginName) ? recordOperations.closePlugin(pluginName) : recordOperations.enablePlugin(pluginName)
       goBack()
     }
     else {
@@ -80,7 +80,12 @@ const PluginInfo: FC<PluginInfoProps> = ({ type, pluginName, pluginDescription, 
 
       {type === PluginMainParamsEnum.List && (
         recordOperations.isEnableByname(pluginName)
-          ? <Text color="red">已启用</Text>
+          ? (
+            <Box flexDirection='column'>
+              <Text color="red">已启用</Text>
+              <ConfirmInput description="需要关闭么?" onSubmit={handleEnable} />
+            </Box>
+            )
           : <ConfirmInput description="需要启用么?" onSubmit={handleEnable} />
       )}
 

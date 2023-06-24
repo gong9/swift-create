@@ -79,6 +79,16 @@ class RecordOperations {
   }
 
   /**
+   * closePlugin
+   * @param pluginName
+   */
+  public closePlugin(pluginName: string) {
+    const currentPluginData = this.getRecordPluginConfig(pluginName)
+    currentPluginData.enable = false
+    this.updateRecordPluginConfig(pluginName, currentPluginData)
+  }
+
+  /**
    * check plugin is enable
    * @param pluginName
    * @returns
