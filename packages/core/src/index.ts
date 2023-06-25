@@ -4,7 +4,7 @@ import path from 'node:path'
 import { cli } from 'cleye'
 
 import packJson from '../package.json'
-import { PluginMainParamsEnum } from './enum'
+import { ConfigMainParamsEnum } from './enum'
 
 const argv = cli({
   name: 'gong-create',
@@ -26,6 +26,10 @@ const argv = cli({
       type: Boolean,
       alias: 'l',
     },
+    config: {
+      type: Boolean,
+      alias: 'c',
+    },
   },
 })
 
@@ -33,17 +37,20 @@ function initAPP() {
   spawn('node', [`${path.resolve(__dirname, 'cli.js')}`], { stdio: 'inherit' })
 }
 
-function openPlgin(params: PluginMainParamsEnum) {
-  spawn('node', [`${path.resolve(__dirname, 'pluginStore.js')}`, params as string], { stdio: 'inherit' })
+function initConfig(params: ConfigMainParamsEnum) {
+  spawn('node', [`${path.resolve(__dirname, 'configPage.js')}`, params as string], { stdio: 'inherit' })
 }
 
-const { plugins, location } = argv.flags
+const { plugins, location, config } = argv.flags
 
 // now plugin feature only run in development
 if ((plugins || location) && process.env.NODE_ENV === 'development') {
-  openPlgin(
-    (plugins && PluginMainParamsEnum.Store) || (location && PluginMainParamsEnum.List),
+  initConfig(
+    (plugins && ConfigMainParamsEnum.Store) || (location && ConfigMainParamsEnum.List),
   )
+}
+else if (config) {
+  initConfig(ConfigMainParamsEnum.Config)
 }
 else {
   initAPP()

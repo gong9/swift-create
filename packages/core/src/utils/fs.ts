@@ -82,10 +82,18 @@ export function readJsonFile(type: ConfigEnum) {
 export function writeJsonFile(data: any, type: ConfigEnum) {
   const currentPath = type === ConfigEnum.plugins ? pluginConfigPath : configPath
   try {
-    fs.writeFileSync(currentPath, JSON.stringify({
-      ...readJsonFile(type),
-      plugins: data,
-    }, null, 2), 'utf8')
+    if (type === ConfigEnum.config) {
+      fs.writeFileSync(currentPath, JSON.stringify({
+        ...readJsonFile(type),
+        ...data,
+      }, null, 2), 'utf8')
+    }
+    else {
+      fs.writeFileSync(currentPath, JSON.stringify({
+        ...readJsonFile(type),
+        plugins: data,
+      }, null, 2), 'utf8')
+    }
   }
   catch (error) {
     consola.error(error)

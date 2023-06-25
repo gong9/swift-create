@@ -10,7 +10,8 @@ export enum StateTask {
   Error,
 }
 
-export enum PluginMainParamsEnum {
+export enum ConfigMainParamsEnum {
   Store = '1', // plugin store
   List = '2', // local plugin list
+  Config = '3', // config
 }

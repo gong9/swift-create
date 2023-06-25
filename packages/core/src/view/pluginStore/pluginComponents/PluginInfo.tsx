@@ -4,12 +4,12 @@ import React from 'react'
 import { Box, Text } from 'ink'
 
 import { install } from '../utils'
-import recordOperations from '../../utils/recordOperations'
-import ConfirmInput from '../../components/ConfirmInput'
-import { PluginMainParamsEnum } from '../../enum'
+import recordOperations from '../../../utils/recordOperations'
+import ConfirmInput from '../../../components/ConfirmInput'
+import { ConfigMainParamsEnum } from '../../../enum'
 
 interface PluginInfoProps {
-  type: PluginMainParamsEnum
+  type: ConfigMainParamsEnum
   pluginName: string
   pluginDescription: string
   pluginVersion: string
@@ -72,13 +72,13 @@ const PluginInfo: FC<PluginInfoProps> = ({ type, pluginName, pluginDescription, 
                 }
       </Box>
 
-      {type === PluginMainParamsEnum.Store && (
+      {type === ConfigMainParamsEnum.Store && (
         recordOperations.isExistRecordPluginConfigByname(pluginName)
           ? <Text color="red">已安装</Text>
           : <ConfirmInput description="需要安装么?" onSubmit={handleInstall} />
       )}
 
-      {type === PluginMainParamsEnum.List && (
+      {type === ConfigMainParamsEnum.List && (
         recordOperations.isEnableByname(pluginName)
           ? (
             <Box flexDirection='column'>

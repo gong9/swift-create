@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { duplicateRemovalByAttributes } from 'poor-utils-pro'
-import { compareVersions } from '../utils'
+import { compareVersions } from '../../utils'
 
 export interface Plugin {
   name: string

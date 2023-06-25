@@ -6,7 +6,7 @@ import { useRequest } from 'ahooks'
 
 import type { Plugin } from '../api'
 import { getOfficialPlugins } from '../api'
-import { PluginMainParamsEnum } from '../../enum'
+import { ConfigMainParamsEnum } from '../../../enum'
 import PluginInfo from './PluginInfo'
 
 interface AllPluginListProps {
@@ -39,7 +39,7 @@ const AllPluginList: FC<AllPluginListProps> = () => {
       <Text>插件商店</Text>
       <SelectInput items={items} onSelect={selectPlugin} />
 
-      {currentPlugin && needShowPluginInfo && <PluginInfo type={PluginMainParamsEnum.Store} pluginName={currentPlugin.name} pluginDescription={currentPlugin.description || ''} pluginVersion={currentPlugin.version}
+      {currentPlugin && needShowPluginInfo && <PluginInfo type={ConfigMainParamsEnum.Store} pluginName={currentPlugin.name} pluginDescription={currentPlugin.description || ''} pluginVersion={currentPlugin.version}
         goBack={() => setNeedShowPluginInfo(false)} />}
     </>
   )

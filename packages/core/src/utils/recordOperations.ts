@@ -133,6 +133,10 @@ class CliRecordOperations {
   public getConfigData(key: string) {
     return this.cliConfigData[key]
   }
+
+  public get queryAllKeys() {
+    return Object.keys(this.cliConfigData)
+  }
 }
 
 export const pluginRecordOperations = new RecordOperations(ConfigEnum.plugins)

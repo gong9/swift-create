@@ -3,8 +3,8 @@ import os from 'node:os'
 import path from 'node:path'
 import { consola } from 'consola'
 
-import type { PluginConfig } from '../../utils/recordOperations'
-import recordPluginConfig from '../../utils/recordOperations'
+import type { PluginConfig } from '../../../utils/recordOperations'
+import recordPluginConfig from '../../../utils/recordOperations'
 
 function getPackagePath(): string | null {
   try {
