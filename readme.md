@@ -33,6 +33,8 @@ npx gong-create@latest
 
 ### Usage
 
+[视频链接](https://www.yuque.com/gongxiaobai/ckuidk/wp6gx65o7ezn0ud1)
+
 本项目对模版项目进行了三种分类
 
 - 项目类型：业务项目、组件项目、cli项目
