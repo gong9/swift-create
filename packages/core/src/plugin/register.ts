@@ -1,4 +1,4 @@
-import recordOperations from '../utils/recordOperations'
+import { pluginRecordOperations } from '../utils/recordOperations'
 
 type RequestType = (user: string) => (match: [string, string, string]) => Promise<string[]>
 type DownloadType = (user: string) => (targetProject: string, outPath: string) => Promise<void>
@@ -14,7 +14,7 @@ export interface HooksType {
 
 const register = async () => {
   const hooks: HooksType = {}
-  const enablePlugins = recordOperations.queryAllRecordPluginConfigByEnable
+  const enablePlugins = pluginRecordOperations.queryAllRecordPluginConfigByEnable
 
   if (enablePlugins.length > 0) {
     for (let index = 0; index < enablePlugins.length; index++) {

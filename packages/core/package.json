@@ -12,6 +12,7 @@
     "dist",
     "readme.md",
     "package.json",
+    "cli.config.json",
     "plugin.config.json"
   ],
   "engines": {

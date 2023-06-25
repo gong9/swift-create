@@ -1,5 +1,6 @@
 import axios from 'axios'
 import type { ServiceHookType } from '../plugin/register'
+import { cliRecordOperations } from '../utils/recordOperations'
 
 interface RepoType {
   id: number
@@ -11,7 +12,7 @@ interface RepoType {
 export async function getAllRepoList() {
   const {
     data,
-  } = await axios.get('https://api.github.com/orgs/gong-cli/repos')
+  } = await axios.get(`https://api.github.com/orgs/${cliRecordOperations.getConfigData('userPath')}/repos`)
 
   return data as RepoType[]
 }
@@ -42,7 +43,7 @@ export async function getAppointRepoName(match: [string, string, string]) {
 export function getRepo(serverHook: ServiceHookType) {
   const isExistServerHook = serverHook && serverHook.request
   if (isExistServerHook)
-    return serverHook.request('gong-cli')
+    return serverHook.request(cliRecordOperations.getConfigData('userPath'))
 
   else return getAppointRepoName
 }

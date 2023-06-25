@@ -1,4 +1,4 @@
-import { readJsonFile, writeJsonFile } from '../utils/fs'
+import { ConfigEnum, readJsonFile, writeJsonFile } from '../utils/fs'
 
 export interface PluginConfig {
   name: string
@@ -10,13 +10,15 @@ export interface PluginConfig {
 // TODO: 优化
 class RecordOperations {
   public pluginConfig: PluginConfig[]
+  public configType: ConfigEnum
 
-  constructor() {
-    this.pluginConfig = readJsonFile().plugins as PluginConfig[]
+  constructor(type: ConfigEnum) {
+    this.configType = type
+    this.pluginConfig = readJsonFile(type).plugins as PluginConfig[]
   }
 
   private updatePluginConfigState() {
-    this.pluginConfig = readJsonFile().plugins as PluginConfig[]
+    this.pluginConfig = readJsonFile(this.configType).plugins as PluginConfig[]
   }
 
   public isExistRecordPluginConfigByname(pluginName: string) {
@@ -33,7 +35,7 @@ class RecordOperations {
 
     if (!this.isExistRecordPluginConfigByname(pluginName)) {
       this.pluginConfig.push(data)
-      writeJsonFile(this.pluginConfig)
+      writeJsonFile(this.pluginConfig, this.configType)
     }
     else {
       this.updateRecordPluginConfig(pluginName, data)
@@ -44,7 +46,7 @@ class RecordOperations {
     this.updatePluginConfigState()
 
     this.pluginConfig = this.pluginConfig.filter(item => item.name !== pluginName)
-    writeJsonFile(this.pluginConfig)
+    writeJsonFile(this.pluginConfig, this.configType)
   }
 
   public updateRecordPluginConfig(pluginName: string, data: PluginConfig) {
@@ -59,7 +61,7 @@ class RecordOperations {
 
       return item
     })
-    writeJsonFile(this.pluginConfig)
+    writeJsonFile(this.pluginConfig, this.configType)
   }
 
   public getRecordPluginConfig(pluginName: string) {
@@ -110,4 +112,28 @@ class RecordOperations {
   }
 }
 
-export default new RecordOperations()
+interface CliConfigData {
+  name: string
+  userPath: string
+}
+class CliRecordOperations {
+  public configType: ConfigEnum
+  public cliConfigData: CliConfigData
+
+  constructor(type: ConfigEnum) {
+    this.configType = type
+    this.cliConfigData = readJsonFile(type) as CliConfigData
+  }
+
+  public setConfigData(key: string, value: string) {
+    this.cliConfigData[key] = value
+    writeJsonFile(this.cliConfigData, this.configType)
+  }
+
+  public getConfigData(key: string) {
+    return this.cliConfigData[key]
+  }
+}
+
+export const pluginRecordOperations = new RecordOperations(ConfigEnum.plugins)
+export const cliRecordOperations = new CliRecordOperations(ConfigEnum.config)

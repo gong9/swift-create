@@ -50,12 +50,21 @@ export async function move(srcPath: string, path: string) {
   }
 }
 
+export enum ConfigEnum {
+  plugins = 'plugins',
+  config = 'config',
+}
+
+const configPath = path.resolve(__dirname, '../../cli.config.json')
+const pluginConfigPath = path.resolve(__dirname, '../../plugin.config.json')
+
 /**
  * read config json file
  * @returns
  */
-export function readJsonFile() {
-  const data = fs.readFileSync(path.resolve(__dirname, '../../plugin.config.json'), 'utf8')
+export function readJsonFile(type: ConfigEnum) {
+  const currentPath = type === ConfigEnum.plugins ? pluginConfigPath : configPath
+  const data = fs.readFileSync(currentPath, 'utf8')
 
   try {
     return JSON.parse(data)
@@ -70,10 +79,11 @@ export function readJsonFile() {
  * write config json file
  * @param data
  */
-export function writeJsonFile(data: any) {
+export function writeJsonFile(data: any, type: ConfigEnum) {
+  const currentPath = type === ConfigEnum.plugins ? pluginConfigPath : configPath
   try {
-    fs.writeFileSync(path.resolve(__dirname, '../../plugin.config.json'), JSON.stringify({
-      ...readJsonFile(),
+    fs.writeFileSync(currentPath, JSON.stringify({
+      ...readJsonFile(type),
       plugins: data,
     }, null, 2), 'utf8')
   }

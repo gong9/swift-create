@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import React from 'react'
 
 import { PluginMainParamsEnum } from '../enum'
-import recordOperations from '../utils/recordOperations'
+import { pluginRecordOperations } from '../utils/recordOperations'
 import AllPluginList from './pluginComponents/AllPluginList'
 import LocalPluginList from './pluginComponents/LocalPlugin'
 
@@ -14,7 +14,7 @@ const PlginPage: FC<PlginPageProps> = ({ params }) => {
   return (
     <>
       {params === PluginMainParamsEnum.Store && <AllPluginList />}
-      {params === PluginMainParamsEnum.List && <LocalPluginList data={recordOperations.queryAllRecordPluginConfig} />}
+      {params === PluginMainParamsEnum.List && <LocalPluginList data={pluginRecordOperations.queryAllRecordPluginConfig} />}
     </>
   )
 }
