@@ -11,6 +11,7 @@ import useStore from '../../store/index'
 import { getRepo } from '../../server'
 import downloadGitRepo from '../../server/downLoadGitRepo'
 import { getCurrentTemplateList } from '../../utils'
+import { resetGit } from '../../utils/preAction'
 import { handleTemplate } from '../../utils/ejs'
 import TemplateSelection from './TemplateSelection'
 
@@ -61,26 +62,35 @@ const Selection: FC = () => {
    * @param param0
    */
   const selectMatchTemplate = async ({ value }: { label: string; value: string }) => {
-    const isExist = await isExists(`${downloadDirectory}/${templateConfig.projectName}`)
+    const downloadPath = `${process.cwd()}${downloadDirectory}/${templateConfig.projectName}`
+    const isExist = await isExists(downloadPath)
 
     if (isExist) {
-      consola.info(`正在删除${downloadDirectory}/${templateConfig.projectName}`)
-      await remove(`${downloadDirectory}/${templateConfig.projectName}`)
-      consola.info(`${downloadDirectory}/${templateConfig.projectName}删除完成`)
+      consola.info(`正在删除${downloadPath}`)
+      await remove(`${downloadPath}`)
+      consola.info(`${downloadPath}删除完成`)
     }
 
     setDownloadStatus(true)
+
     consola.info(`正在下载${value}模版`)
-
     try {
-      await downloadGitRepo(hooks.service)(value, `${downloadDirectory}/${templateConfig.projectName}`)
-      consola.info(`下载${value}模版完成`)
+      const [err] = await to(((await downloadGitRepo(hooks.service)))(value, downloadPath))
+      if (err) {
+        consola.error('下载模版失败')
+        return
+      }
+      else {
+        consola.success(`下载${value}模版完成`)
+      }
 
-      handleTemplate(`${downloadDirectory}/${templateConfig.projectName}`, { data: templateConfig })
+      handleTemplate(`${downloadPath}`, { data: templateConfig })
 
       consola.info(`正在准备移动${value}模版到当前目录`)
-      await move(`${downloadDirectory}/${templateConfig.projectName}`, `${process.cwd()}/${templateConfig.projectName}`)
-      consola.info(`移动${value}模版到当前目录完成`)
+      await move(`${downloadPath}`, `${process.cwd()}/${templateConfig.projectName}`)
+      consola.success(`移动${value}模版到当前目录完成`)
+
+      await resetGit(`${process.cwd()}/${templateConfig.projectName}`)
     }
     catch (error) {
       consola.error(error)

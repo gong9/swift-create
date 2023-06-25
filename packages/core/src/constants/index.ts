@@ -1,1 +1,1 @@
-export const downloadDirectory = `${process.env[process.platform === 'darwin' ? 'HOME' : 'USERPROFILE']}/.template`
+export const downloadDirectory = '/.template'

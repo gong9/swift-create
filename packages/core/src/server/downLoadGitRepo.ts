@@ -14,10 +14,10 @@ export const localDownload = async (targetProject, outPath) => {
     consola.error('download error', err)
 }
 
-export default (serverHook: ServiceHookType) => {
+export default async (serverHook: ServiceHookType) => {
   const isExistServerHook = serverHook && serverHook.download
   if (isExistServerHook)
-    return serverHook.download('gong-cli')
+    return await serverHook.download('gong9')
 
-  else return localDownload
+  else return await localDownload
 }

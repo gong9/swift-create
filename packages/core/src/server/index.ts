@@ -42,7 +42,7 @@ export async function getAppointRepoName(match: [string, string, string]) {
 export function getRepo(serverHook: ServiceHookType) {
   const isExistServerHook = serverHook && serverHook.request
   if (isExistServerHook)
-    return serverHook.request('gong-cli')
+    return serverHook.request('gong9')
 
   else return getAppointRepoName
 }
