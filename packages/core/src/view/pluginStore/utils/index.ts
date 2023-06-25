@@ -4,7 +4,7 @@ import path from 'node:path'
 import { consola } from 'consola'
 
 import type { PluginConfig } from '../../../utils/recordOperations'
-import recordPluginConfig from '../../../utils/recordOperations'
+import { pluginRecordOperations } from '../../../utils/recordOperations'
 
 function getPackagePath(): string | null {
   try {
@@ -62,7 +62,7 @@ export function install(pluginName: string, goBack: () => void, pluginData: Plug
       consola.info(stdout)
       stderr && consola.info(stderr)
 
-      recordPluginConfig.addRecordPluginConfig(pluginName, pluginData)
+      pluginRecordOperations.addRecordPluginConfig(pluginName, pluginData)
       consola.success(`插件${pluginName}下载成功`)
       consola.success(`插件${pluginName}已添加到引擎工作空间`)
       consola.info('正在退出引擎工作空间,请稍等...')

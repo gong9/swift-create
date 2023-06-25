@@ -4,7 +4,7 @@ import React from 'react'
 import { Box, Text } from 'ink'
 
 import { install } from '../utils'
-import recordOperations from '../../../utils/recordOperations'
+import { pluginRecordOperations } from '../../../utils/recordOperations'
 import ConfirmInput from '../../../components/ConfirmInput'
 import { ConfigMainParamsEnum } from '../../../enum'
 
@@ -47,7 +47,7 @@ const PluginInfo: FC<PluginInfoProps> = ({ type, pluginName, pluginDescription, 
 
   const handleEnable = (isNeedEnable) => {
     if (isNeedEnable) {
-      recordOperations.isEnableByname(pluginName) ? recordOperations.closePlugin(pluginName) : recordOperations.enablePlugin(pluginName)
+      pluginRecordOperations.isEnableByname(pluginName) ? pluginRecordOperations.closePlugin(pluginName) : pluginRecordOperations.enablePlugin(pluginName)
       goBack()
     }
     else {
@@ -73,13 +73,13 @@ const PluginInfo: FC<PluginInfoProps> = ({ type, pluginName, pluginDescription, 
       </Box>
 
       {type === ConfigMainParamsEnum.Store && (
-        recordOperations.isExistRecordPluginConfigByname(pluginName)
+        pluginRecordOperations.isExistRecordPluginConfigByname(pluginName)
           ? <Text color="red">已安装</Text>
           : <ConfirmInput description="需要安装么?" onSubmit={handleInstall} />
       )}
 
       {type === ConfigMainParamsEnum.List && (
-        recordOperations.isEnableByname(pluginName)
+        pluginRecordOperations.isEnableByname(pluginName)
           ? (
             <Box flexDirection='column'>
               <Text color="red">已启用</Text>
