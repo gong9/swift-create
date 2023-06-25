@@ -1,6 +1,6 @@
 {
   "name": "@gongcli/github-template-plugin",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "gongcli plugin, 用于支持下载GitHub模版",
   "author": "gong",
   "license": "MIT",
