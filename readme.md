@@ -58,6 +58,5 @@ pnpm start -p
 ```bash
 pnpm start -l
 ```
-
-notes: 下载插件引擎只会使用一个。「目前插件功能还未完善，仅github下载插件开发完成」
+notes: 下载插件引擎只会使用一个。「目前插件功能还未完善，仅github、gitee下载插件开发完成，非需token版本」
 
