@@ -46,6 +46,18 @@ npx gong-create@latest
 如：template-react-monorepo: 代表他是一个react的monorepo的模版，没有指定项目类型默认全匹配
 
 
+#### 如何私有化使用用
+平台目前存在两个公共配置属性
+- name、 cli名称，cli启动时的logo title
+- userPath、 个人仓库的用户名或组织名， eg：https://github.com/gong-cli，则取gong-cli为userPath、https://github.com/gong9 则取gong9、https://gitee.com/gong9/ 同样取gong9为userPath。 正确设置此属性才能保证引擎可以获取到你的模版仓库
+
+设置方式
+
+```bash
+pnpm start -c
+```
+
+#### 如何使用插件
 如果你的模版仓库在github或者gitlab或者gitee，则你需要使用本项目的插件功能将指定平台的下载插件安装到本地
 
 
