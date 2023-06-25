@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@gongcli/gitee-template-plugin": "workspace:^",
+    "@gongcli/github-template-plugin": "workspace:^",
     "ahooks": "^3.7.7",
     "await-to-js": "^3.0.0",
     "axios": "^1.4.0",

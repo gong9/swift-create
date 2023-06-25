@@ -5,14 +5,13 @@ export const resetGit = (path) => {
   process.chdir(path)
 
   return new Promise((resolve, reject) => {
-    exec('rm -rf .git && git init', (err, stdout) => {
+    exec('rm -rf .git && git init', (err) => {
       if (err) {
         consola.error(`执行错误: ${err}`)
         reject(err)
         return
       }
       resolve(true)
-      consola.info(`stdout: ${stdout}`)
     })
   })
 }
