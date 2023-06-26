@@ -11,24 +11,24 @@ const argv = cli({
   version: packJson.version,
   description: 'cli',
   flags: {
-    // 打开插件商店
     plugins: {
       type: Boolean,
       alias: 'p',
+      description: 'open plugin store, only run in development',
     },
-    // 添加插件
     use: {
       type: String,
       alias: 'a',
     },
-    // 列举本地插件
     location: {
       type: Boolean,
       alias: 'l',
+      description: 'open local plugin, only run in development',
     },
     config: {
       type: Boolean,
       alias: 'c',
+      description: 'open config page',
     },
   },
 })
