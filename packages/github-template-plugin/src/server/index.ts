@@ -22,13 +22,13 @@ export async function getAllRepoNameList(user: string) {
 }
 
 export function getAppointRepoName(user: string) {
-  return async (match: [string, string, string]) => {
+  return async (match: string[]) => {
     const allRepoListName = await getAllRepoNameList(user)
 
     return allRepoListName.filter(
       (item) => {
         const curNameLowerCase = item.toLocaleLowerCase()
-        return curNameLowerCase.includes(match[0]) && curNameLowerCase.includes(match[1]) && curNameLowerCase.includes(match[2])
+        return match.every((item: string) => curNameLowerCase.includes(item))
       },
     )
   }

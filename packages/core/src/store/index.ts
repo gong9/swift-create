@@ -1,24 +1,25 @@
 import { create } from 'zustand'
 
-import { FrameEnum, ProjectEnum } from '../configData'
+import { FrameEnum, ProjectEnum, defaultConfig } from '../configData'
 import type { HooksType } from '../plugin/register'
+import type { StepConfigType } from '../types'
 
 interface TempalteConfigType {
   projectName: string
 }
-interface StateType {
+export interface StateType {
   tempalteRecord: {
-    project: ProjectEnum.Business
-    codeManagement: number
-    frame: FrameEnum.React
+    [k: string]: string | number
   }
   templateConfig: TempalteConfigType
   showWelcome: boolean
   hooks: HooksType
+  stepConfig: StepConfigType
   updataTemplatePath: (newData: StateType['tempalteRecord']) => void
   setTemplateConfig: (newData: StateType['templateConfig']) => void
   setShowWelcome: (newData: StateType['showWelcome']) => void
   setHooks: (hooks: StateType['hooks']) => void
+  setStepConfig: (stepConfig: StepConfigType) => void
 }
 
 export type tempalteRecord = StateType['tempalteRecord']
@@ -35,6 +36,9 @@ const useStore = create<StateType>((set) => {
     },
     showWelcome: true,
     hooks: {},
+    stepConfig: [
+      ...defaultConfig,
+    ] as StepConfigType,
     updataTemplatePath: (newData: StateType['tempalteRecord']) => set(
       (state) => {
         return {
@@ -66,6 +70,16 @@ const useStore = create<StateType>((set) => {
       () => {
         return {
           hooks,
+        }
+      },
+    ),
+    setStepConfig: (data: StepConfigType) => set(
+      (state) => {
+        return {
+          stepConfig: [
+            ...state.stepConfig,
+            ...data,
+          ],
         }
       },
     ),

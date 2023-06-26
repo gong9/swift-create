@@ -6,6 +6,7 @@ import TextInput from 'ink-text-input'
 import { useUpdate } from 'ahooks'
 import useStore from '../../store/index'
 import type { CodeManagementItemsType, ProjectItemType } from '../../types'
+import type { StateType } from '../../store/index'
 
 interface TemplateSelectionProps {
   config?: {
@@ -14,6 +15,8 @@ interface TemplateSelectionProps {
     items?: ProjectItemType[] | CodeManagementItemsType[]
     type: string
     placeholder?: string
+    private?: boolean
+    label: string
   }
   nextAction: () => void
 }
@@ -28,7 +31,6 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
   const handleSelectChange = (item: ProjectItemType | CodeManagementItemsType) => {
     updataTemplatePath(
       {
-        ...tempalteRecord,
         [config.name]: (item as ProjectItemType).value,
       },
     )
@@ -37,12 +39,20 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
   }
 
   const handleInputChange = (value: string) => {
-    setTemplateConfig(
-      {
-        ...templateConfig,
-        [config.name]: value,
-      },
-    )
+    if (config.private) {
+      setTemplateConfig(
+        {
+          [config.name]: value,
+        } as any as StateType['templateConfig'],
+      )
+    }
+    else {
+      updataTemplatePath(
+        {
+          [config.name]: value,
+        },
+      )
+    }
 
     update()
   }
@@ -57,7 +67,7 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
             <Box marginRight={1}>
               <Text>{config.name}: </Text>
             </Box>
-            <TextInput placeholder={config.placeholder || ''} value={templateConfig[config.name] || ''} onChange={handleInputChange} onSubmit={nextAction}/>
+            <TextInput placeholder={config.placeholder || ''} value={(config.private ? templateConfig[config.name] : tempalteRecord[config.name]) || ''} onChange={handleInputChange} onSubmit={nextAction}/>
           </Box>
         )
       default:

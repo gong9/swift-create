@@ -5,13 +5,14 @@ import { useUpdate } from 'ahooks'
 import Welcome from './components/Welcome'
 import TemplateSelection from './components/Selection'
 import useStore from './store'
+import { cliRecordOperations } from './utils/recordOperations'
 import type { HooksType } from './plugin/register'
 
 interface AppProps {
   hooks: HooksType
 }
 const App: FC<AppProps> = ({ hooks }) => {
-  const { setShowWelcome, showWelcome, setHooks } = useStore()
+  const { setShowWelcome, showWelcome, setHooks, setStepConfig } = useStore()
   const update = useUpdate()
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const App: FC<AppProps> = ({ hooks }) => {
 
   useEffect(() => {
     setHooks(hooks)
+    setStepConfig(cliRecordOperations.getConfigData('configData'))
   }, [hooks])
 
   return (

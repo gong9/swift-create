@@ -6,11 +6,10 @@ import SelectInput from 'ink-select-input'
 import { consola } from 'consola'
 import { isExists, move, remove } from '../../utils/fs'
 import { downloadDirectory } from '../../constants'
-import { FrameLabel, ProjectLabel, stepConfig } from '../../configData'
 import useStore from '../../store/index'
 import { getRepo } from '../../server'
 import downloadGitRepo from '../../server/downLoadGitRepo'
-import { getCurrentTemplateList } from '../../utils'
+import { getConfirmTitle, getCurrentTemplateList } from '../../utils'
 import { resetGit } from '../../utils/preAction'
 import { handleTemplate } from '../../utils/ejs'
 import TemplateSelection from './TemplateSelection'
@@ -19,6 +18,7 @@ const Selection: FC = () => {
   const tempalteRecord = useStore(state => state.tempalteRecord)
   const templateConfig = useStore(state => state.templateConfig)
   const hooks = useStore(state => state.hooks)
+  const stepConfig = useStore(state => state.stepConfig)
   const [index, updateIndex] = useState(0)
   const [finalConfirmStatus, setFinalConfirmStatus] = useState(false)
   const [curMatchTemplateList, setCurMatchTemplateList] = useState<string[]>([])
@@ -30,7 +30,7 @@ const Selection: FC = () => {
     (async function () {
       if (index > stepConfig.length - 1) {
         setFinalConfirmStatus(true)
-        const isConfirm = await consola.prompt(`您的选择是 框架: ${FrameLabel[tempalteRecord.frame]}，项目类型: ${ProjectLabel[tempalteRecord.project]}， 仓库管理模式: ${tempalteRecord.codeManagement ? 'monorepo' : 'basics'}`, {
+        const isConfirm = await consola.prompt(`您的选择是 ${getConfirmTitle(tempalteRecord, stepConfig)}`, {
           type: 'confirm',
         })
 
@@ -40,6 +40,9 @@ const Selection: FC = () => {
 
           if (err)
             consola.error(err)
+
+          else if (res.length === 0)
+            consola.warn('未匹配到模版，请重新选择')
 
           else
             setCurMatchTemplateList(res)

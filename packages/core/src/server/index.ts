@@ -23,7 +23,7 @@ export async function getAllRepoNameList() {
   return allRepolist.map(item => item.name)
 }
 
-export async function getAppointRepoName(match: [string, string, string]) {
+export async function getAppointRepoName(match: string[]) {
   const allRepoListName = await getAllRepoNameList()
   const filterMatch = match.filter(item => item)
 

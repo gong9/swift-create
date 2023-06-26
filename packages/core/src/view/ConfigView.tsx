@@ -14,7 +14,7 @@ const ConfigView: FC<ConfigViewProps> = () => {
   const [currentConfigItem, setCurrentConfigItem] = useState<null | string>(null)
   const [currentConfigItemValue, setCurrentConfigItemValue] = useState<string>(null)
 
-  const configItems = cliRecordOperations.queryAllKeys.map(item => ({ label: item, value: item }))
+  const configItems = cliRecordOperations.queryAccessibleKeys.map(item => ({ label: item, value: item }))
 
   const handleSelectChange = (item: { label: string; value: string }) => {
     setCurrentConfigItem(item.value)

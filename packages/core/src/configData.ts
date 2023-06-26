@@ -1,4 +1,4 @@
-import type { CodeManagementItemsType, ConfirmItemsType, FrameItemType, ProjectItemType } from './types'
+import type { ConfirmItemsType } from './types'
 
 export enum ProjectEnum {
   Business,
@@ -18,76 +18,12 @@ export enum FrameEnum {
   None,
 }
 
-export const FrameLabel = {
-  0: 'react',
-  1: 'vue',
-  2: 'none',
-}
-
-const projectItems: ProjectItemType[] = [
-  {
-    label: '业务',
-    value: ProjectEnum.Business,
-  },
-  {
-    label: '库',
-    value: ProjectEnum.Lib,
-  },
-  {
-    label: '脚手架',
-    value: ProjectEnum.Cli,
-  },
-]
-
-const codeManagementItems: CodeManagementItemsType[] = [
-  {
-    label: '单库项目',
-    value: 0,
-  },
-  {
-    label: '多库管理',
-    value: 1,
-  },
-]
-
-const frameItem: FrameItemType[] = [
-  {
-    label: 'React',
-    value: FrameEnum.React,
-  },
-  {
-    label: 'Vue',
-    value: FrameEnum.Vue,
-  },
-  {
-    label: 'None',
-    value: FrameEnum.None,
-  },
-]
-
-export const stepConfig = [
+export const defaultConfig = [
   {
     name: 'projectName',
     type: 'input',
     title: '请输入要创建的项目名称',
-  },
-  {
-    name: 'project',
-    type: 'select',
-    title: '请选择所要创建的项目类型',
-    items: projectItems,
-  },
-  {
-    name: 'codeManagement',
-    type: 'select',
-    title: '请选择仓库管理方式',
-    items: codeManagementItems,
-  },
-  {
-    name: 'frame',
-    type: 'select',
-    title: '请选择框架',
-    items: frameItem,
+    private: true,
   },
 ]
 

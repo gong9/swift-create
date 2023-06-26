@@ -1,6 +1,6 @@
 import { pluginRecordOperations } from '../utils/recordOperations'
 
-type RequestType = (user: string) => (match: [string, string, string]) => Promise<string[]>
+type RequestType = (user: string) => (match: (string | number)[]) => Promise<string[]>
 type DownloadType = (user: string) => (targetProject: string, outPath: string) => Promise<void>
 
 export interface ServiceHookType {

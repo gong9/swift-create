@@ -119,6 +119,7 @@ interface CliConfigData {
 class CliRecordOperations {
   public configType: ConfigEnum
   public cliConfigData: CliConfigData
+  private privateKeys = ['configData']
 
   constructor(type: ConfigEnum) {
     this.configType = type
@@ -136,6 +137,10 @@ class CliRecordOperations {
 
   public get queryAllKeys() {
     return Object.keys(this.cliConfigData)
+  }
+
+  public get queryAccessibleKeys() {
+    return Object.keys(this.cliConfigData).filter(item => !this.privateKeys.includes(item))
   }
 }
 

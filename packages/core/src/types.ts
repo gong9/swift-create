@@ -2,12 +2,12 @@ import type { FrameEnum, ProjectEnum } from './configData'
 
 export interface ProjectItemType {
   label: string
-  value: number
+  value: number | string
 }
 
 export interface CodeManagementItemsType {
   label: string
-  value: number
+  value: number | string
 }
 
 export interface RepoNameItemsType {
@@ -23,3 +23,15 @@ export interface RecordType {
   codeManagement?: boolean
   frame: FrameEnum
 }
+
+export type StepConfigType = {
+  name: string
+  label: string
+  type: 'input' | 'select'
+  title: string
+  items?: {
+    label: string
+    value: string | number
+  }[]
+  private?: boolean
+}[]
