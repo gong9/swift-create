@@ -45,6 +45,85 @@ npx gong-create@latest
 
 如：template-react-monorepo: 代表他是一个react的monorepo的模版，没有指定项目类型默认全匹配
 
+如果你不喜欢上面这三种划分方式，没关系。自己配置也很容易
+找到`core/cli.config.json`,修改`configData` 字段
+
+```json
+{
+  "name": "gong-cl",
+  "userPath": "gong-cli",
+  "configData": [
+    {
+      "name": "project",
+      "label": "项目类型",
+      "type": "select",
+      "title": "请选择所要创建的项目类型",
+      "items": [
+        {
+          "label": "业务",
+          "value": "business"
+        },
+        {
+          "label": "库",
+          "value": "lib"
+        },
+        {
+          "label": "脚手架",
+          "value": "cli"
+        }
+      ]
+    },
+    {
+      "name": "codeManagement",
+      "label": "仓库管理方式",
+      "type": "select",
+      "title": "请选择仓库管理方式",
+      "items": [
+        {
+          "label": "单库项目",
+          "value": "singlerepo"
+        },
+        {
+          "label": "多库管理",
+          "value": "monorepo"
+        }
+      ]
+    },
+    {
+      "name": "frame",
+      "label": "框架类型",
+      "type": "select",
+      "title": "请选择框架",
+      "items": [
+        {
+          "label": "React",
+          "value": "react"
+        },
+        {
+          "label": "Vue",
+          "value": "vue"
+        },
+        {
+          "label": "None",
+          "value": "none"
+        }
+      ]
+    }
+  ]
+}
+```
+- name: 当前选项控件的唯一key 「必填」
+- label: 选项控件的label 「必填」
+- type: 选项控件的类型 「必填」
+    - select: 下拉框
+    - input: 输入框
+- items: 「type为select时必填」： 下拉框的选项
+    - label: 选项的label
+    - value: 选项的value
+
+
+不过需要注意的还是要模版名字遵循一定的规范，否则会导致引擎无法识别，eg:`['cli','singlerepo','react'] => template-cli-singlerepo-react`
+
 
 #### 如何私有化使用
 平台目前存在两个公共配置属性
