@@ -13,6 +13,7 @@ interface TemplateSelectionProps {
     title: string
     items?: ProjectItemType[] | CodeManagementItemsType[]
     type: string
+    placeholder?: string
   }
   nextAction: () => void
 }
@@ -54,9 +55,9 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
         return (
           <Box>
             <Box marginRight={1}>
-              <Text>name: </Text>
+              <Text>{config.name}: </Text>
             </Box>
-            <TextInput placeholder='项目名称' value={templateConfig.projectName} onChange={handleInputChange} onSubmit={nextAction}/>
+            <TextInput placeholder={config.placeholder || ''} value={templateConfig[config.name] || ''} onChange={handleInputChange} onSubmit={nextAction}/>
           </Box>
         )
       default:
