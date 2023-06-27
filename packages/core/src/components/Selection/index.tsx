@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import to from 'await-to-js'
 import { Text, useApp } from 'ink'
 import SelectInput from 'ink-select-input'
@@ -23,6 +23,7 @@ const Selection: FC = () => {
   const [finalConfirmStatus, setFinalConfirmStatus] = useState(false)
   const [curMatchTemplateList, setCurMatchTemplateList] = useState<string[]>([])
   const [downloadStatus, setDownloadStatus] = useState(false)
+  const selectChangeFlag = useRef(true)
 
   const { exit } = useApp()
 
@@ -61,50 +62,66 @@ const Selection: FC = () => {
   }
 
   /**
+   * check folder is exist
+   * @param downloadPath
+   */
+  const checkFolder = async (downloadPath: string) => {
+    const isExist = await isExists(downloadPath)
+
+    if (isExist) {
+      const isDelete = await consola.prompt('当前文件夹下存在同名项目，确认替换?', {
+        type: 'confirm',
+      })
+
+      if (isDelete) {
+        consola.info(`正在删除${downloadPath}`)
+        await remove(`${downloadPath}`)
+        consola.info(`${downloadPath}删除完成`)
+        return true
+      }
+
+      else {
+        process.exit()
+      }
+    }
+  }
+
+  /**
    * download template
    * @param param0
    */
   const selectMatchTemplate = async ({ value }: { label: string; value: string }) => {
-    const downloadPath = `${process.cwd()}${downloadDirectory}/${templateConfig.projectName}`
-    const isExist = await isExists(downloadPath)
+    if (selectChangeFlag.current === true) {
+      selectChangeFlag.current = false
+      const downloadPath = `${process.cwd()}/${templateConfig.projectName}`
+      await checkFolder(downloadPath)
 
-    if (isExist) {
-      consola.info(`正在删除${downloadPath}`)
-      await remove(`${downloadPath}`)
-      consola.info(`${downloadPath}删除完成`)
-    }
+      setDownloadStatus(true)
+      consola.info(`正在下载${value}模版`)
 
-    setDownloadStatus(true)
+      try {
+        const [err] = await to(((await downloadGitRepo(hooks.service)))(value, downloadPath))
+        if (err) {
+          consola.error('下载模版失败')
+          return
+        }
+        else {
+          consola.success(`下载${value}模版完成`)
+        }
 
-    consola.info(`正在下载${value}模版`)
-    try {
-      const [err] = await to(((await downloadGitRepo(hooks.service)))(value, downloadPath))
-      if (err) {
-        consola.error('下载模版失败')
-        return
+        await handleTemplate(`${downloadPath}`, { data: templateConfig })
+        consola.success('模版渲染完成')
+        await resetGit(`${process.cwd()}/${templateConfig.projectName}`)
       }
-      else {
-        consola.success(`下载${value}模版完成`)
+      catch (error) {
+        consola.error(error)
       }
 
-      handleTemplate(`${downloadPath}`, { data: templateConfig })
-
-      consola.info(`正在准备移动${value}模版到当前目录`)
-      await move(`${downloadPath}`, `${process.cwd()}/${templateConfig.projectName}`)
-      consola.success(`移动${value}模版到当前目录完成`)
-
-      await resetGit(`${process.cwd()}/${templateConfig.projectName}`)
-    }
-    catch (error) {
-      consola.error(error)
-    }
-
-    setDownloadStatus(false)
-    setCurMatchTemplateList([])
-
-    setTimeout(() => {
+      setDownloadStatus(false)
+      setCurMatchTemplateList([])
       exit()
-    }, 50)
+      selectChangeFlag.current = true
+    }
   }
 
   /**

@@ -19,21 +19,22 @@ function writeBack(path: string, fileContent: string) {
  * @param tempaltePath
  * @param data
  */
-export function handleTemplate(tempaltePath: string, data: EjsRenderData) {
+export async function handleTemplate(tempaltePath: string, data: EjsRenderData) {
   consola.info('解析ejs模版')
 
   const files = globSync(`${tempaltePath}/**`, {
     nodir: true,
   })
 
-  files.forEach(async (file) => {
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i]
     const [err, resFile] = await to(ejs.renderFile(file, data, {}))
 
     if (err)
       consola.error(err)
     else
       writeBack(file, resFile)
-  })
+  }
 
   consola.info('ejs模版渲染完成')
 }
