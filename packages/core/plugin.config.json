@@ -1,16 +1,16 @@
 {
   "plugins": [
     {
-      "name": "@gongcli/gitee-template-plugin",
-      "version": "0.0.1",
-      "description": "gongcli plugin, 用于支持下载Gitee模版",
-      "enable": true
-    },
-    {
       "name": "@gongcli/github-template-plugin",
       "version": "0.0.7",
       "description": "gongcli plugin, 用于支持下载GitHub模版",
       "enable": false
+    },
+    {
+      "name": "@gongcli/gitee-template-plugin",
+      "version": "0.0.2",
+      "description": "gongcli plugin, 用于支持下载Gitee模版",
+      "enable": true
     }
   ]
 }
