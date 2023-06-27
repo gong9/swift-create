@@ -26,11 +26,7 @@ export type tempalteRecord = StateType['tempalteRecord']
 
 const useStore = create<StateType>((set) => {
   return {
-    tempalteRecord: {
-      project: ProjectEnum.Business,
-      codeManagement: 1,
-      frame: FrameEnum.React,
-    },
+    tempalteRecord: {},
     templateConfig: {
       projectName: '',
     },
