@@ -2,46 +2,47 @@
 
 ## What
 
-目标是打造一个通用的cli引擎，可以作为一个脚手架的脚手架。
+The goal is to create a universal CLI engine that can serve as a scaffold for scaffolds.
 
-使用者可以插件化的方式，扩展生成适合自己的脚手架。
+Users can extend and customize their own scaffolds through a plugin system.
+
 
 ## Install
 > node version >= 18.0.0
 
-notes: 由于插件安装默认使用pnpm作为包管理器，所以需要安装pnpm
+Note: Since the plugin installation defaults to using pnpm as the package manager, you need to install pnpm.
 
 ```bash
 npm -g install pnpm
 ```
 
-cli使用
+CLI usage
 ```bash
 npx gong-create@latest
 ```
 
 ## Feature
 
-- 项目模版独立
-- 模版地址支持gihtub、gitlab、gitee
-- 提供常用的生成器功能 「待完善」
+- Independent project templates
+- Template sources support GitHub, GitLab, and Gitee
+- Provides common generator features (to be improved)
 
 ### Usage
 
-[视频链接](https://www.yuque.com/gongxiaobai/ckuidk/wp6gx65o7ezn0ud1)
+[Video Link](https://www.yuque.com/gongxiaobai/ckuidk/wp6gx65o7ezn0ud1)
 
-本项目对模版项目进行了三种分类
+This project classifies template projects into three categories:
 
-- 项目类型：业务项目、组件项目、cli项目
-- 业务框架：react、vue
-- 仓库管理：monorepo、single-repo
+- Project Type: Business Project, Component Project, CLI Project
+- Framework: React, Vue
+- Repository Management: Monorepo, Single Repo
 
-故而，如果想设置自己的模版。需要有一个特定的命名方式
+Therefore, if you want to set up your own template, you need to follow a specific naming convention.
 
-如：template-react-monorepo: 代表他是一个react的monorepo的模版，没有指定项目类型默认全匹配
+For example, "template-react-monorepo" represents a React monorepo template. If no project type is specified, it matches all types.
 
-如果你不喜欢上面这三种划分方式，没关系。自己配置也很容易
-找到`core/cli.config.json`,修改`configData` 字段
+If you don't like the above three classification methods, it's okay. It's also easy to configure your own.
+Find core/cli.config.json and modify the configData field.
 
 ```json
 {
@@ -107,48 +108,49 @@ npx gong-create@latest
   ]
 }
 ```
-- name: 当前选项控件的唯一key 「必填」
-- label: 选项控件的label 「必填」
-- type: 选项控件的类型 「必填」
-    - select: 下拉框
-    - input: 输入框
-- items: 「type为select时必填」： 下拉框的选项
-    - label: 选项的label
-    - value: 选项的value
+- name: Unique key for the current option control (required)
+- label: Label for the option control (required)
+- type: Type of the option control (required)
+  - select: Dropdown
+  - input: Input field
+- items: (required for type "select"): Options for the dropdown
+- label: Label of the option
+- value: Value of the option
 
 
-不过需要注意的还是要模版名字遵循一定的规范，否则会导致引擎无法识别，eg:`['cli','singlerepo','react'] => template-cli-singlerepo-react`
+However, it is still important to follow certain naming conventions for the templates, otherwise the engine will not be able to recognize them. For example: ['cli','singlerepo','react'] => template-cli-singlerepo-react
 
 
-#### 如何私有化使用
-平台目前存在两个公共配置属性
-- name、 cli名称，cli启动时的logo title
-- userPath、 个人仓库的用户名或组织名， eg：https://github.com/gong-cli，则取gong-cli为userPath、https://github.com/gong9 则取gong9、https://gitee.com/gong9/ 同样取gong9为userPath。 正确设置此属性才能保证引擎可以获取到你的模版仓库
+#### How to use privately
+There are currently two public configuration properties in the platform:
 
-设置方式
+- name: CLI name, the logo title when the CLI starts
+- userPath: User or organization name of the personal repository, e.g.: https://github.com/gong-cli, then "gong-cli" is the userPath; https://github.com/gong9, then "gong9" is the userPath; https://gitee.com/gong9/, "gong9" is also the userPath. Set this property correctly to ensure that the engine can access your template repository.
+
+Setting method:
 
 ```bash
 pnpm start -c
 ```
 
-此命令在上线时也支持设置
+This command also supports setting when deploying:
     
 ```bash
 npx gong-create@latest -c
 ```
 
-#### 如何使用插件
-如果你的模版仓库在github或者gitlab或者gitee，则你需要使用本项目的插件功能将指定平台的下载插件安装到本地
-> 开发环境使用，配置完成之后，私有化打包发布即可「即：将包名改为自己的，为希望后面可以继续使用插件生态不推荐对项目进行其他改造」
+#### How to use plugins
+If your template repository is on GitHub, GitLab, or Gitee, you need to use the plugin functionality of this project to install the download plugin for the specified platform locally.
+> For development purposes only. After configuration, it is recommended to package and publish privately. (i.e., change the package name to your own; it is not recommended to modify the project for future use of the plugin ecosystem)
 
-打开插件商店，进行插件安装
+Open the plugin store and install the plugin:
 ```bash
 pnpm start -p
 ```
 
-安装完成后，需要启用插件
+After installation, you need to enable the plugin:
 ```bash
 pnpm start -l
 ```
-notes: 下载插件引擎只会使用一个。「目前插件功能还未完善，仅github、gitee下载插件开发完成，非需token版本」
+Note: The plugin engine will only use one download plugin. (At present, the plugin functionality is not fully developed, and only the GitHub and Gitee download plugins have been developed, which do not require tokens.)
 
