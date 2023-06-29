@@ -59,8 +59,8 @@ export enum ConfigEnum {
   config = 'config',
 }
 
-const configPath = path.resolve(__dirname, '../../cli.config.json')
-const pluginConfigPath = path.resolve(__dirname, '../../plugin.config.json')
+const configPath = path.resolve(process.cwd(), 'cli.config.json')
+const pluginConfigPath = path.resolve(process.cwd(), 'plugin.config.json')
 
 /**
  * read config json file

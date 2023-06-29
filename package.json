@@ -6,7 +6,7 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "start": "cd packages/core && pnpm start",
+    "start": "cd packages/gong-cli && pnpm start",
     "build": "pnpm -r build",
     "prepare": "husky install",
     "test": "pnpm -r test",

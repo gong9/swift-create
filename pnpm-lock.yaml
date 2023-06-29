@@ -186,6 +186,16 @@ importers:
         specifier: ^0.12.5
         version: 0.12.5
 
+  packages/gong-cli:
+    dependencies:
+      gong-create-core:
+        specifier: workspace:^
+        version: link:../core
+    devDependencies:
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+
 packages:
 
   /@ampproject/remapping@2.2.1:

@@ -1,0 +1,34 @@
+{
+  "name": "gong-cli",
+  "version": "0.0.1",
+  "description": "a cli",
+  "author": "gong",
+  "license": "MIT",
+  "keywords": [],
+  "bin": {
+    "gong-cli": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "readme.md",
+    "package.json",
+    "cli.config.json",
+    "plugin.config.json"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "cross-env ENV=development father build && node dist/index.js",
+    "build": "cross-env ENV=production father build",
+    "build:deps": "father prebundle",
+    "prepublishOnly": "npm run build",
+    "test": "jest --maxWorkers 2"
+  },
+  "dependencies": {
+    "gong-create-core": "workspace:^"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
