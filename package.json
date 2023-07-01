@@ -10,13 +10,15 @@
     "build": "pnpm -r build",
     "prepare": "husky install",
     "test": "pnpm -r test",
+    "changeset": "npx changeset",
+    "release": "npx changeset version",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
   },
   "authors": [],
   "dependencies": {
-
+    "@changesets/cli": "^2.26.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.5",
