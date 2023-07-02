@@ -12,6 +12,7 @@
     "test": "pnpm -r test",
     "changeset": "npx changeset",
     "release": "npx changeset version",
+    "publish-all": "pnpm -r lint-publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
@@ -33,6 +34,7 @@
     "father": "^4.1.5",
     "husky": "^8.0.1",
     "jest": "^27",
+    "lint-and-publish": "^0.0.6",
     "ts-node": "^10",
     "typescript": "^4"
   },

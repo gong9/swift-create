@@ -23,7 +23,8 @@
     "build": "cross-env ENV=production father build",
     "build:deps": "father prebundle",
     "prepublishOnly": "npm run build",
-    "test": "jest --maxWorkers 2"
+    "test": "jest --maxWorkers 2",
+    "lint-publish": "lint-and-publish"
   },
   "dependencies": {
     "@gongcli/gitee-template-plugin": "workspace:^",
