@@ -3,9 +3,14 @@ import path from 'node:path'
 import { cli } from 'cleye'
 
 import packJson from '../package.json'
+import { preCheckHooks } from './utils/verify'
 import { ConfigMainParamsEnum } from './enum'
 
-export default () => {
+export default async () => {
+  const isCanStartup = await preCheckHooks()
+  if (!isCanStartup)
+    return
+
   const argv = cli({
     name: 'gong-create',
     version: packJson.version,
@@ -43,16 +48,21 @@ export default () => {
 
   const { plugins, location, config } = argv.flags
 
-  // now plugin feature only run in development
-  if ((plugins || location) && process.env.NODE_ENV === 'development') {
-    initConfig(
-      (plugins && ConfigMainParamsEnum.Store) || (location && ConfigMainParamsEnum.List),
-    )
-  }
-  else if (config) {
-    initConfig(ConfigMainParamsEnum.Config)
-  }
-  else {
-    initAPP()
+  return {
+    configs: argv.flags,
+    run: () => {
+      // now plugin feature only run in development
+      if ((plugins || location) && process.env.NODE_ENV === 'development') {
+        initConfig(
+          (plugins && ConfigMainParamsEnum.Store) || (location && ConfigMainParamsEnum.List),
+        )
+      }
+      else if (config) {
+        initConfig(ConfigMainParamsEnum.Config)
+      }
+      else {
+        initAPP()
+      }
+    },
   }
 }

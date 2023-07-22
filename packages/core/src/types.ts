@@ -35,3 +35,22 @@ export type StepConfigType = {
   }[]
   private?: boolean
 }[]
+
+type configType = 'input' | 'select'
+
+type RequiredByOther<T, K extends keyof configType> = {
+  [P in keyof T]: P extends K ? Required<T[P]> : T[P];
+}
+
+export interface SelectConfigNodeType {
+  label: string
+  value: string | number
+}
+
+export interface baseConfigNodeType {
+  name: string
+  label: string
+  type: configType
+  title: string
+  items: RequiredByOther<SelectConfigNodeType[], baseConfigNodeType['type']>
+}
