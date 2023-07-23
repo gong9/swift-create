@@ -56,6 +56,9 @@ importers:
 
   packages/core:
     dependencies:
+      '@gongcli/eslint-builder-plugin':
+        specifier: workspace:^
+        version: link:../eslint-builder-plugin
       '@gongcli/gitee-template-plugin':
         specifier: workspace:^
         version: link:../gitee-template-plugin

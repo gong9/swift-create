@@ -2,6 +2,7 @@
 import { spawn } from 'node:child_process'
 import path from 'node:path'
 import { cli } from 'cleye'
+import initEslintBuilder from '@gongcli/eslint-builder-plugin'
 
 import packJson from '../package.json'
 import { ConfigMainParamsEnum } from './enum'
@@ -30,6 +31,11 @@ const argv = cli({
       alias: 'c',
       description: 'open config page',
     },
+    lint: {
+      type: Boolean,
+      alias: 'lint',
+      description: 'eslint init',
+    },
   },
 })
 
@@ -41,14 +47,19 @@ function initConfig(params: ConfigMainParamsEnum) {
   spawn('node', [`${path.resolve(__dirname, 'configPage.js')}`, params as string], { stdio: 'inherit' })
 }
 
-const { plugins, location, config } = argv.flags
+const { plugins, location, config, lint } = argv.flags
 
-// now plugin feature only run in development
-if ((plugins || location) && process.env.NODE_ENV === 'development') {
+// command line
+if (lint) {
+  initEslintBuilder(process.cwd())
+}
+// plugin
+else if ((plugins || location) && process.env.NODE_ENV === 'development') {
   initConfig(
     (plugins && ConfigMainParamsEnum.Store) || (location && ConfigMainParamsEnum.List),
   )
 }
+// config
 else if (config) {
   initConfig(ConfigMainParamsEnum.Config)
 }

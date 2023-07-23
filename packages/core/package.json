@@ -27,6 +27,7 @@
     "lint-publish": "lint-and-publish"
   },
   "dependencies": {
+    "@gongcli/eslint-builder-plugin": "workspace:^",
     "@gongcli/gitee-template-plugin": "workspace:^",
     "@gongcli/github-template-plugin": "workspace:^",
     "ahooks": "^3.7.7",

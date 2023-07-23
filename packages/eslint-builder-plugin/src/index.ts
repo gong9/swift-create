@@ -1,9 +1,11 @@
+import initEslintBuilder from './run'
+
 const plugin = {
   builder: {
     name: 'eslint-builder-plugin',
     describe: '快速eslint配置',
-    run: () => {
-
+    run: (path: string) => {
+      initEslintBuilder(path)
     },
   },
 }
