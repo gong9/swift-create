@@ -8,6 +8,7 @@
   "bin": {
     "gong-create": "dist/index.js"
   },
+  "access": "public",
   "files": [
     "dist",
     "readme.md",
