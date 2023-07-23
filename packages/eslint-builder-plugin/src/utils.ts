@@ -54,9 +54,9 @@ export function readJsonFile(path: string) {
  * editor package.json
  * add some script
  */
-export const editPackageFile = (currentPath: string) => {
+export const editPackageFile = () => {
   try {
-    const packageJson = readJsonFile(path.resolve(currentPath, packagePath))
+    const packageJson = readJsonFile(path.resolve(process.cwd(), packagePath))
 
     packageJson.scripts = {
       ...packageJson.scripts,

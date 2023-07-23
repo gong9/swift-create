@@ -1,13 +1,14 @@
-import { exec } from 'node:child_process'
 import * as nodePath from 'node:path'
 import fs from 'fs-extra'
 import { consola } from 'consola'
 
+import addDependencies from './addDependencies'
 import { createConfigFile, editPackageFile, isExists, remove, vscodeConfigPath } from './utils'
 
 /**
- * todo： 后续需要增加错误回退功能
+ * base version
  * @param path
+ * @returns
  */
 const initEslintBuilder = async (path: string) => {
   // cd targetPath
@@ -16,14 +17,10 @@ const initEslintBuilder = async (path: string) => {
   consola.info('当前工作路径', process.cwd())
 
   // add eslint dependencies
-  exec('pnpm add -D eslint @antfu/eslint-config', (error, stdout, stderr) => {
-    if (error) {
-      consola.error(`exec error: ${error}`)
-      return
-    }
-    consola.info(stdout)
-    stderr && consola.info(stderr)
-  })
+  const result = await addDependencies()
+
+  if (!result)
+    return
 
   // delete old .eslintrc
   if (await isExists(nodePath.resolve(path, '.eslintrc.json')))
@@ -49,7 +46,7 @@ const initEslintBuilder = async (path: string) => {
   })
 
   // add eslint script
-  editPackageFile(path)
+  editPackageFile()
 
   // add vscode eslint config
   if (!await isExists(nodePath.resolve(path, '.vscode')))
@@ -63,6 +60,8 @@ const initEslintBuilder = async (path: string) => {
     },
   }
   , vscodeConfigPath)
+
+  consola.success('eslint init success')
 }
 
 export default initEslintBuilder
