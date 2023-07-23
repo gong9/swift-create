@@ -1,6 +1,6 @@
 {
   "name": "@gongcli/eslint-builder-plugin",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "gongcli plugin, 用于eslint配置初始化",
   "author": "gong",
   "license": "MIT",
