@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import { consola } from 'consola'
 
 interface EslintConfig {
-  extends?: string[]
+  extends?: string[] | string
   rules?: Record<string, unknown>
   [k: string]: unknown
 }

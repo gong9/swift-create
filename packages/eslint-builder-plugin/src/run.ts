@@ -16,6 +16,10 @@ const initEslintBuilder = async (path: string) => {
   process.chdir(path)
   consola.info('当前工作路径', process.cwd())
 
+  const isConfirm = await consola.prompt('react or vue 「默认react，否为vue」?', {
+    type: 'confirm',
+  })
+
   // add eslint dependencies
   const result = await addDependencies()
 
@@ -30,20 +34,31 @@ const initEslintBuilder = async (path: string) => {
     await remove(nodePath.resolve(path, '.eslintrc'))
 
   // create new .eslintrc
-  createConfigFile({
-    extends: [
-      'plugin:react/recommended',
-      'plugin:react/jsx-runtime',
-      '@antfu',
-    ],
-    rules: {
-      'react/jsx-indent': ['error', 2],
-      'react/jsx-indent-props': ['error', 2],
-      'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
-      'unused-imports/no-unused-imports': 'off',
-      'antfu/top-level-function': 'off',
-    },
-  })
+  if (isConfirm) {
+    createConfigFile({
+      extends: [
+        'plugin:react/recommended',
+        'plugin:react/jsx-runtime',
+        '@antfu',
+      ],
+      rules: {
+        'react/jsx-indent': ['error', 2],
+        'react/jsx-indent-props': ['error', 2],
+        'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
+        'unused-imports/no-unused-imports': 'off',
+        'antfu/top-level-function': 'off',
+      },
+    })
+  }
+  else {
+    createConfigFile({
+      extends: '@antfu',
+      rules: {
+        'no-console': 'off',
+        'no-unused-vars': 'off',
+      },
+    })
+  }
 
   // add eslint script
   editPackageFile()
