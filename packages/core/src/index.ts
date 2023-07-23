@@ -33,7 +33,6 @@ const argv = cli({
     },
     lint: {
       type: Boolean,
-      alias: 'lint',
       description: 'eslint init',
     },
   },
@@ -51,7 +50,7 @@ const { plugins, location, config, lint } = argv.flags
 
 // command line
 if (lint) {
-  initEslintBuilder(process.cwd())
+  initEslintBuilder.builder.run(process.cwd())
 }
 // plugin
 else if ((plugins || location) && process.env.NODE_ENV === 'development') {

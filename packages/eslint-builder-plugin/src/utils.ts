@@ -31,7 +31,7 @@ export async function remove(filePath: string) {
 
 export const createConfigFile = (config: EslintConfig, filePath = eslint) => {
   try {
-    fs.writeFileSync(path.resolve(process.cwd(), filePath, JSON.stringify(config, null, 2)))
+    fs.writeFileSync(path.resolve(process.cwd(), filePath), JSON.stringify(config, null, 2))
   }
   catch (error) {
     consola.error(error)

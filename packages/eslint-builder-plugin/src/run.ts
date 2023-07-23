@@ -1,5 +1,6 @@
 import { exec } from 'node:child_process'
 import * as nodePath from 'node:path'
+import fs from 'fs-extra'
 import { consola } from 'consola'
 
 import { createConfigFile, editPackageFile, isExists, remove, vscodeConfigPath } from './utils'
@@ -51,6 +52,8 @@ const initEslintBuilder = async (path: string) => {
   editPackageFile(path)
 
   // add vscode eslint config
+  if (!await isExists(nodePath.resolve(path, '.vscode')))
+    fs.mkdirSync(nodePath.resolve(path, '.vscode'))
 
   createConfigFile({
     'prettier.enable': false,
@@ -60,8 +63,6 @@ const initEslintBuilder = async (path: string) => {
     },
   }
   , vscodeConfigPath)
-
-  consola.success('eslint-builder-plugin 初始化完成')
 }
 
 export default initEslintBuilder
