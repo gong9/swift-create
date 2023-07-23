@@ -20,6 +20,8 @@ const initEslintBuilder = async (path: string) => {
     type: 'confirm',
   })
 
+  consola.info('开始初始化eslint')
+
   // add eslint dependencies
   const result = await addDependencies()
 
