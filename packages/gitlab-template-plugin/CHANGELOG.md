@@ -1,5 +1,11 @@
 # @gongcli/gitlab-template-plugin
 
+## 0.1.2
+
+### Patch Changes
+
+- fix: bugfix
+
 ## 0.1.1
 
 ### Patch Changes

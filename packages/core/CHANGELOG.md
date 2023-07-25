@@ -1,5 +1,15 @@
 # gong-create
 
+## 1.2.5
+
+### Patch Changes
+
+- fix: bugfix
+- Updated dependencies
+  - @gongcli/github-template-plugin@0.1.2
+  - @gongcli/eslint-builder-plugin@0.1.4
+  - @gongcli/gitee-template-plugin@0.1.2
+
 ## 1.2.4
 
 ### Patch Changes

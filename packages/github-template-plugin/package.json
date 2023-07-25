@@ -1,12 +1,11 @@
 {
   "name": "@gongcli/github-template-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "gongcli plugin, 用于支持下载GitHub模版",
   "author": "gong",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "access": "public",
   "files": [
     "dist"
   ],
