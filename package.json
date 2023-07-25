@@ -5,6 +5,7 @@
   "description": "cli",
   "license": "MIT",
   "keywords": [],
+  "access": "public",
   "scripts": {
     "start": "cd packages/core && pnpm start",
     "build": "pnpm -r build",
@@ -12,7 +13,7 @@
     "test": "pnpm -r test",
     "changeset": "npx changeset",
     "release": "npx changeset version",
-    "publish": "npx changeset publish --access=public",
+    "publish": "npx changeset publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
