@@ -31,6 +31,9 @@ const initEslintBuilder = async (path: string) => {
   else if (await isExists(nodePath.resolve(path, '.eslintrc')))
     removeFile(nodePath.resolve(path, '.eslintrc'))
 
+  else if (await isExists(nodePath.resolve(path, '.eslintrc.js')))
+    removeFile(nodePath.resolve(path, '.eslintrc.json'))
+
   // create new .eslintrc
   if (isConfirm) {
     createConfigFile({
