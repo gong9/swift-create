@@ -1,5 +1,13 @@
 # gong-create
 
+## 1.2.8
+
+### Patch Changes
+
+- fix: delete eslint config.js
+- Updated dependencies
+  - @gongcli/eslint-builder-plugin@0.1.7
+
 ## 1.2.7
 
 ### Patch Changes

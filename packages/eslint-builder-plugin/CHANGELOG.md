@@ -1,5 +1,11 @@
 # @gongcli/eslint-builder-plugin
 
+## 0.1.7
+
+### Patch Changes
+
+- fix: delete eslint config.js
+
 ## 0.1.6
 
 ### Patch Changes
