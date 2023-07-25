@@ -1,5 +1,13 @@
 # gong-create
 
+## 1.2.6
+
+### Patch Changes
+
+- feat: lint support yarn
+- Updated dependencies
+  - @gongcli/eslint-builder-plugin@0.1.5
+
 ## 1.2.5
 
 ### Patch Changes

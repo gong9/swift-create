@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import { consola } from 'consola'
 
 import addDependencies from './addDependencies'
-import { createConfigFile, editPackageFile, isExists, remove, removeFile, vscodeConfigPath } from './utils'
+import { createConfigFile, editPackageFile, isExists, removeFile, vscodeConfigPath } from './utils'
 
 /**
  * base version
@@ -20,10 +20,14 @@ const initEslintBuilder = async (path: string) => {
     type: 'confirm',
   })
 
+  const isPnpm = await consola.prompt('pnpm or yarn 「默认pnpm，否为yarn」?', {
+    type: 'confirm',
+  })
+
   consola.info('开始初始化eslint')
 
   // add eslint dependencies
-  const result = await addDependencies()
+  const result = await addDependencies(isPnpm)
 
   if (!result)
     return

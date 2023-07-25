@@ -1,9 +1,9 @@
 import { exec } from 'node:child_process'
 import { consola } from 'consola'
 
-export default () => {
+export default (isPnpm: boolean) => {
   return new Promise((resolve) => {
-    exec('pnpm add -D eslint @antfu/eslint-config', (error, stdout, stderr) => {
+    exec(`${isPnpm ? 'pnpm' : 'yarn'} add -D eslint @antfu/eslint-config`, (error, stdout, stderr) => {
       if (error) {
         consola.error(`exec error: ${error}`)
         resolve(false)

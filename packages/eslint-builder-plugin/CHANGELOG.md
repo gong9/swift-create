@@ -1,5 +1,11 @@
 # @gongcli/eslint-builder-plugin
 
+## 0.1.5
+
+### Patch Changes
+
+- feat: lint support yarn
+
 ## 0.1.4
 
 ### Patch Changes
