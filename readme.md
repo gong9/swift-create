@@ -28,6 +28,8 @@ npx gong-create@latest --lint
 ```
 then reinstall the dependency
 
+please note that the use of cli requires a node version of 18 or above, so you need to change the node first. 
+
 
 ## Feature
 
@@ -161,4 +163,5 @@ After installation, you need to enable the plugin:
 pnpm start -l
 ```
 Note: The plugin engine will only use one download plugin. (At present, the plugin functionality is not fully developed, and only the GitHub and Gitee download plugins have been developed, which do not require tokens.)
+
 
