@@ -10,9 +10,9 @@
     "build": "pnpm -r build",
     "prepare": "husky install",
     "test": "pnpm -r test",
-    "changeset": "npx changeset",
-    "release": "npx changeset version",
-    "publish": "npx changeset publish",
+    "changeset": "changeset",
+    "release": "changeset version",
+    "publish": "pnpm build && changeset publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
