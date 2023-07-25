@@ -62,10 +62,39 @@ export const editPackageFile = () => {
   try {
     const packageJson = readJsonFile(path.resolve(process.cwd(), packagePath))
 
+    if (!packageJson.scripts)
+      packageJson.scripts = {}
+
     packageJson.scripts = {
       ...packageJson.scripts,
       'lint': 'eslint .',
       'lint:fix': 'eslint . --fix',
+    }
+
+    createConfigFile(packageJson, packagePath)
+
+    consola.success('add script success')
+  }
+  catch (error) {
+    consola.error('add script fail')
+  }
+}
+
+/**
+ * editor package.json
+ * add devDependencies
+ */
+export const addPackageFileDependencies = () => {
+  try {
+    const packageJson = readJsonFile(path.resolve(process.cwd(), packagePath))
+
+    if (!packageJson.scripts)
+      packageJson.devDependencies = {}
+
+    packageJson.devDependencies = {
+      ...packageJson.devDependencies,
+      '@antfu/eslint-config': '^0.38.5',
+      'eslint': '^8.23.0',
     }
 
     createConfigFile(packageJson, packagePath)

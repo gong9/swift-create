@@ -2,8 +2,7 @@ import * as nodePath from 'node:path'
 import fs from 'fs-extra'
 import { consola } from 'consola'
 
-import addDependencies from './addDependencies'
-import { createConfigFile, editPackageFile, isExists, removeFile, vscodeConfigPath } from './utils'
+import { addPackageFileDependencies, createConfigFile, editPackageFile, isExists, removeFile, vscodeConfigPath } from './utils'
 
 /**
  * base version
@@ -20,17 +19,10 @@ const initEslintBuilder = async (path: string) => {
     type: 'confirm',
   })
 
-  const isPnpm = await consola.prompt('pnpm or yarn 「默认pnpm，否为yarn」?', {
-    type: 'confirm',
-  })
-
   consola.info('开始初始化eslint')
 
   // add eslint dependencies
-  const result = await addDependencies(isPnpm)
-
-  if (!result)
-    return
+  addPackageFileDependencies()
 
   // delete old .eslintrc
   if (await isExists(nodePath.resolve(path, '.eslintrc.json')))
@@ -82,7 +74,7 @@ const initEslintBuilder = async (path: string) => {
   }
   , vscodeConfigPath)
 
-  consola.success('eslint init success')
+  consola.success('eslint init success, 请重新安装依赖')
 }
 
 export default initEslintBuilder
