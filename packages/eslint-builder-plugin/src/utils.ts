@@ -16,6 +16,10 @@ export async function isExists(path: string) {
   return await fs.pathExists(path)
 }
 
+export const removeFile = (path: string) => {
+  fs.unlinkSync(path)
+}
+
 export async function remove(filePath: string) {
   const files = fs.readdirSync(filePath)
   for (let i = 0; i < files.length; i++) {

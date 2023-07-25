@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import { consola } from 'consola'
 
 import addDependencies from './addDependencies'
-import { createConfigFile, editPackageFile, isExists, remove, vscodeConfigPath } from './utils'
+import { createConfigFile, editPackageFile, isExists, remove, removeFile, vscodeConfigPath } from './utils'
 
 /**
  * base version
@@ -30,10 +30,10 @@ const initEslintBuilder = async (path: string) => {
 
   // delete old .eslintrc
   if (await isExists(nodePath.resolve(path, '.eslintrc.json')))
-    await remove(nodePath.resolve(path, '.eslintrc.json'))
+    removeFile(nodePath.resolve(path, '.eslintrc.json'))
 
   else if (await isExists(nodePath.resolve(path, '.eslintrc')))
-    await remove(nodePath.resolve(path, '.eslintrc'))
+    removeFile(nodePath.resolve(path, '.eslintrc'))
 
   // create new .eslintrc
   if (isConfirm) {
