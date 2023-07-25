@@ -1,5 +1,11 @@
 # gong-create
 
+## 1.2.2
+
+### Patch Changes
+
+- fix: bugifx
+
 ## 1.2.1
 
 ### Patch Changes
