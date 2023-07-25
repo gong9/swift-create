@@ -1,4 +1,5 @@
 {
+  "name": "gong-cli",
   "private": true,
   "description": "cli",
   "license": "MIT",
