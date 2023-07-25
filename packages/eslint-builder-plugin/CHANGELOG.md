@@ -1,5 +1,11 @@
 # @gongcli/eslint-builder-plugin
 
+## 0.1.6
+
+### Patch Changes
+
+- fix: bugfix
+
 ## 0.1.5
 
 ### Patch Changes

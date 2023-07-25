@@ -1,5 +1,13 @@
 # gong-create
 
+## 1.2.7
+
+### Patch Changes
+
+- fix: bugfix
+- Updated dependencies
+  - @gongcli/eslint-builder-plugin@0.1.6
+
 ## 1.2.6
 
 ### Patch Changes
