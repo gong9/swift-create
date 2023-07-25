@@ -21,6 +21,14 @@ CLI usage
 npx gong-create@latest
 ```
 
+If you just want to init eslint, you can 
+
+```base
+npx gong-create@latest --lint
+```
+then reinstall the dependency
+
+
 ## Feature
 
 - Independent project templates
