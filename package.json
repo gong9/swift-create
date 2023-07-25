@@ -12,7 +12,7 @@
     "test": "pnpm -r test",
     "changeset": "npx changeset",
     "release": "npx changeset version",
-    "publish": "pnpm -r lint-publish",
+    "publish": "npx changeset publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
