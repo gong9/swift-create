@@ -1,5 +1,15 @@
 # gong-create
 
+## 1.2.4
+
+### Patch Changes
+
+- chore: add access
+- Updated dependencies
+  - @gongcli/github-template-plugin@0.1.1
+  - @gongcli/eslint-builder-plugin@0.1.3
+  - @gongcli/gitee-template-plugin@0.1.1
+
 ## 1.2.3
 
 ### Patch Changes

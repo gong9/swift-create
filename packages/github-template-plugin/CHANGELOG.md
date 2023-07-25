@@ -1,5 +1,11 @@
 # @gongcli/github-template-plugin
 
+## 0.1.1
+
+### Patch Changes
+
+- chore: add access
+
 ## 0.1.0
 
 ### Minor Changes
