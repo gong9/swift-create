@@ -37,7 +37,7 @@ const Selection: FC = () => {
 
         if (isConfirm) {
           const currentRecord = getCurrentTemplateList(tempalteRecord)
-          const [err, res] = await to(getRepo(hooks.service)(currentRecord))
+          const [err, res] = await to(getRepo(hooks.service)(['template', ...currentRecord]))
 
           if (err)
             consola.error(err)

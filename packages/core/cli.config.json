@@ -3,42 +3,6 @@
   "userPath": "gong9",
   "configData": [
     {
-      "name": "project",
-      "label": "项目类型",
-      "type": "select",
-      "title": "请选择所要创建的项目类型",
-      "items": [
-        {
-          "label": "业务",
-          "value": "business"
-        },
-        {
-          "label": "库",
-          "value": "lib"
-        },
-        {
-          "label": "脚手架",
-          "value": "cli"
-        }
-      ]
-    },
-    {
-      "name": "codeManagement",
-      "label": "仓库管理方式",
-      "type": "select",
-      "title": "请选择仓库管理方式",
-      "items": [
-        {
-          "label": "单库项目",
-          "value": "singlerepo"
-        },
-        {
-          "label": "多库管理",
-          "value": "monorepo"
-        }
-      ]
-    },
-    {
       "name": "frame",
       "label": "框架类型",
       "type": "select",
