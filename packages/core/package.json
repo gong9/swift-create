@@ -26,8 +26,7 @@
     "build": "cross-env ENV=production father build",
     "build:deps": "father prebundle",
     "prepublishOnly": "npm run build",
-    "test": "jest --maxWorkers 2",
-    "lint-publish": "lint-and-publish"
+    "test": "jest --maxWorkers 2"
   },
   "dependencies": {
     "@gongcli/eslint-builder-plugin": "workspace:^",

@@ -34,7 +34,6 @@
     "father": "^4.1.5",
     "husky": "^8.0.1",
     "jest": "^27",
-    "lint-and-publish": "^0.0.6",
     "ts-node": "^10",
     "typescript": "^4"
   },

@@ -10,8 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "father build",
-    "lint-publish": "lint-and-publish"
+    "build": "father build"
   },
   "publishConfig": {
     "access": "public"
