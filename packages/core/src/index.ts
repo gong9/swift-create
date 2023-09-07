@@ -3,6 +3,7 @@ import { spawn } from 'node:child_process'
 import path from 'node:path'
 import { cli } from 'cleye'
 import initEslintBuilder from '@gongcli/eslint-builder-plugin'
+import initDocsBuilder from '@gongcli/vitepress-builder-plugin'
 
 import packJson from '../package.json'
 import { ConfigMainParamsEnum } from './enum'
@@ -35,6 +36,10 @@ const argv = cli({
       type: Boolean,
       description: 'eslint init',
     },
+    docs: {
+      type: Boolean,
+      description: 'docs vitepress',
+    },
   },
 })
 
@@ -46,12 +51,16 @@ function initConfig(params: ConfigMainParamsEnum) {
   spawn('node', [`${path.resolve(__dirname, 'configPage.js')}`, params as string], { stdio: 'inherit' })
 }
 
-const { plugins, location, config, lint } = argv.flags
+const { plugins, location, config, lint, docs } = argv.flags
 
 // command line
-if (lint) {
+if (lint)
   initEslintBuilder.builder.run(process.cwd())
+
+if (docs) {
+  initDocsBuilder.builder.run(process.cwd())
 }
+
 // plugin
 else if ((plugins || location) && process.env.NODE_ENV === 'development') {
   initConfig(

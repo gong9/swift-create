@@ -1,6 +1,6 @@
 {
   "name": "gong-create",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "a cli tool for creating project",
   "author": "gong",
   "license": "MIT",
@@ -32,6 +32,7 @@
     "@gongcli/eslint-builder-plugin": "workspace:^",
     "@gongcli/gitee-template-plugin": "workspace:^",
     "@gongcli/github-template-plugin": "workspace:^",
+    "@gongcli/vitepress-builder-plugin": "workspace:^",
     "ahooks": "^3.7.7",
     "await-to-js": "^3.0.0",
     "axios": "^1.4.0",

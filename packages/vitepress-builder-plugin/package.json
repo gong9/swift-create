@@ -1,0 +1,23 @@
+{
+  "name": "@gongcli/vitepress-builder-plugin",
+  "version": "0.0.1",
+  "description": "gongcli plugin, 用于初始化vitepress",
+  "author": "gong",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "father build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "await-to-js": "^3.0.0",
+    "consola": "^3.1.0",
+    "fs-extra": "^11.1.1"
+  }
+}
