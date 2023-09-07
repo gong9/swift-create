@@ -20,6 +20,16 @@ cli使用
 npx gong-create@latest
 ```
 
+如果您仅是想初始化eslint，可以
+```base
+npx gong-create@latest --lint
+```
+
+如果您仅是想初始化docs，可以
+```base
+npx gong-create@latest --docs
+```
+
 ## Feature
 
 - 项目模版独立

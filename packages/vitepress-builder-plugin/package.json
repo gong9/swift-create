@@ -1,6 +1,6 @@
 {
   "name": "@gongcli/vitepress-builder-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "gongcli plugin, 用于初始化vitepress",
   "author": "gong",
   "license": "MIT",

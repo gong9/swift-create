@@ -30,6 +30,11 @@ then reinstall the dependency
 
 please note that the use of cli requires a node version of 18 or above, so you need to change the node first. 
 
+If you just init a docs, you can 
+
+```base
+npx gong-create@latest --docs
+```
 
 ## Feature
 

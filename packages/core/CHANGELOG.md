@@ -1,5 +1,13 @@
 # gong-create
 
+## 1.2.11
+
+### Patch Changes
+
+- fix: update vitepress-builder-plugin
+- Updated dependencies
+  - @gongcli/vitepress-builder-plugin@0.0.2
+
 ## 1.2.10
 
 ### Patch Changes
