@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { FrameEnum, ProjectEnum, defaultConfig } from '../configData'
+import { defaultConfig } from '../configData'
 import type { HooksType } from '../plugin/register'
 import type { StepConfigType } from '../types'
 

@@ -101,7 +101,7 @@ features:
     ` # demo
     `, 'docs/demo.md')
 
-  // add eslint script
+  // add  script
   editPackageFile()
 
   consola.success('docs init success, 请重新安装依赖')

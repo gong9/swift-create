@@ -1,4 +1,3 @@
-import console from 'node:console'
 import type { FC } from 'react'
 import React from 'react'
 import { Box, Text } from 'ink'

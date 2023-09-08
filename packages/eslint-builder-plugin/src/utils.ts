@@ -99,9 +99,9 @@ export const addPackageFileDependencies = () => {
 
     createConfigFile(packageJson, packagePath)
 
-    consola.success('add script success')
+    consola.success('add package success')
   }
   catch (error) {
-    consola.error('add script fail')
+    consola.error('add package fail')
   }
 }

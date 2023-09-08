@@ -9,11 +9,7 @@ import { getOfficialPlugins } from '../api'
 import { ConfigMainParamsEnum } from '../../../enum'
 import PluginInfo from './PluginInfo'
 
-interface AllPluginListProps {
-
-}
-
-const AllPluginList: FC<AllPluginListProps> = () => {
+const AllPluginList: FC = () => {
   const { data, error, loading } = useRequest(getOfficialPlugins)
   const [currentPlugin, setCurrentPlugin] = useState<Plugin | null>(null)
   const [needShowPluginInfo, setNeedShowPluginInfo] = useState(false)
