@@ -13,6 +13,8 @@ import { resetGit } from '../../utils/preAction'
 import { handleTemplate } from '../../utils/ejs'
 import TemplateSelection from './TemplateSelection'
 
+type TemplateListResponse = { name: string; description: string }[]
+
 const Selection: FC = () => {
   const tempalteRecord = useStore(state => state.tempalteRecord)
   const templateConfig = useStore(state => state.templateConfig)
@@ -20,7 +22,7 @@ const Selection: FC = () => {
   const stepConfig = useStore(state => state.stepConfig)
   const [index, updateIndex] = useState(0)
   const [finalConfirmStatus, setFinalConfirmStatus] = useState(false)
-  const [curMatchTemplateList, setCurMatchTemplateList] = useState<string[]>([])
+  const [curMatchTemplateList, setCurMatchTemplateList] = useState<TemplateListResponse>([])
   const [downloadStatus, setDownloadStatus] = useState(false)
   const selectChangeFlag = useRef(true)
 
@@ -45,7 +47,7 @@ const Selection: FC = () => {
             consola.warn('未匹配到模版，请重新选择')
 
           else
-            setCurMatchTemplateList(res)
+            setCurMatchTemplateList(res as unknown as TemplateListResponse)
         }
 
         else {
@@ -141,7 +143,7 @@ const Selection: FC = () => {
    * @returns
    */
   const renderCurMatchTemplateList = () => {
-    const matchTemplateList = curMatchTemplateList.map(item => ({ label: item, value: item }))
+    const matchTemplateList = curMatchTemplateList.map(item => ({ label: `${item.name} ${item.description ? (`「${item.description}」`) : ''}`, value: item.name }))
     return (
       <>
         <Text>当前匹配到的模版：</Text>

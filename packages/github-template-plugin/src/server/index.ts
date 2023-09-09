@@ -4,6 +4,7 @@ interface RepoType {
   id: number
   name: string
   private: boolean
+  description?: string
   [k: string]: unknown
 }
 // https://gitee.com/api/v5/${user}/gong9/repos
@@ -18,7 +19,10 @@ export async function getAllRepoList(user: string) {
 export async function getAllRepoNameList(user: string) {
   const allRepolist = await getAllRepoList(user)
 
-  return allRepolist.map(item => item.name)
+  return allRepolist.map(item => ({
+    name: item.name,
+    description: item.description || '',
+  }))
 }
 
 export function getAppointRepoName(user: string) {
@@ -27,7 +31,7 @@ export function getAppointRepoName(user: string) {
 
     return allRepoListName.filter(
       (item) => {
-        const curNameLowerCase = item.toLocaleLowerCase()
+        const curNameLowerCase = item.name.toLocaleLowerCase()
         return match.every((item: string) => curNameLowerCase.includes(item))
       },
     )

@@ -1,5 +1,14 @@
 # gong-create
 
+## 1.2.12
+
+### Patch Changes
+
+- feat: add template description
+- Updated dependencies
+  - @gongcli/github-template-plugin@0.1.3
+  - @gongcli/gitee-template-plugin@0.1.3
+
 ## 1.2.11
 
 ### Patch Changes

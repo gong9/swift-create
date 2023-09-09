@@ -6,11 +6,7 @@ import SelectInput from 'ink-select-input'
 
 import { cliRecordOperations } from '../utils/recordOperations'
 
-interface ConfigViewProps {
-
-}
-
-const ConfigView: FC<ConfigViewProps> = () => {
+const ConfigView: FC = () => {
   const [currentConfigItem, setCurrentConfigItem] = useState<null | string>(null)
   const [currentConfigItemValue, setCurrentConfigItemValue] = useState<string>(null)
 

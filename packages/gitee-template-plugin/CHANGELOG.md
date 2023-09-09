@@ -1,5 +1,11 @@
 # @gongcli/gitee-template-plugin
 
+## 0.1.3
+
+### Patch Changes
+
+- feat: add template description
+
 ## 0.1.2
 
 ### Patch Changes
