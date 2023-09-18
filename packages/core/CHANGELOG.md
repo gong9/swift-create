@@ -1,5 +1,11 @@
 # gong-create
 
+## 1.2.13
+
+### Patch Changes
+
+- fix: bugfix
+
 ## 1.2.12
 
 ### Patch Changes

@@ -54,13 +54,12 @@ function initConfig(params: ConfigMainParamsEnum) {
 const { plugins, location, config, lint, docs } = argv.flags
 
 // command line
-if (lint)
+if (lint) {
   initEslintBuilder.builder.run(process.cwd())
-
-if (docs) {
+}
+else if (docs) {
   initDocsBuilder.builder.run(process.cwd())
 }
-
 // plugin
 else if ((plugins || location) && process.env.NODE_ENV === 'development') {
   initConfig(
