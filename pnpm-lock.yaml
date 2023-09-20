@@ -54,20 +54,20 @@ importers:
         specifier: ^4
         version: 4.0.2
 
-  packages/core:
+  apps/cli:
     dependencies:
       '@gongcli/eslint-builder-plugin':
         specifier: workspace:^
-        version: link:../eslint-builder-plugin
+        version: link:../../packages/eslint-builder-plugin
       '@gongcli/gitee-template-plugin':
         specifier: workspace:^
-        version: link:../gitee-template-plugin
+        version: link:../../packages/gitee-template-plugin
       '@gongcli/github-template-plugin':
         specifier: workspace:^
-        version: link:../github-template-plugin
+        version: link:../../packages/github-template-plugin
       '@gongcli/vitepress-builder-plugin':
         specifier: workspace:^
-        version: link:../vitepress-builder-plugin
+        version: link:../../packages/vitepress-builder-plugin
       ahooks:
         specifier: ^3.7.7
         version: 3.7.7(react@17.0.2)
