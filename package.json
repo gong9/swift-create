@@ -6,13 +6,13 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "start": "cd packages/core && pnpm start",
-    "build": "pnpm -r build",
+    "start": "pnpm nx start gong-create",
+    "build": "pnpm nx run-many --target=build --all",
     "prepare": "husky install",
     "test": "pnpm -r test",
     "changeset": "changeset",
     "release": "changeset version",
-    "all-publish": "changeset publish",
+    "all-publish": "pnpm build && changeset publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
@@ -34,6 +34,7 @@
     "father": "^4.1.5",
     "husky": "^8.0.1",
     "jest": "^27",
+    "nx": "^16.8.1",
     "ts-node": "^10",
     "typescript": "^4"
   },
