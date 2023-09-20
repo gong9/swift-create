@@ -1,5 +1,10 @@
 # gong-create
 
+
+项目结构
+
+![文件结构](./graph.png)
+
 ## What
 
 The goal is to create a universal CLI engine that can serve as a scaffold for scaffolds.
