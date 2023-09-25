@@ -1,8 +1,6 @@
 # gong-create
 
 
-项目结构
-
 ![文件结构](./graph.png)
 
 ## What

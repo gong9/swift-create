@@ -37,8 +37,8 @@ const Selection: FC = () => {
         })
 
         if (isConfirm) {
-          const currentRecord = getCurrentTemplateList(tempalteRecord)
-          const [err, res] = await to(getRepo(hooks.service)(['template', ...currentRecord]))
+          const currentRecord = getCurrentTemplateList(tempalteRecord) as string[]
+          const [err, res] = await to(getRepo(hooks.service!)(['template', ...currentRecord]))
 
           if (err)
             consola.error(err)
@@ -101,7 +101,7 @@ const Selection: FC = () => {
       consola.info(`正在下载${value}模版`)
 
       try {
-        const [err] = await to(((await downloadGitRepo(hooks.service)))(value, downloadPath))
+        const [err] = await to(((await downloadGitRepo(hooks.service!)))(value, downloadPath))
         if (err) {
           consola.error('下载模版失败')
           return
