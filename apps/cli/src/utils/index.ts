@@ -5,7 +5,7 @@ export function getConfirmTitle(recordInfo: tempalteRecord, stepConfig: StepConf
   let title = ''
 
   Object.keys(recordInfo).forEach((key) => {
-    title += `${stepConfig.find(item => item.name === key).label}: ${recordInfo[key]} `
+    title += `${stepConfig.find(item => item.name === key)!.label}: ${recordInfo[key]} `
   })
 
   return title
