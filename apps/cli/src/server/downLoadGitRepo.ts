@@ -15,7 +15,7 @@ export const localDownload = async (targetProject, outPath) => {
     consola.error('download error', err)
 }
 
-export default async (serverHook: ServiceHookType) => {
+export default async (serverHook?: ServiceHookType) => {
   const isExistServerHook = serverHook && serverHook.download
   if (isExistServerHook)
     return await serverHook.download(cliRecordOperations.getConfigData('userPath'))

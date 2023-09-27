@@ -40,7 +40,7 @@ export async function getAppointRepoName(match: string[]) {
  * @param serverHook
  * @returns
  */
-export function getRepo(serverHook: ServiceHookType) {
+export function getRepo(serverHook?: ServiceHookType) {
   const isExistServerHook = serverHook && serverHook.request
   if (isExistServerHook)
     return serverHook.request(cliRecordOperations.getConfigData('userPath'))

@@ -76,8 +76,11 @@ class RecordOperations {
    */
   public enablePlugin(pluginName: string) {
     const currentPluginData = this.getRecordPluginConfig(pluginName)
-    currentPluginData.enable = true
-    this.updateRecordPluginConfig(pluginName, currentPluginData)
+
+    if (currentPluginData) {
+      currentPluginData.enable = true
+      this.updateRecordPluginConfig(pluginName, currentPluginData)
+    }
   }
 
   /**
@@ -86,8 +89,11 @@ class RecordOperations {
    */
   public closePlugin(pluginName: string) {
     const currentPluginData = this.getRecordPluginConfig(pluginName)
-    currentPluginData.enable = false
-    this.updateRecordPluginConfig(pluginName, currentPluginData)
+
+    if (currentPluginData) {
+      currentPluginData.enable = false
+      this.updateRecordPluginConfig(pluginName, currentPluginData)
+    }
   }
 
   /**

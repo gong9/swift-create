@@ -63,7 +63,7 @@ else if (docs) {
 // plugin
 else if ((plugins || location) && process.env.NODE_ENV === 'development') {
   initConfig(
-    (plugins && ConfigMainParamsEnum.Store) || (location && ConfigMainParamsEnum.List),
+    ((plugins && ConfigMainParamsEnum.Store) || (location && ConfigMainParamsEnum.List)) as ConfigMainParamsEnum,
   )
 }
 // config
