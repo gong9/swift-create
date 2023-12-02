@@ -43,7 +43,7 @@ npx gong-create@latest --docs
 
 - Independent project templates
 - Template sources support GitHub, GitLab, and Gitee
-- Provides common generator features (to be improved)
+- Provides common generator features
 
 ### Usage
 
