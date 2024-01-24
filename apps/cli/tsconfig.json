@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
+        "module": "commonjs",
+        "jsx": "react",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
         "paths": {
             "@gongcli/eslint-builder-plugin": [
                 "../../packages/eslint-builder-plugin/src"
