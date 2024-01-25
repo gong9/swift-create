@@ -1,4 +1,4 @@
-# gong-create
+# fleet-create
 
 ## What
 
@@ -17,17 +17,17 @@ npm -g install pnpm
 
 cli使用
 ```bash
-npx gong-create@latest
+npx fleet-create@latest
 ```
 
 如果您仅是想初始化eslint，可以
 ```base
-npx gong-create@latest --lint
+npx fleet-create@latest --lint
 ```
 
 如果您仅是想初始化docs，可以
 ```base
-npx gong-create@latest --docs
+npx fleet-create@latest --docs
 ```
 
 ## Feature
@@ -144,7 +144,7 @@ pnpm start -c
 此命令在上线时也支持设置
     
 ```bash
-npx gong-create@latest -c
+npx fleet-create@latest -c
 ```
 
 #### 如何使用插件
