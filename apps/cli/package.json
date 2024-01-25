@@ -1,6 +1,6 @@
 {
   "name": "fleet-create",
-  "version": "1.2.13",
+  "version": "0.0.1",
   "description": "a cli tool for creating project",
   "author": "gong",
   "license": "MIT",
