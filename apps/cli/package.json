@@ -1,12 +1,12 @@
 {
-  "name": "fleet-create",
+  "name": "swift-create",
   "version": "0.0.1",
   "description": "a cli tool for creating project",
   "author": "gong",
   "license": "MIT",
   "keywords": [],
   "bin": {
-    "fleet-create": "dist/index.js"
+    "swift-create": "dist/index.js"
   },
   "files": [
     "dist",

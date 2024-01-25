@@ -1,4 +1,4 @@
-# fleet-create
+# swift-create
 
 ## What
 
@@ -17,17 +17,17 @@ npm -g install pnpm
 
 cli使用
 ```bash
-npx fleet-create@latest
+npx swift-create@latest
 ```
 
 如果您仅是想初始化eslint，可以
 ```base
-npx fleet-create@latest --lint
+npx swift-create@latest --lint
 ```
 
 如果您仅是想初始化docs，可以
 ```base
-npx fleet-create@latest --docs
+npx swift-create@latest --docs
 ```
 
 ## Feature
@@ -144,7 +144,7 @@ pnpm start -c
 此命令在上线时也支持设置
     
 ```bash
-npx fleet-create@latest -c
+npx swift-create@latest -c
 ```
 
 #### 如何使用插件

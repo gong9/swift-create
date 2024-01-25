@@ -1,4 +1,4 @@
-# fleet-create
+# swift-create
 
 
 ![文件结构](./graph.png)
@@ -21,13 +21,13 @@ npm -g install pnpm
 
 CLI usage
 ```bash
-npx fleet-create@latest
+npx swift-create@latest
 ```
 
 If you just want to init eslint, you can 
 
 ```base
-npx fleet-create@latest --lint
+npx swift-create@latest --lint
 ```
 then reinstall the dependency
 
@@ -36,7 +36,7 @@ please note that the use of cli requires a node version of 18 or above, so you n
 If you just init a docs, you can 
 
 ```base
-npx fleet-create@latest --docs
+npx swift-create@latest --docs
 ```
 
 ## Feature
@@ -154,7 +154,7 @@ pnpm start -c
 This command also supports setting when deploying:
     
 ```bash
-npx fleet-create@latest -c
+npx swift-create@latest -c
 ```
 
 #### How to use plugins
