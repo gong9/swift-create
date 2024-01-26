@@ -6,7 +6,7 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "start": "pnpm nx start swift-create",
+    "start": "pnpm swift-create",
     "build": "pnpm nx run-many --target=build --all",
     "prepare": "husky install",
     "test": "pnpm -r test",
@@ -22,6 +22,7 @@
     "@changesets/cli": "^2.26.2"
   },
   "devDependencies": {
+    "swift-create": "workspace:^",
     "@antfu/eslint-config": "^0.38.5",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",

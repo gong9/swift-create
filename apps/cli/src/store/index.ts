@@ -11,6 +11,7 @@ export interface StateType {
   tempalteRecord: {
     [k: string]: string | number
   }
+  tempalteRecordShow: { [k: string]: string }
   templateConfig: TempalteConfigType
   showWelcome: boolean
   hooks: HooksType
@@ -20,6 +21,8 @@ export interface StateType {
   setShowWelcome: (newData: StateType['showWelcome']) => void
   setHooks: (hooks: StateType['hooks']) => void
   setStepConfig: (stepConfig: StepConfigType) => void
+  setTempalteRecordShow: (tempalteRecordShow: StateType['tempalteRecordShow']) => void
+  clearTempalteRecordShow: () => void
 }
 
 export type tempalteRecord = StateType['tempalteRecord']
@@ -27,6 +30,7 @@ export type tempalteRecord = StateType['tempalteRecord']
 const useStore = create<StateType>((set) => {
   return {
     tempalteRecord: {},
+    tempalteRecordShow: {},
     templateConfig: {
       projectName: '',
     },
@@ -79,6 +83,22 @@ const useStore = create<StateType>((set) => {
         }
       },
     ),
+    setTempalteRecordShow: (newTempalteRecordData: StateType['tempalteRecordShow']) => set(
+      (state) => {
+        return {
+          tempalteRecordShow: {
+            ...state.tempalteRecordShow,
+            ...newTempalteRecordData,
+          },
+        }
+      },
+    ),
+
+    clearTempalteRecordShow: () => set(() => {
+      return {
+        tempalteRecordShow: {},
+      }
+    }),
   }
 })
 export default useStore

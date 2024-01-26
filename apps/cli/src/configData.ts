@@ -24,6 +24,7 @@ export const defaultConfig = [
     type: 'input',
     title: '请输入要创建的项目名称',
     private: true,
+    label: '项目名称',
   },
 ]
 

@@ -29,8 +29,8 @@ const App: FC<AppProps> = ({ hooks }) => {
 
   return (
     <>
-      <Welcome show={showWelcome} />
-      {!showWelcome && <TemplateSelection />}
+      {/* <Welcome show={showWelcome} /> */}
+      <TemplateSelection />
     </>
   )
 }

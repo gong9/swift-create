@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import to from 'await-to-js'
-import { Text, useApp } from 'ink'
+import { Box, Text, useApp } from 'ink'
 import SelectInput from 'ink-select-input'
 import { consola } from 'consola'
 import { isExists, remove } from '../../utils/fs'
@@ -18,6 +18,8 @@ type TemplateListResponse = { name: string; description: string }[]
 const Selection: FC = () => {
   const tempalteRecord = useStore(state => state.tempalteRecord)
   const templateConfig = useStore(state => state.templateConfig)
+  const tempalteRecordShow = useStore(state => state.tempalteRecordShow)
+  const clearTempalteRecordShow = useStore(state => state.clearTempalteRecordShow)
   const hooks = useStore(state => state.hooks)
   const stepConfig = useStore(state => state.stepConfig)
   const [index, updateIndex] = useState(0)
@@ -25,6 +27,7 @@ const Selection: FC = () => {
   const [curMatchTemplateList, setCurMatchTemplateList] = useState<TemplateListResponse>([])
   const [downloadStatus, setDownloadStatus] = useState(false)
   const selectChangeFlag = useRef(true)
+  const [showTempalteRecord, setShowTempalteRecord] = useState(true)
 
   const { exit } = useApp()
 
@@ -36,10 +39,10 @@ const Selection: FC = () => {
           type: 'confirm',
         })
 
-        if (isConfirm) {
+        if (isConfirm === true) {
           const currentRecord = getCurrentTemplateList(tempalteRecord) as string[]
           const [err, res] = await to(getRepo(hooks.service)(['template', ...currentRecord]))
-
+          setShowTempalteRecord(false)
           if (err)
             consola.error(err)
 
@@ -50,9 +53,14 @@ const Selection: FC = () => {
             setCurMatchTemplateList(res as unknown as TemplateListResponse)
         }
 
-        else {
+        else if (isConfirm === false) {
+          clearTempalteRecordShow()
           setFinalConfirmStatus(false)
           updateIndex(0)
+          setShowTempalteRecord(true)
+        }
+        else {
+          exit()
         }
       }
     }())
@@ -144,10 +152,26 @@ const Selection: FC = () => {
    */
   const renderCurMatchTemplateList = () => {
     const matchTemplateList = curMatchTemplateList.map(item => ({ label: `${item.name} ${item.description ? (`「${item.description}」`) : ''}`, value: item.name }))
+
     return (
       <>
         <Text>当前匹配到的模版：</Text>
         <SelectInput items={matchTemplateList} onSelect={selectMatchTemplate} />
+      </>
+    )
+  }
+
+  /**
+   * 渲染已经操作的记录
+   * @returns
+   */
+  const renderOperated = () => {
+    return (
+      <>
+        {Object.keys(tempalteRecordShow).map(key => <Box key={key}>
+          <Text>{key}: </Text>
+          <Text color="green">{tempalteRecordShow[key]}</Text>
+        </Box>)}
       </>
     )
   }
@@ -159,6 +183,7 @@ const Selection: FC = () => {
   else {
     return (
       <>
+        {showTempalteRecord && renderOperated()}
         {renderCurrentStep()}
         {curMatchTemplateList.length > 0 && renderCurMatchTemplateList()}
       </>

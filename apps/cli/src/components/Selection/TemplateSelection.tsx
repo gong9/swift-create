@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Text } from 'ink'
 import SelectInput from 'ink-select-input'
 import TextInput from 'ink-text-input'
@@ -22,8 +22,13 @@ interface TemplateSelectionProps {
 }
 
 const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) => {
-  const { updataTemplatePath, tempalteRecord, templateConfig, setTemplateConfig } = useStore(state => state)
+  const { updataTemplatePath, setTempalteRecordShow, tempalteRecord, templateConfig, setTemplateConfig } = useStore(state => state)
   const update = useUpdate()
+  const [currentValue, setCurrentValue] = useState('')
+
+  useEffect(() => {
+    setCurrentValue('')
+  }, [config])
 
   if (!config)
     return null
@@ -34,6 +39,10 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
         [config.name]: (item as ProjectItemType).value,
       },
     )
+
+    setTempalteRecordShow({
+      [config.label]: (item as ProjectItemType).label,
+    })
 
     nextAction()
   }
@@ -54,6 +63,7 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
       )
     }
 
+    setCurrentValue(value)
     update()
   }
 
@@ -67,7 +77,13 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
             <Box marginRight={1}>
               <Text>{config.name}: </Text>
             </Box>
-            <TextInput placeholder={config.placeholder || ''} value={(config.private ? templateConfig[config.name] : tempalteRecord[config.name]) || ''} onChange={handleInputChange} onSubmit={nextAction}/>
+            <TextInput placeholder={config.placeholder || ''} value={(config.private ? templateConfig[config.name] : tempalteRecord[config.name]) || ''} onChange={handleInputChange}
+              onSubmit={() => {
+                setTempalteRecordShow({
+                  [config.label]: currentValue,
+                })
+                nextAction()
+              }}/>
           </Box>
         )
       default:

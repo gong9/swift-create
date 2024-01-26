@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -7,6 +11,9 @@ importers:
       '@changesets/cli':
         specifier: ^2.26.2
         version: 2.26.2
+      swift-create:
+        specifier: workspace:^
+        version: link:apps/cli
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.38.5
@@ -2237,7 +2244,7 @@ packages:
     dependencies:
       '@babel/core': 7.17.9
       postcss: 8.4.23
-      postcss-syntax: 0.36.2(postcss@8.4.29)
+      postcss-syntax: 0.36.2(postcss@8.4.23)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3001,7 +3008,7 @@ packages:
       eslint-plugin-react: 7.29.4(eslint@8.23.0)
       eslint-plugin-react-hooks: 4.5.0(eslint@8.23.0)
       postcss: 8.4.23
-      postcss-syntax: 0.36.2(postcss@8.4.29)
+      postcss-syntax: 0.36.2(postcss@8.4.23)
       stylelint-config-standard: 25.0.0(stylelint@14.16.1)
     transitivePeerDependencies:
       - eslint
@@ -10464,7 +10471,7 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss-syntax@0.36.2(postcss@8.4.29):
+  /postcss-syntax@0.36.2(postcss@8.4.23):
     resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
     peerDependencies:
       postcss: '>=5.0.0'
@@ -10485,7 +10492,7 @@ packages:
       postcss-scss:
         optional: true
     dependencies:
-      postcss: 8.4.29
+      postcss: 8.4.23
     dev: true
 
   /postcss-value-parser@4.2.0:
