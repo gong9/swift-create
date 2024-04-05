@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -11,9 +7,6 @@ importers:
       '@changesets/cli':
         specifier: ^2.26.2
         version: 2.26.2
-      swift-create:
-        specifier: workspace:^
-        version: link:apps/cli
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.38.5
@@ -54,6 +47,9 @@ importers:
       nx:
         specifier: ^16.8.1
         version: 16.8.1
+      swift-create:
+        specifier: workspace:^
+        version: link:apps/cli
       ts-node:
         specifier: ^10
         version: 10.0.0(@types/node@18.14.1)(typescript@4.0.2)
@@ -65,16 +61,16 @@ importers:
     dependencies:
       '@gongcli/eslint-builder-plugin':
         specifier: workspace:^
-        version: link:../../packages/eslint-builder-plugin
+        version: link:../../plugin/eslint-builder-plugin
       '@gongcli/gitee-template-plugin':
         specifier: workspace:^
-        version: link:../../packages/gitee-template-plugin
+        version: link:../../plugin/gitee-template-plugin
       '@gongcli/github-template-plugin':
         specifier: workspace:^
-        version: link:../../packages/github-template-plugin
+        version: link:../../plugin/github-template-plugin
       '@gongcli/vitepress-builder-plugin':
         specifier: workspace:^
-        version: link:../../packages/vitepress-builder-plugin
+        version: link:../../plugin/vitepress-builder-plugin
       ahooks:
         specifier: ^3.7.7
         version: 3.7.7(react@17.0.2)
@@ -152,7 +148,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@17.0.2)
 
-  packages/eslint-builder-plugin:
+  plugin/eslint-builder-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -164,7 +160,7 @@ importers:
         specifier: ^11.1.1
         version: 11.1.1
 
-  packages/gitee-template-plugin:
+  plugin/gitee-template-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -182,7 +178,7 @@ importers:
         specifier: ^0.12.5
         version: 0.12.5
 
-  packages/github-template-plugin:
+  plugin/github-template-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -200,7 +196,7 @@ importers:
         specifier: ^0.12.5
         version: 0.12.5
 
-  packages/gitlab-template-plugin:
+  plugin/gitlab-template-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -218,7 +214,7 @@ importers:
         specifier: ^0.12.5
         version: 0.12.5
 
-  packages/vitepress-builder-plugin:
+  plugin/vitepress-builder-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -2244,7 +2240,7 @@ packages:
     dependencies:
       '@babel/core': 7.17.9
       postcss: 8.4.23
-      postcss-syntax: 0.36.2(postcss@8.4.23)
+      postcss-syntax: 0.36.2(postcss@8.4.29)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3008,7 +3004,7 @@ packages:
       eslint-plugin-react: 7.29.4(eslint@8.23.0)
       eslint-plugin-react-hooks: 4.5.0(eslint@8.23.0)
       postcss: 8.4.23
-      postcss-syntax: 0.36.2(postcss@8.4.23)
+      postcss-syntax: 0.36.2(postcss@8.4.29)
       stylelint-config-standard: 25.0.0(stylelint@14.16.1)
     transitivePeerDependencies:
       - eslint
@@ -10471,7 +10467,7 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss-syntax@0.36.2(postcss@8.4.23):
+  /postcss-syntax@0.36.2(postcss@8.4.29):
     resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
     peerDependencies:
       postcss: '>=5.0.0'
@@ -10492,7 +10488,7 @@ packages:
       postcss-scss:
         optional: true
     dependencies:
-      postcss: 8.4.23
+      postcss: 8.4.29
     dev: true
 
   /postcss-value-parser@4.2.0:
@@ -12952,3 +12948,7 @@ packages:
       react: 17.0.2
       use-sync-external-store: 1.2.0(react@17.0.2)
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

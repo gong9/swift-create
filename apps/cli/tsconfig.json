@@ -1,21 +1,18 @@
 {
+    "extends": "../../build.config.json",
     "compilerOptions": {
-        "module": "commonjs",
-        "jsx": "react",
-        "esModuleInterop": true,
-        "resolveJsonModule": true,
         "paths": {
             "@gongcli/eslint-builder-plugin": [
-                "../../packages/eslint-builder-plugin/src"
+                "../../plugin/eslint-builder-plugin/src"
             ],
             "@gongcli/gitee-template-plugin": [
-                "../../packages/gitee-template-plugin/src"
+                "../../plugin/gitee-template-plugin/src"
             ],
             "@gongcli/github-template-plugin": [
-                "../../packages/github-template-plugin/src"
+                "../../plugin/github-template-plugin/src"
             ],
             "@gongcli/vitepress-builder-plugin": [
-                "../../packages/vitepress-builder-plugin/src"
+                "../../plugin/vitepress-builder-plugin/src"
             ]
         }
     }

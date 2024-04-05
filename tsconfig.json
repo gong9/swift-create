@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "tsdist",
     "module": "commonjs",
     "jsx": "react",
     "declaration": true,
@@ -8,8 +9,13 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": ["packages/**/*"],
+  "include": [
+    "packages/**/*",
+    "plugin/**/*",
+    "apps/**/*"
+  ],
   "exclude": [
-    "dist", "node_modules"
+    "dist",
+    "node_modules"
   ]
 }

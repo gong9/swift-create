@@ -6,7 +6,7 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "start": "pnpm swift-create",
+    "start": "cd apps/cli && pnpm start",
     "build": "pnpm nx run-many --target=build --all",
     "prepare": "husky install",
     "test": "pnpm -r test",
