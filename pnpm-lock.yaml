@@ -61,16 +61,16 @@ importers:
     dependencies:
       '@gongcli/eslint-builder-plugin':
         specifier: workspace:^
-        version: link:../../plugin/eslint-builder-plugin
+        version: link:../../plugins/eslint-builder-plugin
       '@gongcli/gitee-template-plugin':
         specifier: workspace:^
-        version: link:../../plugin/gitee-template-plugin
+        version: link:../../plugins/gitee-template-plugin
       '@gongcli/github-template-plugin':
         specifier: workspace:^
-        version: link:../../plugin/github-template-plugin
+        version: link:../../plugins/github-template-plugin
       '@gongcli/vitepress-builder-plugin':
         specifier: workspace:^
-        version: link:../../plugin/vitepress-builder-plugin
+        version: link:../../plugins/vitepress-builder-plugin
       ahooks:
         specifier: ^3.7.7
         version: 3.7.7(react@17.0.2)
@@ -152,16 +152,16 @@ importers:
     dependencies:
       '@gongcli/eslint-builder-plugin':
         specifier: workspace:^
-        version: link:../../plugin/eslint-builder-plugin
+        version: link:../../plugins/eslint-builder-plugin
       '@gongcli/gitee-template-plugin':
         specifier: workspace:^
-        version: link:../../plugin/gitee-template-plugin
+        version: link:../../plugins/gitee-template-plugin
       '@gongcli/github-template-plugin':
         specifier: workspace:^
-        version: link:../../plugin/github-template-plugin
+        version: link:../../plugins/github-template-plugin
       '@gongcli/vitepress-builder-plugin':
         specifier: workspace:^
-        version: link:../../plugin/vitepress-builder-plugin
+        version: link:../../plugins/vitepress-builder-plugin
       ahooks:
         specifier: ^3.7.7
         version: 3.7.7(react@17.0.2)
@@ -239,7 +239,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@17.0.2)
 
-  plugin/eslint-builder-plugin:
+  plugins/eslint-builder-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -251,7 +251,7 @@ importers:
         specifier: ^11.1.1
         version: 11.1.1
 
-  plugin/gitee-template-plugin:
+  plugins/gitee-template-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -269,7 +269,7 @@ importers:
         specifier: ^0.12.5
         version: 0.12.5
 
-  plugin/github-template-plugin:
+  plugins/github-template-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -287,7 +287,7 @@ importers:
         specifier: ^0.12.5
         version: 0.12.5
 
-  plugin/gitlab-template-plugin:
+  plugins/gitlab-template-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0
@@ -305,7 +305,7 @@ importers:
         specifier: ^0.12.5
         version: 0.12.5
 
-  plugin/vitepress-builder-plugin:
+  plugins/vitepress-builder-plugin:
     dependencies:
       await-to-js:
         specifier: ^3.0.0

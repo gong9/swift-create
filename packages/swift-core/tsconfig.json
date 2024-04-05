@@ -3,16 +3,16 @@
     "compilerOptions": {
         "paths": {
             "@gongcli/eslint-builder-plugin": [
-                "../../plugin/eslint-builder-plugin/src"
+                "../../plugins/eslint-builder-plugin/src"
             ],
             "@gongcli/gitee-template-plugin": [
-                "../../plugin/gitee-template-plugin/src"
+                "../../plugins/gitee-template-plugin/src"
             ],
             "@gongcli/github-template-plugin": [
-                "../../plugin/github-template-plugin/src"
+                "../../plugins/github-template-plugin/src"
             ],
             "@gongcli/vitepress-builder-plugin": [
-                "../../plugin/vitepress-builder-plugin/src"
+                "../../plugins/vitepress-builder-plugin/src"
             ]
         }
     }

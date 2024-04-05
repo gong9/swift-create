@@ -12,6 +12,10 @@ export interface HooksType {
   service?: ServiceHookType
 }
 
+/**
+ * register hooks
+ * @returns
+ */
 const register = async () => {
   const hooks: HooksType = {}
   const enablePlugins = pluginRecordOperations.queryAllRecordPluginConfigByEnable
@@ -19,6 +23,7 @@ const register = async () => {
   if (enablePlugins.length > 0) {
     for (let index = 0; index < enablePlugins.length; index++) {
       const hook = ((await import(enablePlugins[index].name)).default.default) as HooksType
+
       if (hook.service)
         hooks.service = hook.service
     }

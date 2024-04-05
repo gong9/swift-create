@@ -5,11 +5,24 @@
     "@antfu"
   ],
   "rules": {
-    "react/jsx-indent": ["error", 2],
-    "react/jsx-indent-props": ["error", 2],
-    "react/jsx-max-props-per-line": ["error", { "maximum": 4 }],
+    "react/jsx-indent": [
+      "error",
+      2
+    ],
+    "react/jsx-indent-props": [
+      "error",
+      2
+    ],
+    "react/jsx-max-props-per-line": [
+      "error",
+      {
+        "maximum": 4
+      }
+    ],
     "unused-imports/no-unused-imports": "off",
     "antfu/top-level-function": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/prefer-ts-expect-error": "off"
   }
 }

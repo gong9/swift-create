@@ -1,9 +1,8 @@
 import { exec } from 'node:child_process'
 import { consola } from 'consola'
-
 import { remove } from './fs'
 
-export const resetGit = (path) => {
+export const resetGit = (path: string) => {
   process.chdir(path)
 
   return new Promise((resolve, reject) => {

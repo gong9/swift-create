@@ -133,11 +133,13 @@ class CliRecordOperations {
   }
 
   public setConfigData(key: string, value: string) {
+    // @ts-ignore
     this.cliConfigData[key] = value
     writeJsonFile(this.cliConfigData, this.configType)
   }
 
   public getConfigData(key: string) {
+    // @ts-ignore
     return this.cliConfigData[key]
   }
 
