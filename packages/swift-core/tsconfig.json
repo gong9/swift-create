@@ -1,5 +1,5 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "../../build.config.json",
     "compilerOptions": {
         "paths": {
             "@gongcli/eslint-builder-plugin": [

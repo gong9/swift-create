@@ -148,6 +148,97 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@17.0.2)
 
+  packages/swift-core:
+    dependencies:
+      '@gongcli/eslint-builder-plugin':
+        specifier: workspace:^
+        version: link:../../plugin/eslint-builder-plugin
+      '@gongcli/gitee-template-plugin':
+        specifier: workspace:^
+        version: link:../../plugin/gitee-template-plugin
+      '@gongcli/github-template-plugin':
+        specifier: workspace:^
+        version: link:../../plugin/github-template-plugin
+      '@gongcli/vitepress-builder-plugin':
+        specifier: workspace:^
+        version: link:../../plugin/vitepress-builder-plugin
+      ahooks:
+        specifier: ^3.7.7
+        version: 3.7.7(react@17.0.2)
+      await-to-js:
+        specifier: ^3.0.0
+        version: 3.0.0
+      axios:
+        specifier: ^1.4.0
+        version: 1.4.0
+      cac:
+        specifier: ^6.7.14
+        version: 6.7.14
+      cleye:
+        specifier: ^1.3.2
+        version: 1.3.2
+      consola:
+        specifier: ^3.1.0
+        version: 3.1.0
+      download-git-repo:
+        specifier: ^3.0.2
+        version: 3.0.2
+      ejs:
+        specifier: ^3.1.9
+        version: 3.1.9
+      figlet:
+        specifier: ^1.6.0
+        version: 1.6.0
+      fs-extra:
+        specifier: ^11.1.1
+        version: 11.1.1
+      glob:
+        specifier: ^10.2.2
+        version: 10.2.2
+      ink:
+        specifier: ^3.2.0
+        version: 3.2.0(@types/react@17.0.2)(react@17.0.2)
+      ink-select-input:
+        specifier: ^4.2.1
+        version: 4.2.1(ink@3.2.0)(react@17.0.2)
+      ink-text-input:
+        specifier: ^4.0.3
+        version: 4.0.3(ink@3.2.0)(react@17.0.2)
+      meow:
+        specifier: ^12.0.0
+        version: 12.0.0
+      poor-utils-pro:
+        specifier: ^2.2.1
+        version: 2.2.1
+      react:
+        specifier: ^17.0.2
+        version: 17.0.2
+      util:
+        specifier: ^0.12.5
+        version: 0.12.5
+      zustand:
+        specifier: ^4.3.7
+        version: 4.3.7(react@17.0.2)
+    devDependencies:
+      '@types/ejs':
+        specifier: ^3.1.2
+        version: 3.1.2
+      '@types/figlet':
+        specifier: ^1.5.6
+        version: 1.5.6
+      '@types/fs-extra':
+        specifier: ^11.0.1
+        version: 11.0.1
+      '@types/react':
+        specifier: ^17.0.2
+        version: 17.0.2
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      ink-testing-library:
+        specifier: ^3.0.0
+        version: 3.0.0(@types/react@17.0.2)
+
   plugin/eslint-builder-plugin:
     dependencies:
       await-to-js:
@@ -3979,7 +4070,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.0
+      semver: 7.5.3
     dev: true
 
   /cac@6.7.14:
@@ -12508,7 +12599,7 @@ packages:
       espree: 9.5.1
       esquery: 1.5.0
       lodash: 4.17.21
-      semver: 7.5.0
+      semver: 7.5.3
     transitivePeerDependencies:
       - supports-color
     dev: true

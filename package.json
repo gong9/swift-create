@@ -1,6 +1,6 @@
 {
-  "name": "gong-cli",
-  "version": "0.0.0",
+  "name": "swift-create-monorepo",
+  "version": "1.0.0",
   "private": true,
   "description": "cli",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm"
   },
-  "authors": [],
+  "authors": "gong9",
   "dependencies": {
     "@changesets/cli": "^2.26.2"
   },

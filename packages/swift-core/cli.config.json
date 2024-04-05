@@ -1,0 +1,26 @@
+{
+  "name": "swift-create",
+  "userPath": "gong9",
+  "configData": [
+    {
+      "name": "frame",
+      "label": "框架类型",
+      "type": "select",
+      "title": "请选择框架",
+      "items": [
+        {
+          "label": "React",
+          "value": "react"
+        },
+        {
+          "label": "Vue",
+          "value": "vue"
+        },
+        {
+          "label": "None",
+          "value": "none"
+        }
+      ]
+    }
+  ]
+}
