@@ -6,7 +6,7 @@
   "license": "MIT",
   "keywords": [],
   "main": "dist/index.js",
-  "module": "esm/index.js", 
+  "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "files": [
     "esm",
@@ -18,6 +18,9 @@
   ],
   "engines": {
     "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "start": "cross-env ENV=development father build && node dist/index.js",
