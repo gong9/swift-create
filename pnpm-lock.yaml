@@ -148,6 +148,12 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@17.0.2)
 
+  apps/test:
+    dependencies:
+      swift-core:
+        specifier: workspace:^
+        version: link:../../packages/swift-core
+
   packages/swift-core:
     dependencies:
       '@gongcli/eslint-builder-plugin':

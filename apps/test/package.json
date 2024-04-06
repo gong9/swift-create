@@ -1,0 +1,35 @@
+{
+  "name": "swift-create-test",
+  "private": true,
+  "version": "0.0.1",
+  "description": "a cli tool for creating project test",
+  "author": "gong",
+  "license": "MIT",
+  "keywords": [],
+  "bin": {
+    "swift-create": "dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "readme.md",
+    "package.json",
+    "cli.config.json",
+    "plugin.config.json"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "father build && node dist/index.js",
+    "build": "father build",
+    "build:deps": "father prebundle",
+    "prepublishOnly": "npm run build",
+    "test": "jest --maxWorkers 2"
+  },
+  "dependencies": {
+    "swift-core": "workspace:^"
+  }
+}

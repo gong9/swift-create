@@ -1,0 +1,10 @@
+{
+    "extends": "../../build.config.json",
+    "compilerOptions": {
+        "paths": {
+            "swift-core": [
+                "../../packages/swift-core/src"
+            ]
+        }
+    }
+}

@@ -23,6 +23,7 @@
     "antfu/top-level-function": "off",
     "no-console": "off",
     "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/prefer-ts-expect-error": "off"
+    "@typescript-eslint/prefer-ts-expect-error": "off",
+    "@typescript-eslint/consistent-type-definitions": "off"
   }
 }

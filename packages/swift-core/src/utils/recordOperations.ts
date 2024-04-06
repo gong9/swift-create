@@ -132,7 +132,7 @@ class CliRecordOperations {
     this.cliConfigData = readJsonFile(type) as CliConfigData
   }
 
-  public setConfigData(key: string, value: string) {
+  public setConfigData(key: string, value: any) {
     // @ts-ignore
     this.cliConfigData[key] = value
     writeJsonFile(this.cliConfigData, this.configType)

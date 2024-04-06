@@ -1,120 +1,101 @@
-#!/usr/bin/env node
-import { spawn } from 'node:child_process'
 import path from 'node:path'
+import { spawn } from 'node:child_process'
 import { cli } from 'cleye'
-import initEslintBuilder from '@gongcli/eslint-builder-plugin'
-import initDocsBuilder from '@gongcli/vitepress-builder-plugin'
+import { cliRecordOperations } from './utils/recordOperations'
 
-import packJson from '../package.json'
-import { ConfigMainParamsEnum } from './enum'
-
-const argv = cli({
-  name: 'swift-core',
-  version: packJson.version,
-  description: 'cli',
-  flags: {
-    plugins: {
-      type: Boolean,
-      alias: 'p',
-      description: 'open plugin store, only run in development',
-    },
-    use: {
-      type: String,
-      alias: 'a',
-    },
-    location: {
-      type: Boolean,
-      alias: 'l',
-      description: 'open local plugin, only run in development',
-    },
-    config: {
-      type: Boolean,
-      alias: 'c',
-      description: 'open config page',
-    },
-    lint: {
-      type: Boolean,
-      description: 'eslint init',
-    },
-    docs: {
-      type: Boolean,
-      description: 'docs vitepress',
-    },
-  },
-})
-
-function initAPP() {
-  spawn('node', [`${path.resolve(__dirname, 'cli.js')}`], { stdio: 'inherit' })
+interface BaseConfigData {
+  name: string
+  label: string
+  title: string
 }
 
-function initConfig(params: ConfigMainParamsEnum) {
-  spawn('node', [`${path.resolve(__dirname, 'configPage.js')}`, params as string], { stdio: 'inherit' })
+interface SelectConfigData extends BaseConfigData {
+  type: 'select'
+  items: {
+    label: string
+    value: string
+  }[]
 }
 
-const { plugins, location, config, lint, docs } = argv.flags
+interface InputConfigData extends BaseConfigData {
+  type: 'input'
+}
 
-// command line
-if (lint) {
-  initEslintBuilder.builder.run(process.cwd())
+type ConfigData = SelectConfigData | InputConfigData
+
+type SwiftCoreOptions = {
+  name: string
+  userPath: string
+  version: string
+  description?: string
 }
-else if (docs) {
-  initDocsBuilder.builder.run(process.cwd())
-}
-// plugin
-else if ((plugins || location) && process.env.NODE_ENV === 'development') {
-  initConfig(
-    ((plugins && ConfigMainParamsEnum.Store) || (location && ConfigMainParamsEnum.List)) as ConfigMainParamsEnum,
-  )
-}
-// config
-else if (config) {
-  initConfig(ConfigMainParamsEnum.Config)
-}
-else {
-  initAPP()
+
+interface SwiftConfifg {
+  configData: ConfigData[]
 }
 
 class SwiftCore {
   argv: ReturnType<typeof cli>
-  constructor() {
-    this.argv = this.init()
+
+  private userPath: string
+  private name: string
+  private swiftConfifg: SwiftConfifg
+
+  constructor(opts: SwiftCoreOptions) {
+    this.userPath = opts.userPath ?? 'gong9'
+    this.name = opts.name ?? 'swift-core'
+
+    this.argv = this.init(opts)
+    this.swiftConfifg = this.getDefaultConfig()
+
+    cliRecordOperations.setConfigData('configData', this.swiftConfifg.configData)
   }
 
-  init() {
+  init(opts: SwiftCoreOptions) {
+    cliRecordOperations.setConfigData('userPath', this.userPath)
+    cliRecordOperations.setConfigData('name', this.name)
+
     return cli({
-      name: 'swift-core',
-      version: packJson.version,
-      description: 'cli',
-      flags: {
-        plugins: {
-          type: Boolean,
-          alias: 'p',
-          description: 'open plugin store, only run in development',
-        },
-        use: {
-          type: String,
-          alias: 'a',
-        },
-        location: {
-          type: Boolean,
-          alias: 'l',
-          description: 'open local plugin, only run in development',
-        },
-        config: {
-          type: Boolean,
-          alias: 'c',
-          description: 'open config page',
-        },
-        lint: {
-          type: Boolean,
-          description: 'eslint init',
-        },
-        docs: {
-          type: Boolean,
-          description: 'docs vitepress',
-        },
-      },
+      name: this.name,
+      version: opts.version,
+      description: opts.description ?? 'cli',
     })
+  }
+
+  setConfig(config: SwiftConfifg) {
+    this.swiftConfifg = config
+    cliRecordOperations.setConfigData('configData', this.swiftConfifg.configData)
+  }
+
+  private getDefaultConfig(): SwiftConfifg {
+    return {
+      configData: [
+        {
+          name: 'frame',
+          label: '框架类型',
+          type: 'select',
+          title: '请选择框架',
+          items: [
+            {
+              label: 'React',
+              value: 'react',
+            },
+            {
+              label: 'Vue',
+              value: 'vue',
+            },
+            {
+              label: 'None',
+              value: 'none',
+            },
+          ],
+        },
+      ],
+    }
+  }
+
+  run() {
+    spawn('node', [`${path.resolve(__dirname, 'cli.js')}`], { stdio: 'inherit' })
   }
 }
 
