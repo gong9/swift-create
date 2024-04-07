@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { spawn } from 'node:child_process'
 import { cli } from 'cleye'
-import { cliRecordOperations } from './utils/recordOperations'
+import { cliRecordOperations, pluginRecordOperations } from './utils/recordOperations'
 
 interface BaseConfigData {
   name: string
@@ -28,6 +28,7 @@ type SwiftCoreOptions = {
   userPath: string
   version: string
   description?: string
+  gitType?: 'gitee' | 'github'
 }
 
 interface SwiftConfifg {
@@ -54,6 +55,14 @@ class SwiftCore {
   init(opts: SwiftCoreOptions) {
     cliRecordOperations.setConfigData('userPath', this.userPath)
     cliRecordOperations.setConfigData('name', this.name)
+
+    pluginRecordOperations.closePlugin('@gongcli/gitee-template-plugin')
+    pluginRecordOperations.closePlugin('@gongcli/github-template-plugin')
+
+    if (opts.gitType === 'github')
+      pluginRecordOperations.enablePlugin('@gongcli/github-template-plugin')
+    else
+      pluginRecordOperations.enablePlugin('@gongcli/gitee-template-plugin')
 
     return cli({
       name: this.name,

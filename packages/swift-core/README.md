@@ -4,11 +4,14 @@ Swift-Core 是一个用于构建命令行界面（CLI）应用的工具包，可
 
 ## 1. 配置你的仓库名称（`userPath`）
 
-根据你的仓库位置指定 `userPath`：
+根据你的仓库位置指定 `userPath` 和 `gitType` ：
 
 - 对于 GitHub 个人账号：`userPath` 应该是你的用户名，例如，对于 `https://github.com/gong9`，`userPath` 是 `gong9`
 - 对于 Gitee 个人账号：`userPath` 应该是你的用户名，例如，对于 `https://gitee.com/gong9`，`userPath` 是 `gong9`
 - 对于 GitHub 组织账号：`userPath` 应该是你的组织名，例如，对于 `https://github.com/gong-cli`，`userPath` 是 `gong-cli`
+
+gitType 为 `gitee` 或 `github`，默认为 `gitee`。
+
 
 ## 2. 配置你的 CLI 组件的 JSON 格式配置
 
@@ -67,6 +70,7 @@ import SwiftCore from 'swift-core';
 const swiftCore = new SwiftCore({
   name: 'swift-core',
   userPath: 'gong9',
+  gitType: 'gitee',  // 默认为 gitee,目前仅支持 gitee 和 github
   version: '0.0.1',
   description: 'CLI 工具，用于项目脚手架搭建',
 });

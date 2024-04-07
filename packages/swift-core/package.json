@@ -1,10 +1,14 @@
 {
   "name": "swift-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a cli tool for creating project",
   "author": "gong",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "create",
+    "project"
+  ],
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",

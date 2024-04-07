@@ -3,7 +3,8 @@ import SwiftCore from 'swift-core'
 
 const swiftCore = new SwiftCore({
   name: 'swift-core',
-  userPath: 'gong9',
+  userPath: 'gong-cli',
+  gitType: 'github',
   version: '0.0.1',
   description: 'cli',
 })
