@@ -1,173 +1,109 @@
-# swift-create
+# Swift-Core
+
+Swift-Core 是一个用于构建命令行界面（CLI）应用的工具包，可以帮助你快速搭建 CLI 脚手架下载器。要开始使用，你需要：
+
+## 1. 配置你的仓库地址
 
 
-## What
 
-The goal is to create a universal CLI engine that can serve as a scaffold for scaffolds.
+- 对于 GitHub 个人账号：打开你的仓库主页，复制地址栏中的 如：'https://github.com/gong9'
+- 对于 Gitee 个人账号：同理操作，复制地址栏中的 如：'https://gitee.com/gong9'
+- 对于 GitHub 组织账号：同样打开主页，复制地址栏中的 `https://github.com/gong-cli`
 
-Users can extend and customize their own scaffolds through a plugin system.
 
 
-## Install
-> node version >= 18.0.0
+## 2. 配置你的 CLI 组件的 JSON 格式配置
 
-Note: Since the plugin installation defaults to using pnpm as the package manager, you need to install pnpm.
-
-```bash
-npm -g install pnpm
-```
-
-CLI usage
-```bash
-npx swift-create@latest
-```
-
-If you just want to init eslint, you can 
-
-```base
-npx swift-create@latest --lint
-```
-then reinstall the dependency
-
-please note that the use of cli requires a node version of 18 or above, so you need to change the node first. 
-
-If you just init a docs, you can 
-
-```base
-npx swift-create@latest --docs
-```
-
-## Feature
-
-- Independent project templates
-- Template sources support GitHub, GitLab, and Gitee
-- Provides common generator features
-
-### Usage
-
-[Video Link](https://www.yuque.com/gongxiaobai/ckuidk/wp6gx65o7ezn0ud1)
-
-This project classifies template projects into three categories:
-
-- Project Type: Business Project, Component Project, CLI Project
-- Framework: React, Vue
-- Repository Management: Monorepo, Single Repo
-
-Therefore, if you want to set up your own template, you need to follow a specific naming convention.
-
-For example, "template-react-monorepo" represents a React monorepo template. If no project type is specified, it matches all types.
-
-If you don't like the above three classification methods, it's okay. It's also easy to configure your own.
-Find core/cli.config.json and modify the configData field.
+如下定义你的 CLI 组件配置：
 
 ```json
-{
-  "name": "gong-cl",
-  "userPath": "gong-cli",
-  "configData": [
+[
+  {
+    "name": "frame",
+    "label": "框架类型",
+    "type": "select",
+    "title": "请选择框架",
+    "items": [
+      {
+        "label": "React",
+        "value": "react"
+      },
+      {
+        "label": "Vue",
+        "value": "vue"
+      },
+      {
+        "label": "None",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "demo",
+    "label": "demo",
+    "type": "input",
+    "title": "demo"
+  }
+]
+
+```
+
+## 3. 仓库模版项目名称规定
+
+cli会找所有以`template-`开头的开源项目模版，然后根据你的选择进行下载
+
+Swift-Core 将为你的 CLI 自动生成 GUI 组件。通过 GUI 进行选择时（例如，select 组件选择 "React" ， input 组件中输入 "111"），它将从你指定的仓库中搜索并下载符合条件的项目（本例中为包含 "react" 和 "111" 的项目，如template-react-111）。
+
+none 代表不选择任何项目，匹配所有项目。
+
+
+## 安装
+
+确保你安装了 Node.js 版本 18.0.0 或更高：
+
+```bash
+pnpm add swift-core
+```
+
+## 使用
+
+```ts
+#!/usr/bin/env node
+
+import SwiftCore from 'swift-core';
+
+const swiftCore = new SwiftCore({
+  name: 'swift-core',
+  path: 'https://github.com/gong9', //目前仅支持 gitee 和 github
+  version: '0.0.1',
+  description: 'CLI 工具，用于项目脚手架搭建',
+});
+
+swiftCore.setConfig({
+  configData: [
     {
-      "name": "project",
-      "label": "项目类型",
-      "type": "select",
-      "title": "请选择所要创建的项目类型",
-      "items": [
+      name: 'frame',
+      label: '框架类型',
+      type: 'select',
+      title: '请选择框架',
+      items: [
         {
-          "label": "业务",
-          "value": "business"
+          label: 'React',
+          value: 'react',
         },
         {
-          "label": "库",
-          "value": "lib"
+          label: 'Vue',
+          value: 'vue',
         },
         {
-          "label": "脚手架",
-          "value": "cli"
-        }
-      ]
+          label: 'None',
+          value: 'none',
+        },
+      ],
     },
-    {
-      "name": "codeManagement",
-      "label": "仓库管理方式",
-      "type": "select",
-      "title": "请选择仓库管理方式",
-      "items": [
-        {
-          "label": "单库项目",
-          "value": "singlerepo"
-        },
-        {
-          "label": "多库管理",
-          "value": "monorepo"
-        }
-      ]
-    },
-    {
-      "name": "frame",
-      "label": "框架类型",
-      "type": "select",
-      "title": "请选择框架",
-      "items": [
-        {
-          "label": "React",
-          "value": "react"
-        },
-        {
-          "label": "Vue",
-          "value": "vue"
-        },
-        {
-          "label": "None",
-          "value": "none"
-        }
-      ]
-    }
-  ]
-}
+  ],
+});
+
+swiftCore.run();
+
 ```
-- name: Unique key for the current option control (required)
-- label: Label for the option control (required)
-- type: Type of the option control (required)
-  - select: Dropdown
-  - input: Input field
-- items: (required for type "select"): Options for the dropdown
-- label: Label of the option
-- value: Value of the option
-
-
-However, it is still important to follow certain naming conventions for the templates, otherwise the engine will not be able to recognize them. For example: ['cli','singlerepo','react'] => template-cli-singlerepo-react
-
-
-#### How to use privately
-There are currently two public configuration properties in the platform:
-
-- name: CLI name, the logo title when the CLI starts
-- userPath: User or organization name of the personal repository, e.g.: https://github.com/gong-cli, then "gong-cli" is the userPath; https://github.com/gong9, then "gong9" is the userPath; https://gitee.com/gong9/, "gong9" is also the userPath. Set this property correctly to ensure that the engine can access your template repository.
-
-Setting method:
-
-```bash
-pnpm start -c
-```
-
-This command also supports setting when deploying:
-    
-```bash
-npx swift-create@latest -c
-```
-
-#### How to use plugins
-If your template repository is on GitHub, GitLab, or Gitee, you need to use the plugin functionality of this project to install the download plugin for the specified platform locally.
-> For development purposes only. After configuration, it is recommended to package and publish privately. (i.e., change the package name to your own; it is not recommended to modify the project for future use of the plugin ecosystem)
-
-Open the plugin store and install the plugin:
-```bash
-pnpm start -p
-```
-
-After installation, you need to enable the plugin:
-```bash
-pnpm start -l
-```
-Note: The plugin engine will only use one download plugin. (At present, the plugin functionality is not fully developed, and only the GitHub and Gitee download plugins have been developed, which do not require tokens.)
-
-
