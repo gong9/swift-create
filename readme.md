@@ -6,8 +6,8 @@ Swift-Core 是一个用于构建命令行界面（CLI）应用的工具包，可
 
 
 
-- 对于 GitHub 个人账号：打开你的仓库主页，复制地址栏中的 如：'https://github.com/gong9'
-- 对于 Gitee 个人账号：同理操作，复制地址栏中的 如：'https://gitee.com/gong9'
+- 对于 GitHub 个人账号：打开你的仓库主页，复制地址栏中的 如：`https://github.com/gong9`
+- 对于 Gitee 个人账号：同理操作，复制地址栏中的 如：`https://gitee.com/gong9`
 - 对于 GitHub 组织账号：同样打开主页，复制地址栏中的 `https://github.com/gong-cli`
 
 
