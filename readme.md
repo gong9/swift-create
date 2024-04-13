@@ -67,7 +67,9 @@ pnpm add swift-core
 
 ## 使用
 
-```ts
+index.js
+
+```js
 #!/usr/bin/env node
 
 import SwiftCore from 'swift-core';
@@ -107,3 +109,12 @@ swiftCore.setConfig({
 swiftCore.run();
 
 ```
+
+## 执行
+
+node index.js
+
+
+## 上传部署自己的脚手架
+
+你可以 clone `https://github.com/gong-cli/template-cli` 此项目，修改为0你的配置和package.json。 然后npm publish
