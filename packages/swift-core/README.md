@@ -6,8 +6,8 @@ Swift-Core 是一个用于构建命令行界面（CLI）应用的工具包，可
 
 
 
-- 对于 GitHub 个人账号：打开你的仓库主页，复制地址栏中的 如：'https://github.com/gong9'
-- 对于 Gitee 个人账号：同理操作，复制地址栏中的 如：'https://gitee.com/gong9'
+- 对于 GitHub 个人账号：打开你的仓库主页，复制地址栏中的 如：`https://github.com/gong9`
+- 对于 Gitee 个人账号：同理操作，复制地址栏中的 如：`https://gitee.com/gong9`
 - 对于 GitHub 组织账号：同样打开主页，复制地址栏中的 `https://github.com/gong-cli`
 
 
@@ -67,10 +67,12 @@ pnpm add swift-core
 
 ## 使用
 
-```ts
+index.js
+
+```js
 #!/usr/bin/env node
 
-import SwiftCore from 'swift-core';
+const SwiftCore = require('swift-core').default
 
 const swiftCore = new SwiftCore({
   name: 'swift-core',
@@ -107,3 +109,15 @@ swiftCore.setConfig({
 swiftCore.run();
 
 ```
+
+## 执行
+
+node index.js
+
+
+## 上传部署自己的脚手架
+
+你可以 clone `https://github.com/gong-cli/template-cli` 此项目，修改为你的配置和package.json。 然后npm publish
+
+
+当然也可以用我的脚手架： https://github.com/gong9/swift-create/tree/main/apps/cli

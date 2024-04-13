@@ -12,6 +12,7 @@ Swift-Core 是一个用于构建命令行界面（CLI）应用的工具包，可
 
 
 
+
 ## 2. 配置你的 CLI 组件的 JSON 格式配置
 
 如下定义你的 CLI 组件配置：
@@ -72,7 +73,7 @@ index.js
 ```js
 #!/usr/bin/env node
 
-import SwiftCore from 'swift-core';
+const SwiftCore = require('swift-core').default
 
 const swiftCore = new SwiftCore({
   name: 'swift-core',
@@ -118,3 +119,6 @@ node index.js
 ## 上传部署自己的脚手架
 
 你可以 clone `https://github.com/gong-cli/template-cli` 此项目，修改为你的配置和package.json。 然后npm publish
+
+
+当然也可以用我的脚手架： https://github.com/gong9/swift-create/tree/main/apps/cli

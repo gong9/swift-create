@@ -1,6 +1,6 @@
 {
   "name": "swift-core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "a cli tool for creating project",
   "author": "gong",
   "license": "MIT",
