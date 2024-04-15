@@ -58,9 +58,6 @@ Swift-Core 是一个用于构建命令行界面（CLI）应用的工具包，可
   - label: 选项的label
   - value: 选项的value
 
-eg: ['cli','singlerepo','react'] => template-cli-singlerepo-react
-
-
 
 ## 3. 仓库模版项目名称规定
 
