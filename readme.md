@@ -49,6 +49,19 @@ Swift-Core 是一个用于构建命令行界面（CLI）应用的工具包，可
 
 ```
 
+- name: 当前选项控件的唯一key 「必填」
+- label: 选项控件的label 「必填」
+- type: 选项控件的类型 「必填」
+  - select: 下拉框
+  - input: 输入框
+- items: 「type为select时必填」： 下拉框的选项
+  - label: 选项的label
+  - value: 选项的value
+
+eg: ['cli','singlerepo','react'] => template-cli-singlerepo-react
+
+
+
 ## 3. 仓库模版项目名称规定
 
 cli会找所有以`template-`开头的开源项目模版，然后根据你的选择进行下载
