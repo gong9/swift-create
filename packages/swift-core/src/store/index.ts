@@ -7,6 +7,7 @@ import type { StepConfigType } from '../types'
 interface TempalteConfigType {
   projectName: string
 }
+
 export interface StateType {
   tempalteRecord: {
     [k: string]: string | number
@@ -39,6 +40,7 @@ const useStore = create<StateType>((set) => {
     stepConfig: [
       ...defaultConfig,
     ] as StepConfigType,
+
     updataTemplatePath: (newData: StateType['tempalteRecord']) => set(
       (state) => {
         return {
@@ -49,6 +51,7 @@ const useStore = create<StateType>((set) => {
         }
       },
     ),
+
     setTemplateConfig: (newData: StateType['templateConfig']) => set(
       (state) => {
         return {

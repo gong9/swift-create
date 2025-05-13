@@ -3,13 +3,13 @@ import { spawn } from 'node:child_process'
 import { cli } from 'cleye'
 import { cliRecordOperations, pluginRecordOperations } from './utils/recordOperations'
 
-interface BaseConfigData {
+type BaseConfigData = {
   name: string
   label: string
   title: string
 }
 
-interface SelectConfigData extends BaseConfigData {
+type SelectConfigData = BaseConfigData & {
   type: 'select'
   items: {
     label: string
@@ -17,7 +17,7 @@ interface SelectConfigData extends BaseConfigData {
   }[]
 }
 
-interface InputConfigData extends BaseConfigData {
+type InputConfigData = BaseConfigData & {
   type: 'input'
 }
 
@@ -30,7 +30,7 @@ type SwiftCoreOptions = {
   description?: string
 }
 
-interface SwiftConfifg {
+type SwiftConfifg = {
   configData: ConfigData[]
 }
 
@@ -45,10 +45,10 @@ class SwiftCore {
   private gitType: 'github' | 'gitee' = 'gitee'
 
   constructor(opts: SwiftCoreOptions) {
-    const path = opts.path ?? 'https://gitee.com/gong9'
+    const { path = 'https://gitee.com/gong9', name = 'swift-core' } = opts
+
     const match = regex.exec(path)
     const [_, gitSource, gitName] = match as string[]
-    const name = opts.name ?? 'swift-core'
 
     this.userPath = gitName
     this.name = name

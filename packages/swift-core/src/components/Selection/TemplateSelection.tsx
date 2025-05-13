@@ -77,7 +77,10 @@ const TemplateSelection: FC<TemplateSelectionProps> = ({ config, nextAction }) =
             <Box marginRight={1}>
               <Text>{config.name}: </Text>
             </Box>
-            <TextInput placeholder={config.placeholder || ''} value={(config.private ? templateConfig[config.name] : tempalteRecord[config.name]) || ''} onChange={handleInputChange}
+            <TextInput
+              placeholder={config.placeholder || ''}
+              value={(config.private ? templateConfig[config.name as keyof typeof templateConfig] : tempalteRecord[config.name as keyof typeof tempalteRecord]) as string || ''}
+              onChange={handleInputChange}
               onSubmit={() => {
                 setTempalteRecordShow({
                   [config.label]: currentValue,
