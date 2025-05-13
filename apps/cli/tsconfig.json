@@ -2,17 +2,8 @@
     "extends": "../../build.config.json",
     "compilerOptions": {
         "paths": {
-            "@gongcli/eslint-builder-plugin": [
-                "../../plugins/eslint-builder-plugin/src"
-            ],
-            "@gongcli/gitee-template-plugin": [
-                "../../plugins/gitee-template-plugin/src"
-            ],
-            "@gongcli/github-template-plugin": [
-                "../../plugins/github-template-plugin/src"
-            ],
-            "@gongcli/vitepress-builder-plugin": [
-                "../../plugins/vitepress-builder-plugin/src"
+            "swift-core": [
+                "../../packages/swift-core/src"
             ]
         }
     }
